@@ -1,0 +1,86 @@
+.paginationWrapper {
+  display: flex;
+  gap: 25px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* ---------- previous ---------- */
+.previousSection {
+  display: flex;
+  gap: 10px;
+}
+.goToInitial {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: var(--black-tint-color);
+  cursor: pointer;
+}
+.goToInitial:hover {
+  color: var(--black-color);
+}
+
+.goToInitial .icons {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: 13px;
+}
+.goToInitial .icons svg:nth-of-type(1) {
+  position: relative;
+  left: 7px;
+}
+.goToInitial .text {
+  transition: all 0.3s;
+}
+
+.previousSection.disabled .navigateBox,
+.nextSection.disabled .navigateBox {
+  background-color: #0000000f;
+  color: var(--black-light-color);
+  border: none;
+  cursor: default;
+}
+.previousSection.disabled .goToInitial {
+  color: var(--black-light-color);
+  cursor: default;
+}
+
+/* ---------- center box ---------- */
+.centerSection {
+  color: var(--black-tint-color);
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+}
+.slashIcon {
+  position: relative;
+  top: -1px;
+}
+
+/* ---------- navigate box ---------- */
+
+.navigateBox {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background-color: white;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--black-dark-color);
+  border: 1px solid var(--white-dark-color);
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.navigateBox .text {
+  line-height: 0;
+}
+.navigateBox:hover {
+  border: 1px solid var(--primary-color);
+}
+.navigateBox .icon {
+  position: relative;
+  top: 0px;
+}

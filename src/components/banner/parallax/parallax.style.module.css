@@ -1,0 +1,45 @@
+.bannerWrapper {
+  position: relative;
+  width: auto;
+  height: calc(100vh - 100px);
+
+  -webkit-box-shadow: inset -14px -200px 92px -95px #000000bf;
+  -moz-box-shadow: inset -14px -200px 92px -95px #000000bf;
+  box-shadow: inset -14px -200px 92px -95px #000000bf;
+}
+
+.bannerWrapper .video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bannerWrapper .insetBoxShadow {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  -webkit-box-shadow: inset -14px -200px 92px -95px #000000bf;
+  -moz-box-shadow: inset -14px -200px 92px -95px #000000bf;
+  box-shadow: inset -14px -200px 92px -95px #000000bf;
+}
+
+/* ------------------------------------ media queries -------------------------------
+------------------------------------------------------------------------------------- */
+
+@media (max-width: 460px) {
+  .bannerWrapper .textContainer {
+    padding: 20px;
+  }
+  .bannerWrapper .titleInfo {
+    line-height: 60px;
+    padding-bottom: 20px;
+  }
+}
+@media (max-width: 420px) {
+  .bannerWrapper .subTextInfo {
+    font-size: 18px;
+  }
+}

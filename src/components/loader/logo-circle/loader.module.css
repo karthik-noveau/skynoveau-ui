@@ -1,0 +1,61 @@
+.loaderWrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 100000000;
+}
+.loaderWrapper img {
+  width: 130px;
+}
+.loaderWrapper p {
+  color: #000000;
+  font-weight: 400;
+  padding-top: 20px;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.circle {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  border-radius: 300px;
+  border: 2px solid #000000;
+  border-right: none;
+  border-bottom: none;
+  animation: dhanika-logo-circle 2s infinite linear;
+}
+
+@keyframes dhanika-logo-circle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------------ media queries -------------------------------
+------------------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .loaderWrapper img {
+    width: 150px;
+  }
+  .circle {
+    width: 350px;
+    height: 350px;
+  }
+}

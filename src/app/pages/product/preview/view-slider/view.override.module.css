@@ -1,0 +1,29 @@
+/* ---------- swiper slide ---------- */
+.productsSlider {
+  height: 100%;
+  width: 100%;
+}
+.productsSlider :global(.swiper-wrapper) {
+  margin-bottom: 20px;
+}
+.productsSlider :global(.swiper-slide) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: -23px;
+}
+.productsSlider :global(.swiper-slide img) {
+  width: 100%;
+}
+.productsSlider :global(.swiper-pagination) {
+  bottom: 6px !important;
+}
+
+.productsSlider :global(.swiper-pagination span) {
+  /* background: #b4903a1a;
+  border: 1px solid var(--primary-color); */
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */

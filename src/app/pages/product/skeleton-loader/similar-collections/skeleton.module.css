@@ -1,0 +1,18 @@
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  gap: 20px;
+  overflow: hidden;
+  margin-bottom: 80px;
+}
+.card {
+  aspect-ratio: 2/3;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .cardContainer {
+    grid-template-columns: repeat(5, 180px);
+  }
+}

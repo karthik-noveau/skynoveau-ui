@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+.menu {
+  color: var(--black-tint-color);
+  cursor: pointer;
+}
+.menu:hover {
+  color: var(--black-color);
+}
+.activeMenu {
+  color: var(--black-dark-color);
+}
+.icon {
+  color: var(--black-tint-color);
+  margin: 0 5px;
+  font-size: 18px;
+  position: relative;
+  top: -1px;
+}

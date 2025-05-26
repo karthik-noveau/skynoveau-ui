@@ -1,0 +1,19 @@
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--black-tint-color);
+}
+
+.upload :global(.ant-upload.ant-upload-select) {
+  background-color: transparent !important;
+}
+.dragItem {
+  height: inherit;
+  border-radius: 8px;
+  background-color: var(--white-color);
+}
+.draggingItem {
+  border-radius: 8px;
+}

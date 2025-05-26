@@ -1,0 +1,50 @@
+.cardContainer {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.cardContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scale: 1;
+  transition: scale 0.5s;
+}
+.cardContainer:hover img {
+  scale: 1.03;
+}
+.cardContainer,
+.cardContainer img,
+.cardContainer::before {
+  border-radius: 10px;
+}
+.cardContainer::before {
+  box-shadow: inset 0 -165px 92px -51px #000000bf;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+/* ---------- bottom ---------- */
+.bottomSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 18px;
+}
+.cardContainer p {
+  text-align: center;
+  z-index: 1;
+  color: white;
+  width: calc(100% - 15px);
+  letter-spacing: 1px;
+}

@@ -1,0 +1,91 @@
+/* ---------- header ---------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.header .leftSection {
+  color: #262626;
+  height: fit-content;
+  padding: 5px 0px;
+  border-radius: 5px;
+}
+.header .rightSection {
+  display: flex;
+  gap: 15px;
+}
+.newTab {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: #f4f4f4;
+  color: #383838;
+  height: fit-content;
+  padding: 4px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.newTab .icon {
+  position: relative;
+  top: -1.5px;
+  font-size: 15px;
+}
+.copy {
+  background-color: #f4f4f4;
+  color: #383838;
+  height: fit-content;
+  padding: 6px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.copy .icon {
+  position: relative;
+  top: 2px;
+  font-size: 15px;
+}
+
+/* ---------- frame---------- */
+.frame {
+  display: grid;
+  min-height: 250px;
+  border-radius: 10px;
+  padding: 15px;
+  z-index: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(217, 96, 219, 0.2) 0%,
+    rgba(16, 115, 242, 0.2) 50%,
+    rgba(50, 232, 223, 0.2) 100%
+  );
+  backdrop-filter: blur(500px);
+  overflow: hidden;
+}
+.frameWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+.frameContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.infoText {
+  text-align: center;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+
+@media (max-width: 460px) {
+  .newTab span {
+    display: none;
+  }
+  .newTab {
+    padding: 9px 12px;
+  }
+}

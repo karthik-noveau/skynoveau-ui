@@ -1,0 +1,26 @@
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure it stretches to cover full width */
+  height: 100%; /* Ensure it stretches to cover full height */
+  object-fit: cover;
+}
+
+.videoDesktop {
+  display: block;
+}
+
+.videoMobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .videoDesktop {
+    display: none;
+  }
+
+  .videoMobile {
+    display: block;
+  }
+}

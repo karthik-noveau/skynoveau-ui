@@ -1,0 +1,14 @@
+.notification {
+  padding: 12px 24px 4px 24px !important;
+}
+.notification :global(.ant-notification-notice-close) {
+  top: 12px !important;
+}
+.notification :global(.ant-notification-notice-message) {
+  margin-inline-start: 30px !important;
+}
+.notification svg {
+  font-size: 20px;
+  position: relative;
+  top: 2px;
+}

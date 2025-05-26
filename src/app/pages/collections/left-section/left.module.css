@@ -1,0 +1,44 @@
+.desktopFilter {
+  border-right: 1px solid var(--white-dark-color);
+
+  height: fit-content;
+  padding: 0px 20px 20px 0px;
+  position: sticky;
+  top: 112px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  margin-top: -5px;
+  /* border-bottom: 1px solid var(--white-dark-color); */
+}
+.desktopFilter .filterTitle {
+  /* position: relative;
+  top: -13px; */
+  color: var(--black-color);
+}
+.filterClear {
+  cursor: pointer;
+  border-bottom: 0.5px solid;
+  height: 20px;
+}
+.mobileFilter {
+  display: none;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+@media (max-width: 690px) {
+  .desktopFilter {
+    display: none;
+  }
+  .mobileFilter {
+    display: block;
+    position: fixed;
+    bottom: 100px;
+    background-color: white;
+    z-index: 100;
+  }
+}

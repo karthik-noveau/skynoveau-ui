@@ -1,0 +1,38 @@
+.inputsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 0px;
+  column-gap: 50px;
+}
+.inputsContainer :global(.ant-form-item button) {
+  width: 130px;
+  height: 40px;
+  font-size: 17px;
+}
+.inputsContainer :global(.ant-form-item input) {
+  background-color: white !important;
+}
+
+.contactForm :global(.ant-form-item textarea) {
+  background-color: white !important;
+  height: 120px;
+}
+
+/* ----------------media quries----------------
+   -------------------------------------------- */
+@media (max-width: 425px) {
+  .inputsContainer :global(.ant-form-item button) {
+    width: 130px;
+    height: 40px;
+    font-size: 17px;
+  }
+}
+@media (max-width: 768px) {
+  .inputsContainer {
+    grid-template-columns: 1fr;
+  }
+  /*input */
+  .inputsContainer :global(.ant-form-item) {
+    margin-bottom: 25px;
+  }
+}

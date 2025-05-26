@@ -1,0 +1,124 @@
+.contactForm {
+  width: 100%;
+  --text-font-family: var(--default-font-family);
+}
+.contactForm .inputsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 0px;
+  column-gap: 50px;
+}
+
+/*------------ input -----------*/
+.contactForm :global(.ant-form-item) {
+  margin-bottom: 30px;
+}
+.contactForm :global(.ant-form-item input) {
+  height: 45px;
+  border-radius: 7px;
+  background-color: #ffffff !important;
+  color: var(--black-color);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  border-color: var(--primary-color) !important;
+}
+.contactForm :global(.ant-input:hover),
+.contactForm :global(.ant-input:focus) {
+  border-color: var(--primary-color) !important;
+  transition: all 0.5s;
+}
+.contactForm :global(.ant-form-item input::placeholder),
+.contactForm :global(.ant-form-item textarea::placeholder) {
+  color: #777777;
+}
+
+.inputsSection {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+.inputsSection :global(.ant-form-item) {
+  width: 100%;
+}
+
+/* ---------- picker ---------- */
+.contactForm :global(.ant-picker) {
+  width: 100%;
+  border-color: var(--primary-color);
+}
+.contactForm :global(.ant-picker input) {
+  height: 35px !important;
+}
+
+/* ---------- checkbox ---------- */
+.checkboxText {
+  display: flex;
+  align-content: center;
+  color: var(--black-color-light);
+}
+
+/*----------- text area ----------*/
+.contactForm :global(.ant-form-item textarea) {
+  width: 100%;
+  height: 150px;
+  border-radius: 7px;
+  background-color: white !important;
+  color: var(--black-color);
+  border-color: var(--primary-color) !important;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/*------------ input error ---------*/
+.contactForm :global(.ant-form-item .ant-form-item-explain-error) {
+  font-size: 12px;
+  color: #ff0000;
+}
+
+/*------------ button -----------*/
+.contactForm :global(.ant-form-item button) {
+  background-size: 200% 100%;
+  background-position: right center;
+  width: 120px;
+  height: fit-content;
+  transition: all 0.5s;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 300;
+  background: var(--primary-color) !important;
+  border-color: transparent !important;
+  padding: 4px 30px !important;
+  color: #ffffff !important;
+}
+.contactForm :global(.ant-form-item button span) {
+  font-family: var(--default-font-family) !important;
+}
+.contactForm :global(.ant-btn-primary:hover) {
+  transition: all 0.5s;
+  background-size: 200% 100%;
+  background-position: right center;
+  background: var(--primary-dark-color) !important;
+}
+
+/* ----------------media quries----------------
+   -------------------------------------------- */
+@media (max-width: 425px) {
+  .contactForm :global(.ant-form-item button) {
+    width: 130px;
+    height: 40px;
+    font-size: 17px;
+  }
+}
+@media (max-width: 768px) {
+  .contactForm .inputsContainer {
+    grid-template-columns: 1fr;
+  }
+  .inputsSection {
+    flex-direction: column;
+    gap: 0;
+  }
+  /*input */
+  .contactForm :global(.ant-form-item) {
+    margin-bottom: 25px;
+  }
+}

@@ -1,0 +1,12 @@
+.hamburgerMenu .hamburger-react div {
+  height: 1.8px !important;
+  width: 30px !important;
+}
+.hamburgerMenu .hamburger-react {
+  width: 40px !important;
+}
+
+.hamburgerMenu .hamburger-react div:nth-of-type(2) {
+  width: 19px !important;
+  left: 18px !important;
+}

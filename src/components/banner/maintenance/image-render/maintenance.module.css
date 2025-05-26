@@ -1,0 +1,26 @@
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure it stretches to cover full width */
+  height: 100%; /* Ensure it stretches to cover full height */
+  object-fit: cover;
+}
+
+.imageDesktop {
+  display: block;
+}
+
+.imageMobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .imageDesktop {
+    display: none;
+  }
+
+  .imageMobile {
+    display: block;
+  }
+}

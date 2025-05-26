@@ -1,0 +1,66 @@
+.componentRenderWrapper {
+  margin-top: 60px;
+  margin-bottom: 25px;
+}
+.componentRenderContainer .description {
+  margin-top: 5px;
+}
+.titleContainer {
+  width: 100%;
+  position: sticky;
+  top: 84px;
+  background-color: var(--white-color);
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  z-index: 99;
+  padding-top: 15px;
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--black-color);
+}
+.navigateBack {
+  cursor: pointer;
+}
+.title .icon {
+  rotate: 180deg;
+  position: relative;
+  right: 5px;
+  font-size: 23px;
+}
+.variantsContainer {
+  display: grid;
+  gap: 30px;
+}
+.count {
+  color: var(--black-dark-color);
+  padding: 4px;
+  background-color: var(--gray-bgcolor);
+  border-radius: 50%;
+  font-weight: 400;
+  display: inline-block;
+  padding: 0px 10px 0 10px;
+  margin: 0 5px;
+  text-align: center;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+@media (max-width: 1170px) {
+  .componentRenderWrapper {
+    display: flex;
+    justify-content: center;
+  }
+  .componentRenderContainer {
+    width: 90%;
+  }
+  .titleContainer {
+    top: 70px;
+    padding-top: 10px;
+  }
+  .title .icon {
+    font-size: 20px;
+  }
+}

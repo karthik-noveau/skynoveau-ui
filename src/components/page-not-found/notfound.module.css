@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px);
+  flex-direction: column;
+}
+.status {
+  color: var(--black-color);
+  font-size: 60px;
+}
+.description {
+  color: var(--black-tint-color);
+}
+.button:global(.button) {
+  margin-top: 30px;
+  padding: 6px 30px;
+  background-color: var(--black-color);
+  border-radius: 25px;
+}
+.button:global(.button:hover) {
+  background-color: var(--black-color);
+}

@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  color: var(--black-light-color);
+  cursor: pointer;
+}
+.menu.active {
+  color: var(--black-dark-color);
+}
+.menu .icon {
+  /* font-size: 12px; */
+  position: relative;
+  top: 2px;
+}

@@ -1,0 +1,7 @@
+.hamburgerMenu3 .hamburger-react {
+  width: 40px !important;
+}
+
+.openIcon.hamburgerMenu3 .hamburger-react div:nth-of-type(2) {
+  width: 18px !important;
+}

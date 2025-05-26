@@ -1,0 +1,39 @@
+.imageContainer {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.showImg {
+  border-radius: var(--border-radius);
+  object-fit: cover;
+}
+.showImg.zoomEffect {
+  animation: zoomOut 0.5s ease-out forwards;
+}
+.hideImg {
+  visibility: hidden;
+}
+.skeleton {
+  aspect-ratio: 2/3;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.imageHover {
+  scale: 1;
+  transition: scale 0.5s;
+}
+.imageHover:hover {
+  scale: var(--image-hover-scale);
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(var(--image-zoom-scale));
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,22 @@
+.buttonContainer {
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  height: fit-content;
+  padding: 5px 15px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+.buttonContainer,
+.buttonContainer:focus {
+  outline: none;
+  border: none;
+}
+.buttonContainer:hover {
+  background-color: var(--primary-dark-color);
+}

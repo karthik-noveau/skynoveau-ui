@@ -1,0 +1,47 @@
+/* ---------- video banner ---------- */
+.videoPlayerContainer {
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  position: relative;
+}
+.videoPlayerContainer video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.4);
+}
+.videoPlayerContainer .textSection {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  text-align: center;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.videoPlayerContainer .textSection .title {
+  color: white;
+  width: 90%;
+  line-height: 53px;
+}
+.videoPlayerContainer .textSection .watchButton {
+  border: 1px solid white;
+  padding: 10px 20px;
+  width: max-content;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.videoPlayerContainer .textSection .watchButton .icon {
+  font-size: 30px;
+}

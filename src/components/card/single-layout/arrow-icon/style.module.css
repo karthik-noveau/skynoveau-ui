@@ -1,0 +1,20 @@
+.collectionContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .collectionContainer {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+}
+@media (max-width: 500px) {
+  .collectionContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+}

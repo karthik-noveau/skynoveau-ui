@@ -1,0 +1,56 @@
+.antSearch {
+  width: 280px;
+}
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+/*------------ search input -----------*/
+.searchInput {
+  position: relative;
+}
+.searchInput .icon {
+  position: absolute;
+  top: 9px;
+  right: 11px;
+  color: var(--black-dark-color);
+  font-size: 19px;
+}
+
+/*------------ input -----------*/
+.antSearch :global(.ant-form-item) {
+  margin-bottom: 0px;
+  width: 100%;
+}
+.antSearch :global(.ant-form-item input) {
+  height: 38px;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #ffffff !important;
+  color: #1e1e1e;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  border-color: var(--black-dark-color) !important;
+  border-width: 1.5px !important;
+  padding-right: 35px !important;
+}
+.antSearch :global(.ant-input:hover),
+.antSearch :global(.ant-input:focus) {
+  border-color: var(--black-dark-color) !important;
+  transition: all 0.5s;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.antSearch :global(.ant-form-item input::placeholder) {
+  color: #777777;
+}
+
+/* --------------- media queries ----------------
+  ------------------------------------------------- */
+
+@media (max-width: 460px) {
+  .antSearch {
+    width: 100%;
+  }
+}

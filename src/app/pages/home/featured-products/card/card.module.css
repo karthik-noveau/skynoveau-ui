@@ -1,0 +1,69 @@
+.cardWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr max-content;
+  cursor: pointer;
+  overflow: hidden;
+  width: auto;
+}
+.productImage {
+  aspect-ratio: 2/3;
+  width: 100%;
+  height: 100%;
+  transition: scale 0.5s;
+}
+.productImage:hover {
+  scale: 1.1;
+}
+.cardWrapper,
+.cardContainer,
+.cardWrapper::before {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.soldOutText {
+  position: absolute;
+  top: 0;
+  border-radius: 0px 0 0px 15px;
+  right: 0;
+  background-color: #000000b0;
+  padding: 5px 25px;
+  color: var(--white-color);
+}
+
+/* ---------- bottom section ---------- */
+.bottomSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  height: 90px;
+}
+
+/* ---------- view button ---------- */
+.cardContainer {
+  position: relative;
+}
+.cardWrapper:hover .cardContainer .viewButton p {
+  transform: translateY(-20px);
+}
+.viewButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+}
+.viewButton p {
+  transform: translateY(100px);
+  transition: transform 0.5s;
+  border-radius: 25px;
+  padding: 6px 22px;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  color: black;
+  display: grid;
+  place-items: center;
+  width: fit-content;
+}

@@ -1,0 +1,117 @@
+/* ----------- menus --------- */
+.bottomHeaderWrapper {
+  transform: translate(100%);
+  transition: transform 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 4;
+  background-color: var(--white-color);
+}
+.showDrawer {
+  transform: translate(0);
+  transition: transform 0.5s;
+}
+.bottomHeaderContainer {
+  width: calc(100% - 40px);
+  padding-top: 10px;
+}
+.menuItemContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  background: transparent;
+  padding: 15px 0;
+  transition: background 0.5s;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-right: 5px;
+  cursor: pointer;
+  border-bottom: 1px solid #eeeeee;
+}
+.menuItemContainer.active {
+  border-bottom: none;
+  color: var(--color-red);
+}
+.menuItemContainer .active {
+  color: var(--color-red);
+}
+.menuItemContainer .icon {
+  transform: rotate(0deg);
+  transition: transform 0.5s;
+}
+.menuItemContainer .animateIcon {
+  transform: rotate(90deg);
+  transition: transform 0.5s;
+}
+/* .menuItemContainer:hover {
+    color: blue;
+    cursor: pointer;
+  } */
+
+/* -----------dropdown menus ---------- */
+.dropdownWrapper {
+  min-width: max-content;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s;
+  display: flex;
+  justify-content: center;
+}
+.dropdownContainer {
+  width: 100%;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 12px 0px;
+}
+.showDropdownContainer {
+  max-height: 200px;
+}
+.dropdownMenu {
+  position: relative;
+}
+.dropdownWrapper {
+  width: 100%;
+}
+.subMenuItem {
+  padding: 15px 15px;
+  color: #575757;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.subMenuItem .icon {
+  font-size: 5px;
+  width: 17px;
+  color: #515151;
+  transform: rotate(-45deg);
+}
+.subMenuItem.active,
+.subMenuItem:hover {
+  color: var(--color-red);
+}
+
+.subMenuItem .icon path {
+  stroke-width: 0; /* Increase thickness */
+}
+
+/* --------- last menu --------- */
+.lastMenuWrapper {
+  display: flex;
+  justify-content: center;
+}
+.lastMenuContainer {
+  border: 1px solid #919191;
+  border-radius: 25px;
+  padding: 7px 25px;
+  margin-top: 25px;
+}
+.lastMenuContainer.active {
+  color: var(--color-red);
+}

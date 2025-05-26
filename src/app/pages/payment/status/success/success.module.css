@@ -1,0 +1,45 @@
+.orderWrapper {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+.orderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorIcon,
+.successIcon {
+  width: 60px;
+}
+.textContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  text-align: center;
+}
+.title {
+  margin-top: 10px;
+}
+.description {
+  color: var(--black-tint-color);
+  margin-top: 10px;
+}
+.button:global(.button) {
+  margin-top: 20px;
+  background-color: var(--black-color);
+}
+
+/* ---------- loader ---------- */
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 120px);
+}

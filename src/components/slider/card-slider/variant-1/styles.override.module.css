@@ -1,0 +1,25 @@
+/* ---------- swiper slide ---------- */
+.productsSlider :global(.swiper-slide) {
+  width: 250px;
+  display: grid;
+}
+
+/* ---------- pagination ---------- */
+.productsSlider :global(.swiper-pagination) {
+  bottom: 0px !important;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+@media (max-width: 1400px) {
+  /* ---------- swiper slide ---------- */
+  .productsSlider :global(.swiper-slide) {
+    width: 220px;
+  }
+}
+@media (max-width: 500px) {
+  /* ---------- swiper slide ---------- */
+  .productsSlider :global(.swiper-slide) {
+    width: 180px;
+  }
+}

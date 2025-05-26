@@ -1,0 +1,8 @@
+/* ---------- input widget ---------- */
+.inputWidgetContainer {
+  display: grid;
+  gap: 5px;
+}
+.label {
+  color: var(--black-tint-color);
+}

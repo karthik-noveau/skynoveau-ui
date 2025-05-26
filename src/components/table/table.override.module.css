@@ -1,0 +1,45 @@
+.antTable :global(.ant-table-thead > tr > th) {
+  font-weight: 400 !important;
+  font-size: 16px !important;
+}
+.antTable :global(.ant-table-cell) {
+  padding: 13px 16px !important;
+}
+
+.skeletonTable {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+/* ---------- header ---------- */
+.skeletonHeaderWrapper {
+  display: flex;
+  padding: 10px 20px;
+  background-color: #fafafa;
+  border-radius: 8px 8px 0 0;
+}
+.skeletonHeaderContainer {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  width: 100%;
+}
+/* ---------- row ---------- */
+.skeletonRow {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid var(--gray-bgcolor);
+  padding: 8px 0;
+  overflow: hidden;
+}
+.skeletonLastRow {
+  border: none;
+}
+/* ---------- body ---------- */
+.skeletonBody {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px 10px 20px;
+  background-color: var(--white-color);
+}

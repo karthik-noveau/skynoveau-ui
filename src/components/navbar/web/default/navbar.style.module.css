@@ -1,0 +1,39 @@
+.headerWrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: var(--box-shadow-color);
+  background-color: var(--header-bg-color);
+  transition: all 0.8s;
+  z-index: 1000;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ------------ left Info--------- */
+.leftInfo img {
+  width: 47px;
+  height: 47px;
+  cursor: pointer;
+}
+
+/* ------------ right Info--------- */
+.rightInfo {
+  display: flex;
+  align-items: center;
+}
+
+/* ----------- last menu button --------- */
+.lastMenuButton {
+  border-radius: 25px;
+  padding: 7px 25px;
+  background-color: var(--primary-light-color);
+  color: var(--primary-color);
+  width: max-content;
+  height: fit-content;
+  cursor: pointer;
+  margin-left: 10px;
+}

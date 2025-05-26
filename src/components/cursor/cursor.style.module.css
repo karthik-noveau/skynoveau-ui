@@ -1,0 +1,39 @@
+.cursor {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.cursorOuter {
+  position: fixed;
+  top: -24px;
+  left: -26px;
+  width: 50px;
+  height: 50px;
+  background: #c520927a;
+  will-change: transform;
+  transition: transform 0.1s ease;
+}
+
+.cursorInner {
+  position: fixed;
+  top: -4px;
+  left: -6px;
+  width: 10px;
+  height: 10px;
+  background: #c52092;
+  will-change: transform;
+  transition: transform 0.1s ease;
+}
+
+/* -------------- media query --------------
+-------------------------------------------- */
+
+@media (max-width: 768px) {
+  .cursor,
+  .cursorOuter,
+  .cursorInner {
+    display: none;
+  }
+}

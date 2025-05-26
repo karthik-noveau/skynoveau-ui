@@ -1,0 +1,48 @@
+/* ---------- container ---------- */
+.accordianWrapper {
+  display: grid;
+  gap: 10px;
+}
+.accordianContainer {
+  display: grid;
+  gap: 10px;
+}
+.titleSection {
+  padding: 12px 25px;
+  background-color: #f4f4f4;
+  border-radius: 50px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: 10px;
+  align-items: center;
+  transition: color 0.3s, background-color 0.3s;
+}
+.dropdown {
+  color: var(--black-color-light);
+}
+/* .titleSection.active {
+  background-color: var(--primary-color);
+  color: white;
+} */
+.icon {
+  transition: transform 0.3s;
+}
+.rotateIcon {
+  transform: rotate(90deg);
+}
+
+/* ---------- dropdown ---------- */
+.dropdown {
+  margin-left: 25px;
+  /* height: 0; */
+  overflow: hidden;
+  margin-bottom: 0px;
+  transition: all 0.3s;
+  /* transition: margin-bottom 0.5s; */
+}
+.showDropdown {
+  transition: height 0.3s;
+  /* height: 50px; */
+  margin-bottom: 10px;
+}

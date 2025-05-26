@@ -1,0 +1,109 @@
+/* ---------- left section ---------- */
+.blockWrapper {
+  background: url("./images/pattern-bg.png");
+  background-size: contain;
+}
+.blockContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  align-items: center;
+  height: 550px;
+  max-width: calc(1200px - 40px);
+}
+.leftBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.leftBlock h2 {
+  color: var(--black-dark-color);
+}
+.leftBlock .infoText1 {
+  margin-top: 15px;
+  line-height: 38px;
+  color: var(--secondary-color);
+}
+
+.leftBlock .infoText2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: var(--black-soft-color);
+}
+.leftBlock .button {
+  padding: 8px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  width: max-content;
+  border-radius: 6px;
+  transition: all 0.5s;
+  text-wrap: nowrap;
+}
+.leftBlock .button:hover {
+  background-color: var(--primary-dark-color);
+}
+
+/* ---------- right section ---------- */
+.rightBlock {
+  min-width: 450px;
+  max-width: 450px;
+  height: 100%;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .blockContainer {
+    flex-direction: column-reverse;
+    gap: 20px;
+    height: auto;
+  }
+
+  /* left section */
+  .leftBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+  }
+  .leftBlock .infoText1,
+  .leftBlock .infoText2,
+  .leftBlock h2 {
+    text-align: center;
+  }
+
+  /* right section */
+  .rightBlock {
+    min-width: 400px;
+    max-width: 400px;
+    height: 550px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* right section */
+  .rightBlock {
+    width: 100%;
+  }
+}
+
+@media (max-width: 460px) {
+  /* right section */
+  .rightBlock {
+    min-width: 90%;
+    max-width: 90%;
+    height: 450px;
+  }
+  .blockContainer {
+    /* width: ; */
+  }
+}
+
+@media (max-width: 380px) {
+  /* right section */
+  .rightBlock {
+    min-width: 90%;
+    max-width: 90%;
+    height: 400px;
+  }
+}

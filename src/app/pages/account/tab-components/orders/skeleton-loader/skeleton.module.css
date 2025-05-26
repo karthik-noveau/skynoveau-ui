@@ -1,0 +1,16 @@
+.cartWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.productCard {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}

@@ -1,0 +1,23 @@
+.headerWrapper {
+  background-color: var(--white-color);
+  position: fixed;
+  top: 0;
+  z-index: 150;
+  box-shadow: var(--box-shadow-color);
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ---------- left info ---------- */
+.leftInfo {
+  display: grid;
+  align-items: center;
+  width: auto;
+  height: 100%;
+}
+.leftInfo img {
+  width: 35px;
+}

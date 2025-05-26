@@ -1,0 +1,82 @@
+/* Background fade overlay */
+.fadeOverlay {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000000;
+}
+
+/* Loader container */
+.loaderContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* Fade-in animation */
+.fadeOverlay.pageFadeIn {
+  animation: pageFadeIn 0.3s ease forwards;
+}
+.loaderFadeIn {
+  animation: loaderFadeIn 0.1s ease forwards;
+}
+
+/* Fade-out animation */
+.fadeOverlay.pageFadeOut {
+  animation: pageFadeOut 0.5s ease forwards;
+}
+.loaderFadeOut {
+  animation: loaderFadeOut 0.1s ease forwards;
+}
+
+/* Keyframes for pageFadeIn & pageFadeOut */
+@keyframes pageFadeIn {
+  0% {
+    opacity: 0;
+    background-color: #f4f4f4;
+  }
+  100% {
+    opacity: 1;
+    background-color: #fff;
+  }
+}
+@keyframes pageFadeOut {
+  0% {
+    opacity: 1;
+    background-color: var(--gray-tint-bgcolor);
+    /* background-color: red; */
+  }
+  100% {
+    opacity: 0;
+    background-color: var(--white-color);
+    /* background-color: green; */
+    display: none;
+  }
+}
+
+/* Keyframes for loaderFadeIn & pageFadeOut */
+@keyframes loaderFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes loaderFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}

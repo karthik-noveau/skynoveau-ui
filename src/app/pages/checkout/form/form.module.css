@@ -1,0 +1,23 @@
+.twoColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.threeColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .twoColumn {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  .threeColumn {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+}

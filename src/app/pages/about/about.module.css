@@ -1,0 +1,41 @@
+.aboutContainer {
+  display: grid;
+  grid-template-columns: minmax(300px, max-content) 1fr;
+  gap: 30px;
+}
+.title {
+  color: var(--secondary-color);
+}
+.content {
+  margin-top: 10px;
+}
+.content p {
+  margin-bottom: 20px;
+  color: var(--black-dark-color);
+}
+
+/* ---------- collage ---------- */
+.collageContainer {
+  display: flex;
+  justify-content: center;
+}
+.collageContainer img {
+  width: 90%;
+}
+
+/* ------------------------------------ media queries -------------------------------
+------------------------------------------------------------------------------------- */
+@media (max-width: 1400px) {
+  .aboutContainer {
+    grid-template-columns: minmax(250px, 300px) 1fr;
+  }
+}
+@media (max-width: 990px) {
+  .aboutContainer {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .collageContainer img {
+    width: 100%;
+  }
+}
