@@ -1,0 +1,16 @@
+.headerSpaceContainer {
+  height: 90px;
+}
+
+.mobileHeader {
+  display: none;
+}
+
+@media (max-width: 1170px) {
+  .deskHeader {
+    display: none;
+  }
+  .mobileHeader {
+    display: block;
+  }
+}

@@ -1,0 +1,130 @@
+.infoWrapper {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  height: 100%;
+}
+.infoContainer {
+  background: rgba(217, 96, 219, 0.15);
+  background: linear-gradient(
+    120deg,
+    rgba(217, 96, 219, 0.15) 0%,
+    rgba(16, 115, 242, 0.15) 50%,
+    rgba(50, 232, 223, 0.15) 100%
+  );
+  min-height: calc(100vh - 120px);
+  max-width: 100%;
+  border-radius: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0px;
+}
+.infoSection {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.infoContainer .title {
+  text-align: center;
+  margin-top: 50px;
+}
+.description {
+  text-align: center;
+  margin-top: 20px;
+}
+.infoContainer h1 span {
+  background: rgb(217, 96, 219);
+  background: linear-gradient(
+    120deg,
+    rgba(217, 96, 219, 1) 0%,
+    rgba(16, 115, 242, 1) 50%,
+    rgba(50, 232, 223, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.exploreButton {
+  background: rgb(217, 96, 219);
+  background: linear-gradient(
+    120deg,
+    rgba(217, 96, 219, 1) 0%,
+    rgba(16, 115, 242, 1) 50%,
+    rgba(50, 232, 223, 1) 100%
+  );
+  margin-top: 50px;
+  padding: 7px 35px;
+}
+
+/* ---------- tech ---------- */
+.techContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  row-gap: 0px;
+  max-width: 700px;
+  margin-top: 15px;
+}
+.techImageWrapper {
+  border-radius: 8px;
+  width: max-content;
+  padding: 17px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.techImageWrapper img {
+  width: 50px;
+  object-fit: contain;
+}
+
+/* ---------- footer ---------- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer h2 {
+  margin-top: 10px;
+  color: #256aff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.footer h2:hover {
+  color:  #0855fa;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+@media (max-width: 1440px) {
+  .infoContainer {
+    width: 92%;
+    margin-bottom: 10px;
+  }
+  .infoSection {
+    max-width: 90%;
+  }
+}
+@media (max-width: 1170px) {
+  .headerWrapper {
+    display: flex;
+    justify-content: center;
+  }
+}
+@media (max-width: 500px) {
+  .infoContainer {
+    border-radius: 40px;
+  }
+  .infoContainer .title {
+    margin-top: 10px;
+  }
+}
