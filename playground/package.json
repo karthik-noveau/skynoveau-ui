@@ -1,0 +1,29 @@
+{
+  "name": "skynoveau-ui-playground",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "watch:react-package-build": "chokidar \"package/react/src/**\" \"package/react/*.json\" -c \"npm --prefix package/react run build && echo '********** package/react/dist updated successfully **********'\"",
+    "watch:next-package-build": "chokidar \"package/next/src/**\" \"package/next/*.json\" -c \"npm --prefix package/next run build && echo '********** package/next/dist updated successfully **********'\"",
+    "dev:watch": "echo Starting dev server with build watchers... && concurrently -n VITE,REACT,NEXT -c green,cyan,magenta \"npm run dev\" \"npm run watch:react-package-build\" \"npm run watch:next-package-build\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "skynoveau-ui": "^1.0.42"
+  }
+}
