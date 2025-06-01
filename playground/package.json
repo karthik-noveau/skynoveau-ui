@@ -30,7 +30,7 @@
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.30.1",
-    "skynoveau-ui": "file:../package/react",
+    "skynoveau-ui": "^1.0.53",
     "zustand": "^5.0.5"
   }
 }

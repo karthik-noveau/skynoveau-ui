@@ -14,8 +14,8 @@ createRoot(rootElement).render(
     <BrowserRouter>
       <div>
         <Button>Button</Button>
-        <ShineButton>Shine button</ShineButton>
         <RippleButton>Ripple</RippleButton>
+        <ShineButton>SHine</ShineButton>
 
         <Routes>
           <Route path="/page" element={<h1>Page Content</h1>} />
