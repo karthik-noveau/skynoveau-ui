@@ -30,7 +30,7 @@ This project serves as both a demo and documentation platform for components in 
 
 ## Local Sync
 
-`"skynoveau-ui": "file:../package/react/skynoveau-ui-1.0.39.tgz"`
+`"skynoveau-ui": "file:../package/react"`
 
  
  

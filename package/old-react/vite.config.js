@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// __dirname polyfill in ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -11,9 +10,9 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
+      entry: path.resolve(__dirname, "src/index.jsx"), // your library entry point
       name: "SkynoveauUI",
-      fileName: (format) => `index.${format}.js`,
+      fileName: "index",
       formats: ["es", "cjs"],
     },
     rollupOptions: {
@@ -25,7 +24,5 @@ export default defineConfig({
         },
       },
     },
-    outDir: "dist",
-    emptyOutDir: true,
   },
 });

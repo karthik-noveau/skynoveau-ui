@@ -1,0 +1,48 @@
+.loaderContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.loaderContainer p {
+  font-size: 16px;
+  font-family: var(--default-font-family);
+
+  color: var(--black-color);
+}
+
+.circle {
+  position: relative;
+  display: inline-block;
+  border: 1.9px solid;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: rotate 1s linear infinite;
+}
+.base {
+  height: 40px;
+  width: 40px;
+}
+.medium {
+  height: 30px;
+  width: 30px;
+}
+.small {
+  height: 20px;
+  width: 20px;
+}
+.tiny {
+  height: 15px;
+  width: 15px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

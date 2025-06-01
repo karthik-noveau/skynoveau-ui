@@ -2,26 +2,23 @@ import React, { useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useShallow } from "zustand/react/shallow";
 
-import { SuspenseLazyLoader } from "@common/lazy-loader";
 import { useUiBuilderStore } from "./store/ui.builder.store";
 
 import "./styles.css";
 import "./theme.css";
-import { BasicButton } from "skynoveau-ui/button";
 
 // --------- Lazy-loaded components ----------
-const Home = SuspenseLazyLoader(React.lazy(() => import("./pages/home")));
-const ComponentsSystem = SuspenseLazyLoader(
+const Home = LazyImport(React.lazy(() => import("./pages/home")));
+const ComponentsSystem = LazyImport(
   React.lazy(() => import("./pages/components-system"))
 );
-const ComponentPreview = SuspenseLazyLoader(
+const ComponentPreview = LazyImport(
   React.lazy(() => import("./pages/component-preview"))
 );
-const ThemePreview = SuspenseLazyLoader(
+const ThemePreview = LazyImport(
   React.lazy(() => import("./pages/theme-preview"))
 );
-
-export default function Builder() {
+export default function App() {
   const { changeFontFamily } = useUiBuilderStore(
     useShallow((state) => ({
       changeFontFamily: state.changeFontFamily,
@@ -46,7 +43,6 @@ export default function Builder() {
     <>
       <div className="sui" style={{ ...styles }}>
         {/* ---------- routes ---------- */}
-        {BasicButton}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/components" element={<ComponentsSystem />} />

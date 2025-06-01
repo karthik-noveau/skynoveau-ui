@@ -1,0 +1,46 @@
+/* ---------- native elememts ---------- */
+body {
+  margin: 0;
+}
+
+p {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+ul {
+  margin-block-end: 0;
+  margin-block-start: 0;
+  padding-inline-start: 0;
+}
+li {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+a {
+  text-decoration: none;
+  color: unset;
+}
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- antd button ---------- */
+button {
+  text-transform: unset !important;
+}
+
+/* --------- aos override --------- */
+html:not(.no-js) [data-aos="fade-up"] {
+  transform: translate3d(0, 20px, 0);
+}
+html:not(.no-js) [data-aos="fade-left"] {
+  transform: translate3d(40px, 0, 0);
+}

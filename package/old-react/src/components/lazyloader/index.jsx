@@ -1,5 +1,4 @@
 import React, { Suspense, useRef } from "react";
-import { Loader } from "package/react/src/components/loader/basic/fullscreen";
 
 export const SuspenseLazyLoader = (importFunc, name, delay = 1000) => {
   return function WithSuspense(props) {
@@ -12,7 +11,6 @@ export const SuspenseLazyLoader = (importFunc, name, delay = 1000) => {
       const loadTime = endTime - startTime;
 
       const remainingTime = loadTime < delay ? delay - loadTime : 0;
-
       let extendDelay =
         remainingTime <= 50 ? delay - remainingTime : remainingTime;
 

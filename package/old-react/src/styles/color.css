@@ -1,0 +1,17 @@
+:root {
+  --white-color: #ffffff;
+  --white-light-color: #dddddd;
+  --white-tint-color: #bbbbbb;
+  --white-dark-color: #aaaaaa;
+
+  --black-color: #000000;
+  --black-light-color: #666666;
+  --black-tint-color: #444444;
+  --black-dark-color: #222222;
+
+  --gray-bgcolor: #f1f1f1;
+  --gray-light-bgcolor: #f9f9f9;
+  --gray-tint-bgcolor: #f4f4f4;
+
+  --box-shadow-color: 1px 1px 14px 1px #0000000d;
+}

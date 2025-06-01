@@ -1,14 +1,28 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
- 
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Button, RippleButton, ShineButton } from "skynoveau-ui/button";
 
-// impotr App from "./app";
+// optional: import global styles if needed
+// import "skynoveau-ui/styles";
 
-createRoot(document.getElementById("root")).render(
+const rootElement = document.getElementById("root");
+if (!rootElement) throw new Error("Root element not found");
+
+createRoot(rootElement).render(
   <StrictMode>
-    {/* <App /> */}
-    <RippleButton
-    <p>ads</p>
-    {/* <Bu */}
+    <BrowserRouter>
+      <div>
+        <Button>Button</Button>
+        <ShineButton>Shine button</ShineButton>
+        <RippleButton>Ripple</RippleButton>
+
+        <Routes>
+          <Route path="/page" element={<h1>Page Content</h1>} />
+        </Routes>
+
+        <Link to="/page">Go to Page</Link>
+      </div>
+    </BrowserRouter>
   </StrictMode>
 );

@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "watch:react-package-build": "chokidar \"package/react/src/**\" \"package/react/*.json\" -c \"npm --prefix package/react run build && echo '********** package/react/dist updated successfully **********'\"",
-    "watch:next-package-build": "chokidar \"package/next/src/**\" \"package/next/*.json\" -c \"npm --prefix package/next run build && echo '********** package/next/dist updated successfully **********'\"",
-    "dev:watch": "echo Starting dev server with build watchers... && concurrently -n VITE,REACT,NEXT -c green,cyan,magenta \"npm run dev\" \"npm run watch:react-package-build\" \"npm run watch:next-package-build\""
+    "install:all": "vite build",
+    "build:react": "chokidar \"../package/react/src/**/*\" \"../package/react/package.json\" --initial --verbose --debounce 300 -c \"npm --prefix ../package/react run build && echo '✅ [package/react] build successfully'\"",
+    "build:next": "chokidar \"../package/next/src/**/*\" \"../package/react/package.json\" --initial --verbose --debounce 300 -c \"npm --prefix ../package/next run build && echo '✅ [package/next] build successfully'\"",
+    "dev:watch": "concurrently -n Playground,Package/React,Package/Next -c green,cyan,magenta \"npm run dev\" \"npm run build:react\" \"npm run build:next\""
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -21,9 +22,15 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vite-plugin-style-import": "^2.0.0"
   },
   "dependencies": {
-    "skynoveau-ui": "^1.0.42"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^6.30.1",
+    "skynoveau-ui": "file:../package/react",
+    "zustand": "^5.0.5"
   }
 }
