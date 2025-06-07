@@ -37,10 +37,11 @@ function processFolder(folderPath) {
       }
 
       fs.writeFileSync(indexFile, content, "utf-8");
-      console.log(`Injected in ${indexFile}`);
-    } else {
-      console.log(`Already injected in ${indexFile}`);
+      console.log(`Styles injected in ${indexFile}`);
     }
+    // else {
+    //   console.log(`Already injected in ${indexFile}`);
+    // }
   }
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "skynoveau-ui",
+  "name": "@skynoveau-ui/core",
   "version": "1.0.53",
   "description": "Skynoveau UI is a modern React-based design system offering customizable, accessible, and responsive UI components built for scalability and speed.",
   "author": "Karthik Noveau",
@@ -10,26 +10,29 @@
     "package.json",
     "README.md"
   ],
+  "main": "dist/index.js",
   "scripts": {
     "dev": "vite",
-    "export:script": "node export.script.js",
-    "watch:exports": "chokidar 'src/components/**' -c 'npm run export:script'",
-    "dev:watch": "echo Starting watch... && concurrently -n VITE,EXPORT -c green,cyan \"npm run dev\" \"npm run watch:exports\"",
-    "copy:assets": "cp -r src/** dist",
-    "build": "rimraf dist && vite build && npm run copy:assets && tsc && node src/styles/script.js",
+    "dev:watch": "echo Starting watch... && concurrently -n VITE,EXPORT -c green,cyan \"npm run dev\"",
+    "copy:assets": "cpx \"src/**/*.{css,svg,png,jpg,jpeg,woff,woff2,ttf,eot}\" dist",
+    "build": "rimraf dist && vite build && npm run copy:assets && tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "publish": "npm run build && npm publish --access public"
   },
   "exports": {
-    "./button": {
-      "import": "./dist/components/button/index.ts",
-      "types": "./dist/components/button/index.d.ts"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "import": "./dist/index.js",
+      "types": "./dist/*.d.ts"
     }
   },
   "typesVersions": {
     "*": {
-      "button": [
-        "dist/components/button/index.d.ts"
+      "./*": [
+        "./dist/index.d.ts"
       ]
     }
   },

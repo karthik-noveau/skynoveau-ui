@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 export * from "./components/index.js";
-export * from "./utils/index.jsx";
-export * from "./hooks/index.jsx";
+export * from "./utils/index.js";
+export * from "./hooks/index.js";
 export * from "./constants/index.js";
 
 // styles

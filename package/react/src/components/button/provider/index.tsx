@@ -1,10 +1,11 @@
 import React, { type ReactNode, type ButtonHTMLAttributes } from "react";
-import { BaseButton } from "../base";
+
 import { Loader } from "../../loader";
 import { LOADER_SIZE } from "../../loader/constant";
 import styles from "./button.module.css";
+import { BaseButton } from "../base";
 
-export type ButtonProps = {
+export type ButtonOldProviderProps = {
   children: ReactNode;
   loading?: boolean;
   disable?: boolean;
@@ -12,7 +13,7 @@ export type ButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.FC<ButtonProps> = ({
+export const ButtonOldProvider: React.FC<ButtonOldProviderProps> = ({
   children,
   loading = false,
   onClick,
@@ -38,4 +39,4 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default ButtonOldProvider;

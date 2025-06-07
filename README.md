@@ -25,7 +25,7 @@ This project serves as both a demo and documentation platform for components in 
 - **Vite** - Fast build tooling
 - **TypeScript** - Type safety
 - **skynoveau-ui** - Custom UI components
-- **CSS Modules** - Scoped styling
+- **CSS Modules** - Scoped stylingz
 - **Ant Design** - Foundation components
 
 ## Local Sync
