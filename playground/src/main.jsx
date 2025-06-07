@@ -10,7 +10,7 @@ if (!rootElement) throw new Error("Root element not found");
 createRoot(rootElement).render(
   <StrictMode>
     <Button>button</Button>
-    <RippleButton>asdfasdf</RippleButton>
+    <RippleButton>asdfa</RippleButton>
 
     {/* <App /> */}
   </StrictMode>
