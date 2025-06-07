@@ -6,5 +6,5 @@
       "assets": ["src/app/assets/*"]
     }
   },
-  "include": ["src", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.css"]
+  "include": ["src", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.css", "script/commit.mjs"]
 }

@@ -6,8 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:react": "chokidar \"../package/react/src/**/*\" \"../package/react/package.json\" --initial --verbose --debounce 300 -c \"npm --prefix ../package/react run build && echo '✅ [package/react] build successfully'\"",
-    "dev:watch": "concurrently -n Playground,Package/React,Package/Next -c green,cyan,magenta \"npm run dev\" \"npm run build:react\""
+    "build:react/components": "chokidar \"../package/react/components/src/**/*\" \"../package/react/components/package.json\" --initial --verbose --debounce 300 -c \"npm --prefix ../package/react/components run build && echo '✅ [react/components] build successfully'\"",
+    "build:react/utils": "chokidar \"../package/react/utils/src/**/*\" \"../package/react/utils/package.json\" --initial --verbose --debounce 300 -c \"npm --prefix ../package/react/utils run build && echo '✅ [react/utils] build successfully'\"",
+    "dev:watch": "concurrently -n playground,react/components,react/utils -c green,cyan,magenta \"npm run dev\" \"npm run build:react/components\" \"npm run build:react/utils\"",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "node ../scripts/commit.mjs"
+    }
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -20,12 +27,14 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "husky": "^8.0.0",
     "rimraf": "^5.0.10",
     "vite": "^6.3.5",
     "vite-plugin-style-import": "^2.0.0"
   },
   "dependencies": {
-    "@skynoveau-ui/core": "file:../package/react",
+    "@skynoveau-ui/core": "file:../package/react/components",
+    "@skynoveau-ui/utils": "file:../package/react/utils",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",

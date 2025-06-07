@@ -1,4 +1,5 @@
 import { Button, RippleButton } from "@skynoveau-ui/core";
+import { FormateDate } from "@skynoveau-ui/utils";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
@@ -11,6 +12,8 @@ createRoot(rootElement).render(
   <StrictMode>
     <Button>button</Button>
     <RippleButton>asdfa</RippleButton>
+
+    {FormateDate({ label: "hellow" })}
 
     {/* <App /> */}
   </StrictMode>
