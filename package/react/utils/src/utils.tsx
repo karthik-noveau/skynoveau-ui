@@ -3,8 +3,6 @@ export type formatDateProps = {
 };
 
 
-
-
 export const gehl = "asdfa                                             ";
 
 
