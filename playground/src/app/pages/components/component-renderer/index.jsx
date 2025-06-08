@@ -2,9 +2,10 @@ import React, { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { MdArrowBackIos } from "react-icons/md";
 
+import { useScrollToTop } from "@skynoveau-ui/utils";
 import { VariantRenderer } from "./variant-renderer";
-import { useScrollToTop } from "@common/hooks/index.jsx";
-import { COMPONENTS_LIST } from "@skynoveau-ui/components-list";
+
+import { COMPONENTS_LIST } from "../../../list";
 
 import styles from "./render.module.css";
 

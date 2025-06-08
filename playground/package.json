@@ -1,14 +1,26 @@
 {
-  "name": "skynoveau-ui-playground",
+  "name": "playground",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:react/core": "chokidar \"../package/react/core/src/**/*\" \"../package/react/core/package.json\" --initial --verbose --debounce 300 -c \"npm --prefix ../package/react/core run build && echo '✅ [react/core] build successfully'\"",
-    "build:react/utils": "chokidar \"../package/react/utils/src/**/*\" \"../package/react/utils/package.json\" --initial --verbose --debounce 300 -c \"npm --prefix ../package/react/utils run build && echo '✅ [react/utils] build successfully'\"",
+    "build:react/core": "chokidar \"../package/react/core/src/**/*\" \"../package/react/core/package.json\" --initial --verbose --debounce 1000 -c \"npm --prefix ../package/react/core run build && echo '✅ [react/core] build successfully'\"",
+    "build:react/utils": "chokidar \"../package/react/utils/src/**/*\" \"../package/react/utils/package.json\" --initial --verbose --debounce 1000 -c \"npm --prefix ../package/react/utils run build && echo '✅ [react/utils] build successfully'\"",
     "dev:watch": "concurrently -n playground,react/core,react/utils -c green,cyan,magenta \"npm run dev\" \"npm run build:react/core\" \"npm run build:react/utils\""
+  },
+  "dependencies": {
+    "@skynoveau-ui/core": "file:../package/react/core",
+    "@skynoveau-ui/utils": "file:../package/react/utils",
+    "antd": "^5.25.4",
+    "hamburger-react": "^2.5.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^6.30.1",
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -27,14 +39,5 @@
     "rimraf": "^5.0.10",
     "vite": "^6.3.5",
     "vite-plugin-style-import": "^2.0.0"
-  },
-  "dependencies": {
-    "@skynoveau-ui/core": "file:../package/react/core",
-    "@skynoveau-ui/utils": "file:../package/react/utils",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^6.30.1",
-    "zustand": "^5.0.5"
   }
 }

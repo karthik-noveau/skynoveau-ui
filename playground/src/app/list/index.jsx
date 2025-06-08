@@ -1,6 +1,6 @@
-import styles from "./renderer.override.module.css";
+import { Button, RippleButton, ShineButton } from "@skynoveau-ui/core";
 
-import { Button, RippleButton, ShineButton } from "skynoveau-ui/button";
+import styles from "./layout.module.css";
 
 export const COMPONENTS_LIST = [
   {

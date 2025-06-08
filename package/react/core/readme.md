@@ -57,9 +57,9 @@ function HeroSection() {
 
 Skynoveau UI ships with a growing collection of components. Each component is designed to be:
 
-* **Modular** – use only what you need
-* **Customizable** – style via props, CSS Modules, or your theme
-* **Typed** – full TypeScript support
+- **Modular** – use only what you need
+- **Customizable** – style via props, CSS Modules, or your theme
+- **Typed** – full TypeScript support
 
 ### ✅ Available Components
 
@@ -123,7 +123,11 @@ Skynoveau UI comes with full TypeScript support. Autocomplete, prop checking, an
 import { Button } from "skynoveau-ui";
 
 const MyForm = () => {
-  return <Button type="submit" disabled={false}>Submit</Button>;
+  return (
+    <Button type="submit" disabled={false}>
+      Submit
+    </Button>
+  );
 };
 ```
 
@@ -200,10 +204,7 @@ Not available yet. Planned support via Skynoveau CDN delivery in future versions
     },
     "./theme/styles.module.css": "./dist/theme/styles.module.css"
   },
-  "sideEffects": [
-    "./dist/theme/theme.css",
-    "./dist/theme/styles.module.css"
-  ],
+  "sideEffects": ["./dist/theme/theme.css", "./dist/theme/styles.module.css"],
   "files": ["dist"]
 }
 ```
@@ -253,9 +254,9 @@ Licensed under the [MIT License](./LICENSE).
 
 ## 🔗 Links
 
-* [Official Website](https://skynoveau.com)
-* [Documentation](https://skynoveau.com/docs) *(coming soon)*
-* [NPM Package](https://www.npmjs.com/package/skynoveau-ui)
+- [Official Website](https://skynoveau.com)
+- [Documentation](https://skynoveau.com/docs) _(coming soon)_
+- [NPM Package](https://www.npmjs.com/package/skynoveau-ui)
 
 ---
 
@@ -267,3 +268,7 @@ Open an [issue](https://github.com/skynoveau/skynoveau-ui/issues) or email us at
 ---
 
 ## 🚀 Made with ❤️ by Skynoveau Technology
+
+give in tsx and default export and type export
+
+need to remove the antd completly from playground

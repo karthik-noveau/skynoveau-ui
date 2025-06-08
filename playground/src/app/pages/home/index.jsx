@@ -2,17 +2,16 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 
-import { useScrollToTop } from "@common/hooks/index.jsx";
-import { Button } from "package/react/src/components/button/basic";
-
 import styles from "./sui.home.module.css";
+
+import { Button } from "@skynoveau-ui/core";
 
 //technologies images
 import ReactImg from "./assets/react-img.png";
 import htmlImg from "./assets/html-img.png";
 import cssImg from "./assets/css-img.png";
 import antImg from "./assets/ant-img.png";
-import { Navbar } from "@skynoveau-ui/header";
+import { Navbar } from "../../components/header";
 
 const TECH_STACK = [
   { image: ReactImg, name: "React" },
@@ -30,9 +29,8 @@ const TECH_STACK = [
   },
 ];
 
-export default function SUIHome() {
+export default function HomePage() {
   const navigate = useNavigate();
-  useScrollToTop();
 
   return (
     <React.Fragment>
@@ -59,7 +57,7 @@ export default function SUIHome() {
         >
           <div className={`${styles.infoSection}`}>
             <h1 className={`title-44 weight-500 ${styles.title}`}>
-              Make <span>beautiful</span>  websites regardless of your design
+              Make <span>beautiful</span> websites regardless of your design
               experience.
             </h1>
             <p className={`text-18 ${styles.description}`}>

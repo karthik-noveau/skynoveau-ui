@@ -1,19 +1,16 @@
 import { useRef, useState } from "react";
 import { Form, Input } from "antd";
-import { v4 as uuidv4 } from "uuid";
 import { RiSearchLine } from "react-icons/ri";
 
-import antstyles from "@common/css-override/antform.override.module.css";
 import styles from "./search.style.module.css";
 
 export const ComponentSearch = ({ searchOnChange = () => {} }) => {
   let formRef = useRef(null);
-  const uniqueId = uuidv4();
 
   const [inputValue, setInputValue] = useState("");
 
-  const onFinish = (values) => {};
-  const onFinishFailed = (errorInfo) => {};
+  const onFinish = () => {};
+  const onFinishFailed = () => {};
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -25,7 +22,6 @@ export const ComponentSearch = ({ searchOnChange = () => {} }) => {
   return (
     <Form
       name="basic"
-      id={`sui-form-${uniqueId}`}
       ref={formRef}
       initialValues={{
         remember: true,
@@ -33,7 +29,7 @@ export const ComponentSearch = ({ searchOnChange = () => {} }) => {
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="on"
-      className={`${antstyles.antSearch} ${styles.componentSearch}`}
+      className={`${styles.componentSearch}`}
     >
       <div className={styles.container}>
         <Form.Item name="search" className={styles.searchInput}>

@@ -4,15 +4,14 @@ import { GrAppsRounded } from "react-icons/gr";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { ComponentSearch } from "./search";
-
 import { ComponentCollections } from "./collections";
 import { ComponentRenderer } from "./component-renderer";
-import { COMPONENTS_LIST } from "@skynoveau-ui/components-list";
-import { Navbar } from "@skynoveau-ui/header";
+import { COMPONENTS_LIST } from "../../list";
 
-import styles from "./sui.components.module.css";
+import styles from "./components.module.css";
 
-import Logo from "@skynoveau-ui/assets/skyui-logo/skyui-logo.png";
+import Logo from "@assets/skyui-logo/skyui-logo.png";
+import { Navbar } from "@components/header";
 
 const PARENT_ID = "Left-Nav";
 

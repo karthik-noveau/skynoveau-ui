@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
 import { FiLinkedin } from "react-icons/fi";
 
-import Logo from "@skynoveau-ui/assets/skyui-logo/skyui-logo.png";
+import Logo from "@assets/skyui-logo/skyui-logo.png";
 
 import styles from "./navbar.style.module.css";
 import { Dropdown } from "./dropdown";

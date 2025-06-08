@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useScrollToTop } from "@common/hooks/index.jsx";
-import { COMPONENTS_LIST } from "@skynoveau-ui/components-list";
+import { useScrollToTop } from "@skynoveau-ui/utils";
+import { COMPONENTS_LIST } from "@list/index";
 
 import styles from "./collections.module.css";
 

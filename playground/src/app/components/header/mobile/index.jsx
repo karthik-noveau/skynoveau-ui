@@ -7,7 +7,7 @@ import { DropDown } from "./dropdown";
 import "./hamburger.override.css";
 import styles from "./navbar.style.module.css";
 
-import Logo from "@skynoveau-ui/assets/skyui-logo/skyui-logo.png";
+import Logo from "@assets/skyui-logo/skyui-logo.png";
 
 export const NavbarMobileRightVariant1 = () => {
   const [isOpen, setIsOpen] = useState(false);

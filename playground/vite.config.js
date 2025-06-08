@@ -8,17 +8,13 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
-  css: {
-    modules: {
-      scopeBehaviour: "local",
-      generateScopedName: "[name]__[local]___[hash:base64:5]",
-    },
-  },
-
   resolve: {
     alias: {
-      "@assets": path.resolve(__dirname, "src/app/assets"),
+      "@assets": path.resolve(__dirname, "./src/app/assets"),
+      "@components": path.resolve(__dirname, "./src/app/components"),
+      "@list": path.resolve(__dirname, "./src/app/list"),
+      "@pages": path.resolve(__dirname, "./src/app/pages"),
+      "@store": path.resolve(__dirname, "./src/app/store"),
     },
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".css"],
   },
 });

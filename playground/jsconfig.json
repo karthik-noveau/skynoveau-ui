@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "moduleResolution": "node",
+    "baseUrl": "src/app",
     "paths": {
-      "assets": ["src/app/assets/*"]
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@list/*": ["list/*"],
+      "@pages/*": ["pages/*"],
+      "@store/*": ["store/*"]
     }
-  },
-  "include": ["src", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.css", "script/commit.mjs"]
+  }
 }
