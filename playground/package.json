@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@skynoveau-ui/core": "file:../package/react/components",
+    "@skynoveau-ui/core-1": "file:../package/react/components",
     "@skynoveau-ui/utils": "file:../package/react/utils",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
