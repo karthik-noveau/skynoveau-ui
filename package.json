@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/karthik-noveau/skynoveau-ui#readme",
   "devDependencies": {
-    "husky": "^8.0.0"
+    "husky": "^8.0.3"
   }
 }
