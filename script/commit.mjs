@@ -1,33 +1,46 @@
 import fs from "fs";
 import path from "path";
 
-const packageJsonPath = path.resolve(process.cwd(), "package.json");
+// List of folders to check
+const pathsToCheck = [
+  "playground/package.json",
+  "package/react/components/package.json",
+  "package/react/utils/package.json",
+];
 
-if (!fs.existsSync(packageJsonPath)) {
-  console.warn("⚠️ package.json not found.");
-  process.exit(0);
+let hasLocalDeps = false;
+
+for (const relPath of pathsToCheck) {
+  const fullPath = path.resolve(relPath);
+
+  if (!fs.existsSync(fullPath)) {
+    console.warn(`⚠️ ${relPath} not found. Skipping.`);
+    continue;
+  }
+
+  const pkg = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
+  const deps = {
+    ...pkg.dependencies,
+    ...pkg.devDependencies,
+    ...pkg.peerDependencies,
+  };
+
+  const localDeps = Object.entries(deps || {}).filter(
+    ([_, v]) => typeof v === "string" && v.startsWith("file:")
+  );
+
+  if (localDeps.length > 0) {
+    hasLocalDeps = true;
+    console.error(`\n❌ Found local path dependencies in ${relPath}:`);
+    localDeps.forEach(([name, version]) => {
+      console.error(` - ${name}: ${version}`);
+    });
+  }
 }
 
-const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
-const deps = {
-  ...pkg.dependencies,
-  ...pkg.devDependencies,
-  ...pkg.peerDependencies,
-};
-
-const localDeps = Object.entries(deps || {}).filter(
-  ([_, v]) => typeof v === "string" && v.startsWith("file:")
-);
-
-if (localDeps.length > 0) {
+if (hasLocalDeps) {
   console.error(
-    "\n❌ Push blocked: Found local path dependencies in package.json:"
-  );
-  localDeps.forEach(([name, version]) => {
-    console.error(` - ${name}: ${version}`);
-  });
-  console.error(
-    "\nPlease replace local paths with published npm versions before pushing.\n"
+    "\n❌ Push blocked: Replace local paths with published npm versions before pushing.\n"
   );
   process.exit(1);
 } else {
