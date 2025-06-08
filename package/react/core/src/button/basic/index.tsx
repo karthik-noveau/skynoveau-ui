@@ -1,4 +1,5 @@
 import React, { type ReactNode, type ButtonHTMLAttributes } from "react";
+
 import { BaseButton } from "../base";
 import { Loader } from "../../loader";
 import { LOADER_SIZE } from "../../loader/constant";
@@ -33,7 +34,7 @@ export const Button: React.FC<ButtonProps> = ({
           <Loader showText={false} size={LOADER_SIZE.TINY} color="inherit" />
         </span>
       )}
-      {children} hellow
+      {children}
     </BaseButton>
   );
 };

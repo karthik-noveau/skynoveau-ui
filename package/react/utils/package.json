@@ -15,7 +15,7 @@
     "dev": "vite",
     "build": "rimraf dist && vite build && tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "publish": "npm run build && node ../prepublish.script.js && npm publish --access public"
+    "publish": "node ../../../script/pre.publish.mjs && npm run build && npm publish --access public"
   },
   "exports": {
     ".": {
@@ -46,8 +46,10 @@
     "cpx": "^1.5.0",
     "esbuild": "^0.25.4",
     "eslint": "^9.28.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.0.0",
     "path": "^0.12.7",
     "rimraf": "^5.0.10",

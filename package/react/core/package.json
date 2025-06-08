@@ -1,6 +1,6 @@
 {
   "name": "@skynoveau-ui/core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Skynoveau UI is a modern React-based design system offering customizable, accessible, and responsive UI components built for scalability and speed.",
   "author": "Karthik Noveau",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "copy:assets": "cpx \"src/**/*.{css,svg,png,jpg,jpeg,woff,woff2,ttf,eot}\" dist",
     "build": "rimraf dist && vite build && npm run copy:assets && tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "publish": "npm run build && node ../prepublish.script.js && npm publish --access public"
+    "publish": "node ../../../script/pre.publish.mjs && npm run build && npm publish --access public"
   },
   "exports": {
     ".": {
@@ -44,10 +44,10 @@
     "uuid": "^11.0.3"
   },
   "dependencies": {
+    "@skynoveau-ui/utils": "file:../utils",
     "antd": "^5.19.0",
     "eslint-plugin-react": "^7.37.5",
-    "fs": "^0.0.1-security",
-    "@skynoveau-ui/utils": "file:../package/react/utils"
+    "fs": "^0.0.1-security"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -63,8 +63,10 @@
     "cpx": "^1.5.0",
     "esbuild": "^0.25.4",
     "eslint": "^9.28.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.0.0",
     "path": "^0.12.7",
     "rimraf": "^5.0.10",

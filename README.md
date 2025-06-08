@@ -6,7 +6,7 @@ The official playground and documentation site for the `skynoveau-ui` component 
 
 ## 🔍 Overview
 
-This project serves as both a demo and documentation platform for components in the [`skynoveau-ui`](https://www.npmjs.com/package/skynoveau-ui) package. 
+This project serves as both a demo and documentation platform for components in the [`skynoveau-ui`](https://www.npmjs.com/package/skynoveau-ui) package.
 
 🔗 **Live Demo**: [https://ui.skynoveau.in](https://ui.skynoveau.in)
 
@@ -32,5 +32,7 @@ This project serves as both a demo and documentation platform for components in 
 
 `"skynoveau-ui": "file:../package/react"`
 
- 
- 
+## Husky config
+
+- npm install -D husky
+- npx husky init

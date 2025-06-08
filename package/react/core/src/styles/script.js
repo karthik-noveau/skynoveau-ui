@@ -1,12 +1,12 @@
 import fs from "fs";
 import path from "path";
 
-const componentsDir = path.resolve("dist/components");
+const coreDir = path.resolve("dist/core");
 
 const importStatement = `import { injectGlobalStyles } from "../../styles/index";\n`;
 const injectCall = `injectGlobalStyles();\n`;
 
-// Read all folders inside dist/components
+// Read all folders inside dist/core
 function processFolder(folderPath) {
   const indexFile = path.join(folderPath, "index.ts");
 
@@ -45,7 +45,7 @@ function processFolder(folderPath) {
   }
 }
 
-// Recursively traverse components dir
+// Recursively traverse core dir
 function walkDir(dir) {
   const files = fs.readdirSync(dir, { withFileTypes: true });
   for (const file of files) {
@@ -57,4 +57,4 @@ function walkDir(dir) {
   processFolder(dir);
 }
 
-walkDir(componentsDir);
+walkDir(coreDir);

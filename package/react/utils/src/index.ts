@@ -1,3 +1,3 @@
-export { default as FormateDate } from "./utils";
+export { default as formatDate } from "./utils";
 
-export type { FormateDateProps } from "./utils";
+export type { formatDateProps } from "./utils";

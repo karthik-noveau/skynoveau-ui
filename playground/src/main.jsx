@@ -1,7 +1,9 @@
-import { Button, RippleButton } from "@skynoveau-ui/core";
-import { FormateDate } from "@skynoveau-ui/utils";
+import { Button, RippleButton, ShineButton } from "@skynoveau-ui/core";
+
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+
+import { formatDate } from "@skynoveau-ui/utils";
 
 // import App from "./app";
 
@@ -11,9 +13,8 @@ if (!rootElement) throw new Error("Root element not found");
 createRoot(rootElement).render(
   <StrictMode>
     <Button>button</Button>
-    <RippleButton>asdfa</RippleButton>
-
-    {FormateDate({ label: "hellow" })}
+    <RippleButton> {formatDate({ label: "playground" })}</RippleButton>
+    <ShineButton loading>asdf</ShineButton>
 
     {/* <App /> */}
   </StrictMode>
