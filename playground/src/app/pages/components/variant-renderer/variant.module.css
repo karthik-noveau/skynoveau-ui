@@ -1,0 +1,119 @@
+/* ---------- header ---------- */
+.header {
+  display: grid;
+  margin-bottom: 5px;
+}
+.header .leftSection {
+  display: flex;
+  align-items: center;
+  color: #262626;
+  height: fit-content;
+  padding: 5px 0px;
+  border-radius: 5px;
+}
+.header .rightSection {
+  display: flex;
+  gap: 15px;
+}
+.variantDescription {
+  color: var(--black-light-color);
+}
+.newTabContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #383838;
+  padding: 0px 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.newTabIcon {
+  position: relative;
+  top: 0px;
+  font-size: 16px;
+}
+.copy {
+  background-color: #f4f4f4;
+  color: #383838;
+  height: fit-content;
+  padding: 6px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.copy .icon {
+  position: relative;
+  top: 2px;
+  font-size: 15px;
+}
+
+.description {
+  margin-bottom: 10px;
+  color: var(--black-tint-color);
+}
+
+/* ---------- frame---------- */
+.frame {
+  display: grid;
+  min-height: 100px;
+  border-radius: 10px;
+  z-index: 0;
+  border: 1px solid #0505050f;
+  overflow: hidden;
+}
+.frameWrapper {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  padding: 20px 15px 25px 15px; 
+}
+.frameContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+.infoText {
+  text-align: center;
+}
+
+.lineContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  /* margin-bottom: 10px; */
+}
+.lineContainer .title {
+  color: var(--black-dark-color);
+}
+.lineContainer .line {
+  border-top: 1px solid #0505050f;
+  height: 0;
+  width: 100%;
+}
+.usageInfo {
+  margin-bottom: 5px;
+  color: var(--black-tint-color);
+}
+.codeSection {
+  padding: 0px 15px 15px 15px;
+}
+.codeCopyContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+
+@media (max-width: 460px) {
+  .newTab span {
+    display: none;
+  }
+  .newTab {
+    padding: 9px 12px;
+  }
+}

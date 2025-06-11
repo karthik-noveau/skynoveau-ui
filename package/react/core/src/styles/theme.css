@@ -8,6 +8,9 @@ html {
   --title-font-family: "Philosopher", sans-serif;
   --text-font-family: "Poppins", sans-serif;
   --default-font-family: "Poppins", sans-serif;
+
+  --web-width: 90%;
+  --web-maxwidth: calc(100% - 40px);
 }
 
 :root {

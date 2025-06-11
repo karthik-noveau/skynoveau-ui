@@ -1,10 +1,9 @@
 :root {
   /* ---------- screen width ---------- */
-  --mobile-width: calc(100% - 30px);
-  --web-width: 90%;
-  --web-maxwidth: 1400px;
+  --root-mobile-width: calc(100% - 30px);
+  --root-web-width: 90%;
+  --root-web-maxwidth: 1600px;
 
-  /* ---------- space ---------- */
   --wrapper-space: 60px;
   --container-space: 30px;
 }
@@ -31,31 +30,6 @@
   -webkit-line-clamp: 2;
 }
 
-/* ---------- font weight ---------- */
-.weight-100 {
-  font-weight: var(--font-weight-100);
-}
-.weight-200 {
-  font-weight: var(--font-weight-200);
-}
-.weight-300 {
-  font-weight: var(--font-weight-300);
-}
-.weight-400 {
-  font-weight: var(--font-weight-400);
-}
-.weight-500 {
-  font-weight: var(--font-weight-500);
-}
-.weight-600 {
-  font-weight: var(--font-weight-600);
-}
-
-/* ---------- line height ---------- */
-.line-2 {
-  line-height: 1.8;
-}
-
 /* ---------- scrollbar ---------- */
 .scrollbar::-webkit-scrollbar {
   width: 5px;
@@ -74,8 +48,8 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 .wrapper-margin {
   margin: var(--wrapper-space) 0;
@@ -118,8 +92,8 @@
 
 /* ---------- container ---------- */
 .container {
-  width: var(--web-width);
-  max-width: var(--web-maxwidth);
+  width: var(--root-web-width);
+  max-width: var(--root-web-maxwidth);
 }
 .container-margin {
   margin: var(--container-space) 0;
@@ -142,7 +116,7 @@
 
 @media (max-width: 768px) {
   .container {
-    width: var(--mobile-width);
+    width: var(--root-mobile-width);
   }
   .container-margin {
     margin: calc(var(--container-space) - 10px) 0;

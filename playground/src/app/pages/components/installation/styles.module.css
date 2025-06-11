@@ -1,0 +1,8 @@
+.container {
+  padding: 30px 20px;
+}
+.description {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  color: var(--black-light-color);
+}

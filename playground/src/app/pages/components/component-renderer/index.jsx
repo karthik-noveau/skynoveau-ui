@@ -3,11 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { MdArrowBackIos } from "react-icons/md";
 
 import { useScrollToTop } from "@skynoveau-ui/utils";
-import { VariantRenderer } from "./variant-renderer";
+import { COMPONENTS_LIST } from "@list/index";
+import { VariantRenderer } from "../variant-renderer";
 
-import { COMPONENTS_LIST } from "../../../list";
-
-import styles from "./render.module.css";
+import styles from "./component.module.css";
 
 export const ComponentRenderer = () => {
   const [baseVariant, setBaseVariant] = useState(null);
@@ -43,39 +42,37 @@ export const ComponentRenderer = () => {
   return (
     <React.Fragment>
       {componentInfo ? (
-        <div className={`${styles.componentRenderWrapper}`}>
-          <div className={`${styles.componentRenderContainer}`}>
-            <div className={`${styles.titleContainer}`}>
-              <h1 className={`title-26 weight-400 ${styles.title}`}>
-                {baseVariant && (
-                  <>
-                    <span
-                      className={`ellipsis ${styles.navigateBack}`}
-                      onClick={() => navigate("/components")}
-                    >
-                      {baseVariant}
-                    </span>
-                    <MdArrowBackIos className={`${styles.icon}`} />
-                  </>
-                )}
-
-                <span className={`ellipsis `}> {componentInfo.name}</span>
-              </h1>
-              <p className={`text-14 ${styles.description}`}>
-                This component features
-                {componentInfo.variantsCount && (
-                  <span className={`${styles.count}`}>
-                    {componentInfo.variantsCount}
+        <div className={`${styles.componentRenderContainer}`}>
+          <div className={`${styles.titleContainer}`}>
+            <h1 className={`text-24 weight-400 ${styles.title}`}>
+              {baseVariant && (
+                <>
+                  <span
+                    className={`ellipsis ${styles.navigateBack}`}
+                    onClick={() => navigate("/components")}
+                  >
+                    {baseVariant}
                   </span>
-                )}
-                variants , with options to expand for greater customization.
-              </p>
-            </div>
-            <div className={`${styles.variantsContainer}`}>
-              {componentInfo.variants.map((data) => {
-                return <VariantRenderer data={data} />;
-              })}
-            </div>
+                  <MdArrowBackIos className={`${styles.icon}`} />
+                </>
+              )}
+
+              <span className={`ellipsis `}> {componentInfo.name}</span>
+            </h1>
+            <p className={`text-16 ${styles.description}`}>
+              This component features
+              {componentInfo.variantsCount && (
+                <span className={`text-14 ${styles.count}`}>
+                  {componentInfo.variantsCount}
+                </span>
+              )}
+              variants , with options to expand for greater customization.
+            </p>
+          </div>
+          <div className={`${styles.variantsContainer}`}>
+            {componentInfo.variants.map((data) => {
+              return <VariantRenderer data={data} />;
+            })}
           </div>
         </div>
       ) : (

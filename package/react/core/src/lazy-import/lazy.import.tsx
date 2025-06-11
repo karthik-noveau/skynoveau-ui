@@ -7,42 +7,55 @@ export type LazyImportProps = <P extends object>(
   delay?: number
 ) => FC<P>;
 
-const LazyImport: LazyImportProps = (importFunc, name, delay = 1000) => {
+const LazyImport = <P extends object>(
+  importFunc: () => Promise<{ default: ComponentType<P> }>,
+  delay: number = 1000
+): FC<P> => {
   const LazyComponent = React.lazy(importFunc);
 
   return function WithSuspense(props) {
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(delay === 0);
 
     useEffect(() => {
       const startTime = Date.now();
+
+      let delayTimer: ReturnType<typeof setTimeout> | null = null;
       let didTimeout = false;
 
-      const delayTimer = setTimeout(() => {
-        didTimeout = true;
-        setShow(true);
-      }, delay);
+      if (delay > 0) {
+        delayTimer = setTimeout(() => {
+          didTimeout = true;
+          setShow(true);
+        }, delay);
+      }
 
-      importFunc().then(() => {
-        const endTime = Date.now();
-        const loadTime = endTime - startTime;
+      importFunc().then((module) => {
+        const loadTime = Date.now() - startTime;
 
-        if (loadTime >= delay) {
-          if (!didTimeout) {
-            clearTimeout(delayTimer);
-            setShow(true);
-          }
+        const componentName =
+          module.default.displayName ||
+          module.default.name ||
+          "AnonymousComponent";
+
+        if (delay === 0 || loadTime >= delay) {
+          if (!didTimeout) setShow(true);
+          if (delayTimer) clearTimeout(delayTimer);
         }
 
         console.info(
-          `[${name}] loaded in ${loadTime}ms — ${
-            loadTime >= delay
+          `[${componentName}] loaded in ${loadTime}ms — ${
+            delay === 0
+              ? "no manual delay"
+              : loadTime >= delay
               ? "component was slow, shown immediately"
               : `extended delay to ${delay}ms`
           }`
         );
       });
 
-      return () => clearTimeout(delayTimer);
+      return () => {
+        if (delayTimer) clearTimeout(delayTimer);
+      };
     }, []);
 
     return (

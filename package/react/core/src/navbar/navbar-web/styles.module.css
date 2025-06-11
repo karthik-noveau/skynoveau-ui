@@ -1,0 +1,22 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  transition: height 0.3s;
+}
+.wrapper.shadow {
+  box-shadow: var(--box-shadow-color);
+}
+
+.twoColumn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.threeColumn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

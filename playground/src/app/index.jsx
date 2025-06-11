@@ -7,15 +7,12 @@ import "./styles.css";
 import "./theme.css";
 
 // --------- Lazy-loaded components ----------
-const HomePage = LazyImport(() => import("./pages/home"), "HomePage");
+const HomePage = LazyImport(() => import("./pages/home"), 0);
 
-const ComponentsSystem = LazyImport(
-  () => import("./pages/components"),
-  "ComponentsSystem"
-);
+const ComponentsSystem = LazyImport(() => import("./pages/components"), 0);
 const ComponentPreview = LazyImport(
-  () => import("./pages/preview"),
-  "ComponentPreview"
+  () => import("./pages/components/fullscreen-preview"),
+  0
 );
 
 export default function App() {
@@ -24,6 +21,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/components" element={<ComponentsSystem />} />
+        <Route path="/components/installation" element={<ComponentsSystem />} />
         <Route path="/components/:id" element={<ComponentsSystem />} />
         <Route
           path="/components/:componentId/:variantId/preview"

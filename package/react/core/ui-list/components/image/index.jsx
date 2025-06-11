@@ -5,7 +5,7 @@ import styles from "./image.module.css";
 import { Skeleton } from "./placeholder/skeleton";
 
 export const Image = ({
-  imageSrc,
+  imgSrc,
   alt = "",
   className,
   placeholder,
@@ -64,7 +64,7 @@ export const Image = ({
 
       <img
         ref={imageRef}
-        src={imageSrc}
+        src={imgSrc}
         alt={alt}
         className={`
           ${!allowPlaceholder || isLoaded ? styles.showImg : styles.hideImg} 

@@ -1,0 +1,31 @@
+.copyWrapper {
+  display: flex;
+  align-items: center;
+  color: var(--black-dark-color);
+  background-color: #e8e8e8;
+  border-radius: 6px;
+  padding: 4px 12px;
+  margin: 10px 0 0px 0;
+  gap: 5px;
+  font-family: monospace;
+  font-size: 14px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.copyText {
+  white-space: nowrap;
+  overflow-x: auto;
+  font-size: 13px;
+}
+
+.copyIcon {
+  transition: color 0.2s;
+  font-size: 13px;
+  position: relative;
+  top: -0.5px;
+}
+
+.copyIcon:hover {
+  color: #000;
+}
