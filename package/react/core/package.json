@@ -1,6 +1,6 @@
 {
   "name": "@skynoveau-ui/core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Skynoveau UI is a modern React-based design system offering customizable, accessible, and responsive UI components built for scalability and speed.",
   "author": "Karthik Noveau",
   "license": "MIT",
@@ -46,9 +46,7 @@
     "swiper": "^11.1.14",
     "uuid": "^11.0.3"
   },
-  "dependencies": {
-    "@skynoveau-ui/utils": "1.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@tanstack/react-query": "^5.80.6",

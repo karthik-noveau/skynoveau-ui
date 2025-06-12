@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useScrollToTop } from "@skynoveau-ui/utils";
+// import { useScrollToTop } from "@skynoveau-ui/utils";
 import { COMPONENTS_LIST } from "@list/index";
 
 import styles from "./collections.module.css";
 
 export const ComponentCollections = () => {
   const navigate = useNavigate();
-  useScrollToTop();
+  // useScrollToTop();
 
   return (
     <div className={`${styles.collectionsContaier}`}>

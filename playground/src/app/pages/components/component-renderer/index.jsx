@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { MdArrowBackIos } from "react-icons/md";
 
-import { useScrollToTop } from "@skynoveau-ui/utils";
+// import { useScrollToTop } from "@skynoveau-ui/utils";
 import { COMPONENTS_LIST } from "@list/index";
 import { VariantRenderer } from "../variant-renderer";
 
@@ -12,7 +12,7 @@ export const ComponentRenderer = () => {
   const [baseVariant, setBaseVariant] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
-  useScrollToTop();
+  // useScrollToTop();
 
   const componentInfo = useMemo(() => {
     let data = null;
