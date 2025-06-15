@@ -6,8 +6,8 @@ export const NAV_CONFIG = {
     label: "Skynoveau ui",
   },
   menus: [
-    { label: "Home", path: "/" },
-    { label: "Theme", path: "/theme-preview" },
+    { label: "Components", path: "/components" },
+    { label: "Theme", path: "/theme" },
     {
       label: "Products",
       dropdown: [

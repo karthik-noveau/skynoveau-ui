@@ -28,7 +28,6 @@ export default function ComponentsSystem() {
       <div className={`wrapper`}>
         <div className={`container ${styles.componentContainer}`}>
           <LeftNav />
-
           <div className={`${styles.rightComponent}`}>{renderComponent}</div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import "./theme.css";
 
 // --------- Lazy-loaded components ----------
 const HomePage = LazyImport(() => import("./pages/home"), 0);
+const ThemePage = LazyImport(() => import("./pages/theme"), 0);
 
 const ComponentsSystem = LazyImport(() => import("./pages/components"), 0);
 const ComponentPreview = LazyImport(
@@ -20,6 +21,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/theme" element={<ThemePage />} />
         <Route path="/components" element={<ComponentsSystem />} />
         <Route path="/components/installation" element={<ComponentsSystem />} />
         <Route path="/components/:id" element={<ComponentsSystem />} />

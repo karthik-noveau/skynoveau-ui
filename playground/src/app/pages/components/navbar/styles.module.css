@@ -4,3 +4,14 @@
   align-items: center;
   cursor: pointer;
 }
+
+.icon {
+  color: var(--black);
+  border-radius: 6px;
+  padding: 7px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.icon:hover {
+  background-color: var(--white-thin-color);
+}

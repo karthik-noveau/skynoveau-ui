@@ -1,7 +1,3 @@
-.wrapper {
-  box-shadow: var(--box-shadow-color);
-}
-
 .container {
   display: flex;
   justify-content: space-between;

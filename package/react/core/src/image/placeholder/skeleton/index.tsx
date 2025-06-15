@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./skeleton.module.css";
 
 export interface SkeletonProps {
@@ -10,6 +10,7 @@ export interface SkeletonProps {
   padding?: string | number;
   margin?: string | number;
   borderRadius?: string | number;
+  parentRef?: React.RefObject<HTMLElement>;
 }
 
 export const Skeleton: React.FC<SkeletonProps> = ({
@@ -17,11 +18,29 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   width = "100%",
   minWidth,
   maxWidth,
-  height = "100%",
+  height,
   padding,
   margin,
   borderRadius = "3px",
+  parentRef,
 }) => {
+  const [computedHeight, setComputedHeight] = useState<number | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    let isHeightPx = typeof height === "string" && height.includes("px");
+    console.log("isHeightPx :: in ", parentRef?.current?.offsetHeight);
+    if (!isHeightPx && parentRef?.current) {
+      const parentHeight = parentRef.current.offsetHeight;
+      if (parentHeight > 0) {
+        setComputedHeight(parentHeight);
+      }
+    }
+  }, [height, parentRef]);
+
+  console.log("isHeightPx :: out ", parentRef?.current?.offsetHeight);
+
   return (
     <div
       className={`${styles.skeleton} ${className}`}
@@ -29,7 +48,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
         width,
         maxWidth,
         minWidth,
-        height,
+        height: computedHeight || "100px", // fallback if parent height is 0
         padding,
         margin,
         borderRadius,

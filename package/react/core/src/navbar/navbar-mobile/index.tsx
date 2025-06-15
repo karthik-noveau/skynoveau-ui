@@ -3,6 +3,7 @@ import { Sling as Hamburger } from "hamburger-react";
 
 import styles from "./styles.module.css";
 import NavMenu from "./menu";
+import { NavbarWrapper } from "../wrapper";
 
 export interface NavbarMobileProps {
   logoRenderer: ReactNode;
@@ -34,35 +35,33 @@ const NavbarMobile: React.FC<NavbarMobileProps> & {
 
   return (
     <>
-      <div className={`wrapper`} style={{ height: navHeight }}>
-        <div className={`container ${styles.container}`}>
-          {logoRenderer}
+      <NavbarWrapper navHeight={navHeight} className={styles.container}>
+        {logoRenderer}
 
-          <div
-            className={`${styles.menuToggleIcon} hamburgerMenu ${
-              isOpen ? "closeIcon" : "openIcon"
-            }`}
-          >
-            {hamburgerRenderer ? (
-              hamburgerRenderer(isOpen, setIsOpen)
-            ) : (
-              <Hamburger
-                direction="right"
-                duration={0.7}
-                size={29.2}
-                toggled={isOpen}
-                toggle={setIsOpen}
-              />
-            )}
-          </div>
+        <div
+          className={`${styles.menuToggleIcon} hamburgerMenu ${
+            isOpen ? "closeIcon" : "openIcon"
+          }`}
+        >
+          {hamburgerRenderer ? (
+            hamburgerRenderer(isOpen, setIsOpen)
+          ) : (
+            <Hamburger
+              direction="right"
+              duration={0.7}
+              size={29.2}
+              toggled={isOpen}
+              toggle={setIsOpen}
+            />
+          )}
         </div>
-      </div>
 
-      <div className={`${styles.showMenu} ${isOpen ? styles.hideMenu : ""}`}>
-        {typeof menuRenderer === "function"
-          ? menuRenderer(setIsOpen)
-          : menuRenderer}
-      </div>
+        <div className={`${styles.showMenu} ${isOpen ? styles.hideMenu : ""}`}>
+          {typeof menuRenderer === "function"
+            ? menuRenderer(setIsOpen)
+            : menuRenderer}
+        </div>
+      </NavbarWrapper>
     </>
   );
 };

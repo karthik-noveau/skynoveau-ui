@@ -1,5 +1,5 @@
 .buttonContainer {
-  color: var(--white-color);
+  color: var(--white);
   background-color: var(--primary-color);
   border-radius: 8px;
   height: fit-content;

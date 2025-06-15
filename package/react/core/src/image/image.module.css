@@ -1,20 +1,21 @@
 .imageContainer {
   overflow: hidden;
   border-radius: var(--border-radius);
+  display: inline-block;
 }
 
 .showImg {
   border-radius: var(--border-radius);
   object-fit: cover;
+  display: block;
 }
+
 .showImg.zoomEffect {
   animation: zoomOut 0.5s ease-out forwards;
 }
+
 .hideImg {
-  visibility: hidden;
-}
-.skeleton {
-  aspect-ratio: 2/3;
+  display: none;
 }
 
 .cursorPointer {
@@ -25,6 +26,7 @@
   scale: 1;
   transition: scale 0.5s;
 }
+
 .imageHover:hover {
   scale: var(--image-hover-scale);
 }

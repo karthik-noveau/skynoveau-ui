@@ -6,10 +6,10 @@ import React, {
   useCallback,
 } from "react";
 
-import { FixedBar } from "../fixed-bar/fixed.bar";
+import { NavMenu } from "./menu";
+import { NavbarWrapper } from "../wrapper";
 
 import styles from "./styles.module.css";
-import { NavMenu } from "./menu";
 
 type LayoutType = "twoColumn" | "threeColumn";
 
@@ -18,7 +18,6 @@ export interface NavbarWebProps {
   logoRenderer?: ReactNode;
   menuRenderer?: ReactNode;
   rightMenuRenderer?: ReactNode;
-  shadow?: Boolean;
 }
 
 type NavbarWebComponent = React.FC<NavbarWebProps> & { Menu?: typeof NavMenu };
@@ -28,7 +27,6 @@ export const NavbarWeb: NavbarWebComponent = ({
   logoRenderer,
   menuRenderer,
   rightMenuRenderer,
-  shadow = true,
 }) => {
   const [navHeight, setNavHeight] = useState("70px");
 
@@ -69,13 +67,7 @@ export const NavbarWeb: NavbarWebComponent = ({
 
   return (
     <>
-      <div
-        className={`wrapper ${styles.wrapper} ${shadow && styles.shadow}`}
-        style={{ height: navHeight }}
-      >
-        <div className="container">{RenderLayout}</div>
-      </div>
-      <FixedBar height={navHeight} />
+      <NavbarWrapper navHeight={navHeight}>{RenderLayout}</NavbarWrapper>
     </>
   );
 };

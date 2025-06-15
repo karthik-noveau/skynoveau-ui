@@ -1,0 +1,37 @@
+/* ---------- about ---------- */
+.aboutContainer {
+  display: flex;
+  gap: 70px;
+}
+
+.aboutContainer .title {
+  margin-bottom: 10px;
+  color: var(--black-light);
+}
+.aboutContainer .subTitle {
+  margin-bottom: 10px;
+  color: var(--black-light);
+}
+.aboutContainer .description {
+  margin-bottom: 10px;
+  color: var(--black-thin);
+}
+
+/* ---------- products ---------- */
+.productsWrapper {
+  background-color: var(--white-light);
+}
+.productsContainer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.productsContainer .title {
+  margin-bottom: 30px;
+}
+.productsContainer .imagesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}

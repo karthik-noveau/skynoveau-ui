@@ -15,12 +15,17 @@ html {
 
 :root {
   /* ---------- theme colors ---------- */
-  --primary-color: #b4903a;
-  --primary-light-color: #faf8f3;
-  --primary-dark-color: #9a792b;
+  --primary-color: #256aff;
+  --primary-bold-color: #0a3cbf;
+  --primary-dark-color: #194fd9;
+  --primary-medium-color: #5b8fff;
+  --primary-light-color: #a8c5ff;
+  --primary-thin-color: #e6f0ff;
 
-  --secondary-color: #672402;
-  --secondary-color: #672402;
-  --secondary-light-color: #9d3704;
-  --secondary-dark-color: #e0e0e0;
+  --secondary-color: #000000;
+  --secondary-bold-color: #0d0d0d;
+  --secondary-dark-color: #1a1a1a;
+  --secondary-medium-color: #333333;
+  --secondary-light-color: #666666;
+  --secondary-thin-color: #999999;
 }

@@ -9,8 +9,14 @@ import React, {
 import styles from "./image.module.css";
 import { Skeleton } from "./placeholder/skeleton";
 
+type ResponsiveSrc = {
+  mobile: string;
+  web: string;
+};
+
 export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
-  imgSrc: string;
+  imgSrc: string | ResponsiveSrc;
+  responsivePoint?: number;
   alt?: string;
   className?: string;
   placeholder?: ReactNode;
@@ -27,6 +33,7 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 
 const Image: React.FC<ImageProps> = ({
   imgSrc,
+  responsivePoint = 768,
   alt = "",
   className = "",
   placeholder,
@@ -39,27 +46,48 @@ const Image: React.FC<ImageProps> = ({
   cursorPointer,
   borderRadius = "6px",
   onImageLoaded,
+  width,
+  height,
+  style,
   ...rest
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [src, setSrc] = useState<string>("");
+
+  const containerRef = useRef<HTMLImageElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
+  // Handle responsive image src
+  useEffect(() => {
+    if (typeof imgSrc === "string") {
+      setSrc(imgSrc);
+    } else {
+      const handleResize = () => {
+        const width = window.innerWidth;
+        const selectedSrc =
+          width <= responsivePoint ? imgSrc.mobile : imgSrc.web;
+        setSrc(selectedSrc);
+      };
+
+      handleResize(); // Set initial src
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, [imgSrc, responsivePoint]);
+
+  // Handle scroll animation effect
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
     if (zoomEffectOnScroll) {
       observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
+          if (entry.isIntersecting) setIsVisible(true);
         },
         { threshold: 0.9 }
       );
-
       if (imageRef.current) observer.observe(imageRef.current);
     }
-
     return () => {
       if (imageRef.current && observer) observer.unobserve(imageRef.current);
     };
@@ -67,13 +95,15 @@ const Image: React.FC<ImageProps> = ({
 
   return (
     <div
+      ref={containerRef}
       style={
         {
           "--image-zoom-scale": zoomScale,
           "--image-hover-scale": hoverScale,
           "--border-radius": borderRadius,
-          width: rest?.width || "100%",
-          height: rest?.height || rest?.width || "100%",
+          width: width || "100%",
+          height: height || "100%",
+          ...style,
         } as React.CSSProperties
       }
       className={`${styles.imageContainer} ${className}`}
@@ -83,12 +113,16 @@ const Image: React.FC<ImageProps> = ({
         (placeholder ? (
           placeholder
         ) : (
-          <Skeleton height="100%" width="100%" className={styles.skeleton} />
+          <Skeleton
+            parentRef={containerRef}
+            width={width || "100%"}
+            height={height || "100%"}
+          />
         ))}
 
       <img
         ref={imageRef}
-        src={imgSrc}
+        src={src}
         alt={alt}
         className={`
           ${!allowPlaceholder || isLoaded ? styles.showImg : styles.hideImg} 
@@ -99,10 +133,11 @@ const Image: React.FC<ImageProps> = ({
           ${className}
         `}
         onLoad={() => {
-          onImageLoaded && onImageLoaded(true);
+          onImageLoaded?.(true);
           setIsLoaded(true);
         }}
-        height={rest?.height || rest?.width || "100%"}
+        width={width || "100%"}
+        height={height || "100%"}
         {...rest}
       />
     </div>

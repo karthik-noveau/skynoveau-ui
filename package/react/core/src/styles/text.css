@@ -30,6 +30,11 @@
 
 body {
   font-family: var(--text-font-family);
+  color: var(--black-light);
+}
+
+.title {
+  font-family: var(--title-font-family);
 }
 
 [class^="text-"],

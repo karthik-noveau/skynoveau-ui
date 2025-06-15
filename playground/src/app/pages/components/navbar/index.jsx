@@ -5,6 +5,7 @@ import {
   NavbarMobile,
   NavbarWeb,
 } from "@skynoveau-ui/core";
+import { FaGithub } from "react-icons/fa";
 
 import { NAV_CONFIG } from "./constants";
 
@@ -28,7 +29,7 @@ export const NavigationBar = () => {
               location={location}
               navigate={navigate}
             >
-              <Button>Contact</Button>
+              <LastMenu />
             </NavbarWeb.Menu>
           }
         />
@@ -42,7 +43,9 @@ export const NavigationBar = () => {
               location={location}
               navigate={navigate}
             >
-              <Button>Contact</Button>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <LastMenu />
+              </div>
             </NavbarMobile.Menu>
           }
         />
@@ -59,4 +62,8 @@ const LogoRenderer = () => {
       <p className={`text-20 weight-400`}>Skynoveau UI</p>
     </div>
   );
+};
+
+const LastMenu = () => {
+  return <FaGithub className={`text-20 ${styles.icon}`} />;
 };

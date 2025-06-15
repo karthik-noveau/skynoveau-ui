@@ -20,7 +20,7 @@
   right: 0;
   bottom: 0;
   height: 10px;
-  box-shadow: 0 4px 6px #0000000a;
+  /* box-shadow: 0 4px 6px #0000000a; */
   pointer-events: none;
 }
 
@@ -45,15 +45,14 @@
 }
 .count {
   color: var(--white-color);
-  padding: 1.5px 3px 3.5px 3px;
   background-color: var(--black-dark-color);
   border-radius: 50%;
   font-weight: 400;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
   margin: 0 5px;
+  display: inline-block;
   text-align: center;
+  padding: 0;
+  width: 21px;
 }
 
 /* ------------------------ media queries ------------------------ */
