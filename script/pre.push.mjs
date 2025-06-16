@@ -100,7 +100,7 @@ for (const { name, srcPath, pkgPath, versionCheck } of libraries) {
   }
 }
 
-if (failed) {
+if (!failed) {
   console.error("🚫 Fix the issues above before pushing.");
   process.exit(1);
 }
