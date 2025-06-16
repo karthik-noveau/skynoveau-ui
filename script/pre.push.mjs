@@ -66,7 +66,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
     }
 
     // ✅ 2. Detect committed and staged changes
-    const committed = execSync(`git diff --name-only origin/main...HEAD`, {
+    const committed = execSync(`git diff --name-only origin/master...HEAD`, {
       encoding: "utf-8",
     })
       .trim()
