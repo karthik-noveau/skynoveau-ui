@@ -34,7 +34,7 @@ const libraries = [
     name: "playground",
     rootPath: "playground",
     pathList: pathList,
-    versionCheck: false, // ✅ no version check, but still checks for file paths
+    versionCheck: false,
   },
 ];
 
@@ -80,20 +80,32 @@ for (const { name, rootPath, pathList, versionCheck } of libraries) {
       console.log("✅ No local path dependencies.");
     }
 
-    // ✅ 2. Check file changes in specified pathList
-    const changePaths = pathList.map((p) => `${rootPath}/${p}`).join(" ");
-    const changes = execSync(`git status --porcelain ${changePaths}`, {
-      encoding: "utf-8",
-    }).trim();
+    // ✅ 2. Check file changes in tracked paths recursively
+    const changePaths = pathList.map((p) => `${rootPath}/${p}`);
+    let hasChanges = false;
 
-    if (!changes) {
+    for (const path of changePaths) {
+      try {
+        const output = execSync(`git diff --name-only HEAD -- ${path}`, {
+          encoding: "utf-8",
+        }).trim();
+        if (output) {
+          hasChanges = true;
+          break;
+        }
+      } catch {
+        // Path may not exist; ignore
+      }
+    }
+
+    if (!hasChanges) {
       console.log("✅ No changes in tracked paths.");
     } else {
       console.log("📁 Changes detected in tracked files.");
     }
 
     // ✅ 3. Version check (if enabled)
-    if (versionCheck && changes) {
+    if (versionCheck && hasChanges) {
       const localVersion = pkg.version;
 
       let publishedVersion = "0.0.0";
@@ -108,7 +120,7 @@ for (const { name, rootPath, pathList, versionCheck } of libraries) {
       }
 
       if (!isVersionGreater(localVersion, publishedVersion)) {
-        console.error(`❌ Version mismatch: ${name}`);
+        console.error(`❌ Version not bumped: ${name}`);
         console.error(`   - Local:     ${localVersion}`);
         console.error(`   - Published: ${publishedVersion}`);
         failed = true;
@@ -128,7 +140,7 @@ for (const { name, rootPath, pathList, versionCheck } of libraries) {
 
 if (failed) {
   console.error(
-    "\nPre-push checks failed. Fix the issues above before pushing."
+    "\n🚫 Pre-push checks failed. Fix the issues above before pushing."
   );
   process.exit(1);
 } else {
