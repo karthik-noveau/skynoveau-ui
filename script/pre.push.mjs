@@ -2,6 +2,8 @@ import fs from "fs";
 
 import { execSync } from "child_process";
 
+console.log("initizating pre push checking . . . . . ");
+
 const libraries = [
   {
     name: "@skynoveau-ui/core",
@@ -26,7 +28,7 @@ const libraries = [
 // Helper to compare semantic versions
 function isVersionGreater(local, remote) {
   const parse = (v) => v.replace(/^v/, "").split(".").map(Number);
-  const [lMajor, lMinor, lPatch] = parse(local);  
+  const [lMajor, lMinor, lPatch] = parse(local);
   const [rMajor, rMinor, rPatch] = parse(remote);
   if (lMajor > rMajor) return true;
   if (lMajor === rMajor && lMinor > rMinor) return true;
