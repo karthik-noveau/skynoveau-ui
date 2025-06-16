@@ -65,13 +65,17 @@ for (const { name, rootPath, versionCheck } of libraries) {
       console.log("✅ No local path dependencies.");
     }
 
-    // ✅ 2. Detect changes relative to rootPath
-    const gitChanges = execSync(`git diff --name-only HEAD -- "${rootPath}"`, {
+    // ✅ 2. Detect changes under rootPath
+    const allChangedFiles = execSync(`git diff --name-only HEAD`, {
       encoding: "utf-8",
     })
       .trim()
       .split("\n")
       .filter(Boolean);
+
+    const gitChanges = allChangedFiles.filter((file) =>
+      file.startsWith(rootPath)
+    );
 
     if (gitChanges.length === 0) {
       console.log("✅ No changes detected.");
