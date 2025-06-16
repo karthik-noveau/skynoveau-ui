@@ -1,8 +1,12 @@
 import fs from "fs";
-
 import { execSync } from "child_process";
 
-console.log("initizating pre push checking . . . . . ");
+// Ensure we're in the root of the Git repo
+const repoRoot = execSync("git rev-parse --show-toplevel", {
+  encoding: "utf-8",
+}).trim();
+process.chdir(repoRoot);
+console.log(`🔍 Running pre-push check from repo root: ${repoRoot}\n`);
 
 const libraries = [
   {
@@ -42,24 +46,25 @@ for (const { name, srcPath, pkgPath, versionCheck } of libraries) {
   if (!versionCheck) continue;
 
   try {
-    // Added --untracked-files=no to ignore untracked files like '??'
+    console.log(`📦 Checking: ${name}`);
+
     const srcChanges = execSync(
       `git status --porcelain --untracked-files=no ${srcPath}`,
-      {
-        encoding: "utf-8",
-      }
+      { encoding: "utf-8" }
     ).trim();
+
     const pkgChanges = execSync(
       `git status --porcelain --untracked-files=no ${pkgPath}`,
-      {
-        encoding: "utf-8",
-      }
+      { encoding: "utf-8" }
     ).trim();
 
     const hasChanges = !!(srcChanges || pkgChanges);
-    if (!hasChanges) continue;
+    if (!hasChanges) {
+      console.log("✅ No changes detected.\n");
+      continue;
+    }
 
-    // Format changed files list
+    // Format list of changed files
     let changedFilesList = "";
     if (srcChanges) {
       srcChanges.split("\n").forEach((line) => {
@@ -82,25 +87,33 @@ for (const { name, srcPath, pkgPath, versionCheck } of libraries) {
         stdio: ["pipe", "pipe", "ignore"],
       }).trim();
     } catch {
-      console.warn(`⚠️ ${name} not found on npm, skipping version comparison.`);
+      console.warn(
+        `⚠️  ${name} not found on npm, skipping version comparison.`
+      );
       continue;
     }
 
     if (!isVersionGreater(localVersion, publishedVersion)) {
-      console.error(`\nPackage : ${name}`);
-      console.error(`File changes :  \n${changedFilesList.trimEnd()}`);
-      console.error(`Local version : ${localVersion}`);
-      console.error(`Published : ${publishedVersion}`);
-      console.error(`❌ Need to updated package version\n`);
+      console.error(`\n🚫 Package: ${name}`);
+      console.error(`Changed files:\n${changedFilesList.trimEnd()}`);
+      console.error(`Local version:     ${localVersion}`);
+      console.error(`Published version: ${publishedVersion}`);
+      console.error(`❌ Please update the version in package.json\n`);
       failed = true;
+    } else {
+      console.log("✅ Version is greater than published.\n");
     }
   } catch (err) {
-    console.error(`⚠️ Error checking ${name}: ${err.message}`);
+    console.error(`⚠️  Error checking ${name}: ${err.message}`);
     failed = true;
   }
 }
 
-if (!failed) {
-  console.error("🚫 Fix the issues above before pushing.");
+if (failed) {
+  console.error(
+    "\n🚫 Pre-push checks failed. Fix the issues above before pushing."
+  );
   process.exit(1);
+} else {
+  console.log("✅ All pre-push checks passed.\n");
 }

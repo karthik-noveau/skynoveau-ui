@@ -12,7 +12,7 @@
     "dev:watch": "npm i ../package/react/core && concurrently -n playground,react/core,react/utils -c green,cyan,magenta \"npm run dev\" \"npm run build:react/core\" \"npm run build:react/utils\""
   },
   "dependencies": {
-    "@skynoveau-ui/core": "file:../package/react/core",
+    "@skynoveau-ui/core": "file:../package/react/core/",
     "copy-to-clipboard": "^3.3.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
