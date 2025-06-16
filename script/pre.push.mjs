@@ -48,15 +48,14 @@ for (const { name, srcPath, pkgPath, versionCheck } of libraries) {
   try {
     console.log(`📦 Checking: ${name}`);
 
-    const srcChanges = execSync(
-      `git status --porcelain --untracked-files=no ${srcPath}`,
-      { encoding: "utf-8" }
-    ).trim();
+    // Using git diff instead of git status for more reliable file change detection
+    const srcChanges = execSync(`git diff --name-only HEAD -- ${srcPath}`, {
+      encoding: "utf-8",
+    }).trim();
 
-    const pkgChanges = execSync(
-      `git status --porcelain --untracked-files=no ${pkgPath}`,
-      { encoding: "utf-8" }
-    ).trim();
+    const pkgChanges = execSync(`git diff --name-only HEAD -- ${pkgPath}`, {
+      encoding: "utf-8",
+    }).trim();
 
     const hasChanges = !!(srcChanges || pkgChanges);
     if (!hasChanges) {
