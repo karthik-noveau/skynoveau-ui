@@ -29,6 +29,7 @@ export const Button: React.FC<ButtonProps> = ({
       loading={loading}
       {...rest}
     >
+      <h1>asdfa</h1>
       {!disable && loading && (
         <span className={styles.loaderContainer}>
           <Loader showText={false} size={LOADER_SIZE.TINY} color="inherit" />
