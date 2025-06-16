@@ -1,7 +1,7 @@
 import fs from "fs";
 import { execSync } from "child_process";
 
-// Ensure we're in the root of the Git repo
+// Move to the root of the repo
 const repoRoot = execSync("git rev-parse --show-toplevel", {
   encoding: "utf-8",
 }).trim();
@@ -11,25 +11,22 @@ console.log(`🔍 Running pre-push check from repo root: ${repoRoot}\n`);
 const libraries = [
   {
     name: "@skynoveau-ui/core",
-    srcPath: "package/react/core/src",
     pkgPath: "package/react/core/package.json",
     versionCheck: true,
   },
   {
     name: "@skynoveau-ui/utils",
-    srcPath: "package/react/utils/src",
     pkgPath: "package/react/utils/package.json",
     versionCheck: true,
   },
   {
     name: "playground",
-    srcPath: "playground/src",
     pkgPath: "playground/package.json",
     versionCheck: false,
   },
 ];
 
-// Helper to compare semantic versions
+// Compare semantic versions
 function isVersionGreater(local, remote) {
   const parse = (v) => v.replace(/^v/, "").split(".").map(Number);
   const [lMajor, lMinor, lPatch] = parse(local);
@@ -42,39 +39,27 @@ function isVersionGreater(local, remote) {
 
 let failed = false;
 
-for (const { name, srcPath, pkgPath, versionCheck } of libraries) {
+for (const { name, pkgPath, versionCheck } of libraries) {
   if (!versionCheck) continue;
 
   try {
     console.log(`📦 Checking: ${name}`);
 
-    // Using git diff instead of git status for more reliable file change detection
-    const srcChanges = execSync(`git diff --name-only HEAD -- ${srcPath}`, {
+    // Use `git status` to detect local changes *within the folder containing the package.json*
+    const folderPath = pkgPath.replace(/\/package\.json$/, "");
+    const changes = execSync(`git status --porcelain ${folderPath}`, {
       encoding: "utf-8",
     }).trim();
 
-    const pkgChanges = execSync(`git diff --name-only HEAD -- ${pkgPath}`, {
-      encoding: "utf-8",
-    }).trim();
-
-    const hasChanges = !!(srcChanges || pkgChanges);
-    if (!hasChanges) {
-      console.log("✅ No changes detected.\n");
+    if (!changes) {
+      console.log("✅ No local changes found.\n");
       continue;
     }
 
-    // Format list of changed files
     let changedFilesList = "";
-    if (srcChanges) {
-      srcChanges.split("\n").forEach((line) => {
-        changedFilesList += `   --  ${line.trim()}\n`;
-      });
-    }
-    if (pkgChanges) {
-      pkgChanges.split("\n").forEach((line) => {
-        changedFilesList += `   --  ${line.trim()}\n`;
-      });
-    }
+    changes.split("\n").forEach((line) => {
+      changedFilesList += `   --  ${line.trim()}\n`;
+    });
 
     const localPkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
     const localVersion = localPkg.version;
