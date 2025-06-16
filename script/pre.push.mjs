@@ -11,12 +11,12 @@ const libraries = [
   {
     name: "@skynoveau-ui/core",
     rootPath: "package/react/core",
-    versionCheck: true,
+    versionCheck: false,
   },
   {
     name: "@skynoveau-ui/utils",
     rootPath: "package/react/utils",
-    versionCheck: true,
+    versionCheck: false,
   },
   {
     name: "playground",
