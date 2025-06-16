@@ -1,7 +1,6 @@
 import fs from "fs";
 import { execSync } from "child_process";
 
-// Move to the root of the repo
 const repoRoot = execSync("git rev-parse --show-toplevel", {
   encoding: "utf-8",
 }).trim();
@@ -38,7 +37,6 @@ const libraries = [
   },
 ];
 
-// Compare semantic versions
 function isVersionGreater(local, remote) {
   const parse = (v) => v.replace(/^v/, "").split(".").map(Number);
   const [lMajor, lMinor, lPatch] = parse(local);
@@ -58,7 +56,7 @@ for (const { name, rootPath, pathList, versionCheck } of libraries) {
     const pkgPath = `${rootPath}/package.json`;
     const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 
-    // ✅ 1. Local file: dependency check
+    // ✅ 1. Check local file path dependencies
     const allDeps = {
       ...pkg.dependencies,
       ...pkg.devDependencies,
@@ -71,7 +69,7 @@ for (const { name, rootPath, pathList, versionCheck } of libraries) {
     );
 
     if (fileDeps.length > 0) {
-      console.error(`❌ Local path dependencies found: ${name}`);
+      console.error(`❌ Local path dependencies found in ${name}:`);
       fileDeps.forEach(([dep, path]) => {
         console.error(`   - ${dep}: ${path}`);
       });
@@ -80,32 +78,29 @@ for (const { name, rootPath, pathList, versionCheck } of libraries) {
       console.log("✅ No local path dependencies.");
     }
 
-    // ✅ 2. Check file changes in tracked paths recursively
-    const changePaths = pathList.map((p) => `${rootPath}/${p}`);
-    let hasChanges = false;
+    // ✅ 2. Detect changes relative to rootPath
+    const gitChanges = execSync(`git diff --name-only HEAD -- "${rootPath}"`, {
+      encoding: "utf-8",
+    })
+      .trim()
+      .split("\n")
+      .filter(Boolean);
 
-    for (const path of changePaths) {
-      try {
-        const output = execSync(`git diff --name-only HEAD -- ${path}`, {
-          encoding: "utf-8",
-        }).trim();
-        if (output) {
-          hasChanges = true;
-          break;
-        }
-      } catch {
-        // Path may not exist; ignore
-      }
-    }
+    const relevantChanges = gitChanges.filter((filePath) =>
+      pathList.some((watchPath) =>
+        filePath.startsWith(`${rootPath}/${watchPath}`)
+      )
+    );
 
-    if (!hasChanges) {
+    if (relevantChanges.length === 0) {
       console.log("✅ No changes in tracked paths.");
     } else {
-      console.log("📁 Changes detected in tracked files.");
+      console.log("📁 Changes detected:");
+      relevantChanges.forEach((file) => console.log(`   - ${file}`));
     }
 
-    // ✅ 3. Version check (if enabled)
-    if (versionCheck && hasChanges) {
+    // ✅ 3. Version check
+    if (versionCheck && relevantChanges.length > 0) {
       const localVersion = pkg.version;
 
       let publishedVersion = "0.0.0";
