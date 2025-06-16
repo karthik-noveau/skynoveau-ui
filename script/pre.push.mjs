@@ -22,7 +22,7 @@ const libraries = [
   {
     name: "playground",
     pkgPath: "playground/package.json",
-    versionCheck: false,
+    versionCheck: false, // ✅ no version check, but still checks for file paths
   },
 ];
 
@@ -40,52 +40,75 @@ function isVersionGreater(local, remote) {
 let failed = false;
 
 for (const { name, pkgPath, versionCheck } of libraries) {
-  if (!versionCheck) continue;
-
   try {
     console.log(`📦 Checking: ${name}`);
 
-    // Use `git status` to detect local changes *within the folder containing the package.json*
-    const folderPath = pkgPath.replace(/\/package\.json$/, "");
-    const changes = execSync(`git status --porcelain ${folderPath}`, {
-      encoding: "utf-8",
-    }).trim();
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 
-    if (!changes) {
-      console.log("✅ No local changes found.\n");
-      continue;
-    }
+    // ✅ 1. Always check for file: dependencies
+    const allDeps = {
+      ...pkg.dependencies,
+      ...pkg.devDependencies,
+      ...pkg.peerDependencies,
+      ...pkg.optionalDependencies,
+    };
 
-    let changedFilesList = "";
-    changes.split("\n").forEach((line) => {
-      changedFilesList += `   --  ${line.trim()}\n`;
-    });
+    const fileDeps = Object.entries(allDeps).filter(
+      ([, val]) => typeof val === "string" && val.startsWith("file:")
+    );
 
-    const localPkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
-    const localVersion = localPkg.version;
-
-    let publishedVersion = "0.0.0";
-    try {
-      publishedVersion = execSync(`npm view ${name} version`, {
-        encoding: "utf-8",
-        stdio: ["pipe", "pipe", "ignore"],
-      }).trim();
-    } catch {
-      console.warn(
-        `⚠️  ${name} not found on npm, skipping version comparison.`
-      );
-      continue;
-    }
-
-    if (!isVersionGreater(localVersion, publishedVersion)) {
+    if (fileDeps.length > 0) {
       console.error(`\n🚫 Package: ${name}`);
-      console.error(`Changed files:\n${changedFilesList.trimEnd()}`);
-      console.error(`Local version:     ${localVersion}`);
-      console.error(`Published version: ${publishedVersion}`);
-      console.error(`❌ Please update the version in package.json\n`);
+      console.error(`❌ Found file-based dependencies:`);
+      fileDeps.forEach(([dep, path]) => {
+        console.error(`   - ${dep}: ${path}`);
+      });
       failed = true;
     } else {
-      console.log("✅ Version is greater than published.\n");
+      console.log("✅ No file-based dependencies found.");
+    }
+
+    // ✅ 2. Check version if enabled
+    if (versionCheck) {
+      // Detect local changes in the package folder
+      const folderPath = pkgPath.replace(/\/package\.json$/, "");
+      const changes = execSync(`git status --porcelain ${folderPath}`, {
+        encoding: "utf-8",
+      }).trim();
+
+      if (!changes) {
+        console.log("✅ No local changes found.\n");
+        continue;
+      }
+
+      // Check version bump
+      const localVersion = pkg.version;
+
+      let publishedVersion = "0.0.0";
+      try {
+        publishedVersion = execSync(`npm view ${name} version`, {
+          encoding: "utf-8",
+          stdio: ["pipe", "pipe", "ignore"],
+        }).trim();
+      } catch {
+        console.warn(
+          `⚠️  ${name} not found on npm, skipping version comparison.`
+        );
+        continue;
+      }
+
+      if (!isVersionGreater(localVersion, publishedVersion)) {
+        console.error(`\n🚫 Package: ${name}`);
+        console.error(`Changed files detected.`);
+        console.error(`Local version:     ${localVersion}`);
+        console.error(`Published version: ${publishedVersion}`);
+        console.error(`❌ Please update the version in package.json\n`);
+        failed = true;
+      } else {
+        console.log("✅ Version is greater than published.\n");
+      }
+    } else {
+      console.log("ℹ️  Version check skipped.\n");
     }
   } catch (err) {
     console.error(`⚠️  Error checking ${name}: ${err.message}`);
