@@ -108,7 +108,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
       }
 
       if (!isVersionGreater(localVersion, publishedVersion)) {
-        console.error(`❌ Version not bumped for ${name}:`);
+        console.error(`❌ Version not updated : ${name}`);
         console.error(`   - Local:     ${localVersion}`);
         console.error(`   - Published: ${publishedVersion}`);
         failed = true;

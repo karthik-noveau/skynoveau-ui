@@ -29,7 +29,6 @@ export const Button: React.FC<ButtonProps> = ({
       loading={loading}
       {...rest}
     >
-
       {!disable && loading && (
         <span className={styles.loaderContainer}>
           <Loader showText={false} size={LOADER_SIZE.TINY} color="inherit" />
@@ -39,8 +38,5 @@ export const Button: React.FC<ButtonProps> = ({
     </BaseButton>
   );
 };
-
-
-
 
 export default Button;
