@@ -58,8 +58,7 @@ for (const { name, pkgPath, versionCheck } of libraries) {
     );
 
     if (fileDeps.length > 0) {
-      console.error(`\n🚫 Package: ${name}`);
-      console.error(`❌ Found file-based dependencies:`);
+      console.error(`\n❌ Found local path dependencies: ${name}`);
       fileDeps.forEach(([dep, path]) => {
         console.error(`   - ${dep}: ${path}`);
       });
@@ -98,11 +97,9 @@ for (const { name, pkgPath, versionCheck } of libraries) {
       }
 
       if (!isVersionGreater(localVersion, publishedVersion)) {
-        console.error(`\n🚫 Package: ${name}`);
-        console.error(`Changed files detected.`);
+        console.error(`❌ Version mismatch : ${name}`);
         console.error(`Local version:     ${localVersion}`);
-        console.error(`Published version: ${publishedVersion}`);
-        console.error(`❌ Please update the version in package.json\n`);
+        console.error(`Published version: ${publishedVersion}\n`);
         failed = true;
       } else {
         console.log("✅ Version is greater than published.\n");
@@ -118,7 +115,7 @@ for (const { name, pkgPath, versionCheck } of libraries) {
 
 if (failed) {
   console.error(
-    "\n🚫 Pre-push checks failed. Fix the issues above before pushing."
+    "\nPre-push checks failed. Fix the issues above before pushing."
   );
   process.exit(1);
 } else {
