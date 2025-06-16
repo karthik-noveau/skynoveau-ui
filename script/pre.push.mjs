@@ -45,7 +45,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
     const pkgPath = `${rootPath}/package.json`;
     const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 
-    // ✅ 1. Check local file path dependencies
+    // ✅ 1. Check local path dependencies
     const allDeps = {
       ...pkg.dependencies,
       ...pkg.devDependencies,
@@ -65,14 +65,22 @@ for (const { name, rootPath, versionCheck } of libraries) {
       console.log("✅ No local path dependencies.");
     }
 
-    // ✅ 2. Detect changes under rootPath
-    const allChangedFiles = execSync(`git diff --name-only HEAD`, {
+    // ✅ 2. Detect committed and staged changes
+    const committed = execSync(`git diff --name-only origin/main...HEAD`, {
       encoding: "utf-8",
     })
       .trim()
-      .split("\n")
-      .filter(Boolean);
+      .split("\n");
 
+    const staged = execSync(`git diff --name-only --cached`, {
+      encoding: "utf-8",
+    })
+      .trim()
+      .split("\n");
+
+    const allChangedFiles = Array.from(
+      new Set([...committed, ...staged])
+    ).filter(Boolean);
     const gitChanges = allChangedFiles.filter((file) =>
       file.startsWith(rootPath)
     );
@@ -84,7 +92,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
       gitChanges.forEach((file) => console.log(`   - ${file}`));
     }
 
-    // ✅ 3. Version check (Only if changes detected)
+    // ✅ 3. Version check (if enabled and changes exist)
     if (versionCheck && gitChanges.length > 0) {
       const localVersion = pkg.version;
 
