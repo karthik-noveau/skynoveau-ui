@@ -7,32 +7,20 @@ const repoRoot = execSync("git rev-parse --show-toplevel", {
 process.chdir(repoRoot);
 console.log(`🔍 Running pre-push check from repo root: ${repoRoot}\n`);
 
-const pathList = [
-  "src",
-  "eslint.config.js",
-  "package.json",
-  "readme.md",
-  "tsconfig.json",
-  "vite.config.js",
-];
-
 const libraries = [
   {
     name: "@skynoveau-ui/core",
     rootPath: "package/react/core",
-    pathList: pathList,
     versionCheck: true,
   },
   {
     name: "@skynoveau-ui/utils",
     rootPath: "package/react/utils",
-    pathList: pathList,
     versionCheck: true,
   },
   {
     name: "playground",
     rootPath: "playground",
-    pathList: pathList,
     versionCheck: false,
   },
 ];
@@ -41,15 +29,16 @@ function isVersionGreater(local, remote) {
   const parse = (v) => v.replace(/^v/, "").split(".").map(Number);
   const [lMajor, lMinor, lPatch] = parse(local);
   const [rMajor, rMinor, rPatch] = parse(remote);
-  if (lMajor > rMajor) return true;
-  if (lMajor === rMajor && lMinor > rMinor) return true;
-  if (lMajor === rMajor && lMinor === rMinor && lPatch > rPatch) return true;
-  return false;
+  return (
+    lMajor > rMajor ||
+    (lMajor === rMajor && lMinor > rMinor) ||
+    (lMajor === rMajor && lMinor === rMinor && lPatch > rPatch)
+  );
 }
 
 let failed = false;
 
-for (const { name, rootPath, pathList, versionCheck } of libraries) {
+for (const { name, rootPath, versionCheck } of libraries) {
   try {
     console.log(`📦 Checking: ${name}`);
 
@@ -70,9 +59,7 @@ for (const { name, rootPath, pathList, versionCheck } of libraries) {
 
     if (fileDeps.length > 0) {
       console.error(`❌ Local path dependencies found in ${name}:`);
-      fileDeps.forEach(([dep, path]) => {
-        console.error(`   - ${dep}: ${path}`);
-      });
+      fileDeps.forEach(([dep, path]) => console.error(`   - ${dep}: ${path}`));
       failed = true;
     } else {
       console.log("✅ No local path dependencies.");
@@ -86,21 +73,15 @@ for (const { name, rootPath, pathList, versionCheck } of libraries) {
       .split("\n")
       .filter(Boolean);
 
-    const relevantChanges = gitChanges.filter((filePath) =>
-      pathList.some((watchPath) =>
-        filePath.startsWith(`${rootPath}/${watchPath}`)
-      )
-    );
-
-    if (relevantChanges.length === 0) {
-      console.log("✅ No changes in tracked paths.");
+    if (gitChanges.length === 0) {
+      console.log("✅ No changes detected.");
     } else {
       console.log("📁 Changes detected:");
-      relevantChanges.forEach((file) => console.log(`   - ${file}`));
+      gitChanges.forEach((file) => console.log(`   - ${file}`));
     }
 
-    // ✅ 3. Version check
-    if (versionCheck && relevantChanges.length > 0) {
+    // ✅ 3. Version check (Only if changes detected)
+    if (versionCheck && gitChanges.length > 0) {
       const localVersion = pkg.version;
 
       let publishedVersion = "0.0.0";
@@ -115,7 +96,7 @@ for (const { name, rootPath, pathList, versionCheck } of libraries) {
       }
 
       if (!isVersionGreater(localVersion, publishedVersion)) {
-        console.error(`❌ Version not bumped: ${name}`);
+        console.error(`❌ Version not bumped for ${name}:`);
         console.error(`   - Local:     ${localVersion}`);
         console.error(`   - Published: ${publishedVersion}`);
         failed = true;
