@@ -5,18 +5,17 @@ const repoRoot = execSync("git rev-parse --show-toplevel", {
   encoding: "utf-8",
 }).trim();
 process.chdir(repoRoot);
-console.log(`🔍 Running pre-push check from repo root: ${repoRoot}\n`);
 
 const libraries = [
   {
     name: "@skynoveau-ui/core",
     rootPath: "package/react/core",
-    versionCheck: false,
+    versionCheck: true,
   },
   {
     name: "@skynoveau-ui/utils",
     rootPath: "package/react/utils",
-    versionCheck: false,
+    versionCheck: true,
   },
   {
     name: "playground",
@@ -40,7 +39,7 @@ let failed = false;
 
 for (const { name, rootPath, versionCheck } of libraries) {
   try {
-    console.log(`📦 Checking: ${name}`);
+    console.log(`\n📦 Pre push Checking... in [ ${name} ]`);
 
     const pkgPath = `${rootPath}/package.json`;
     const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
@@ -62,7 +61,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
       fileDeps.forEach(([dep, path]) => console.error(`   - ${dep}: ${path}`));
       failed = true;
     } else {
-      console.log("✅ No local path dependencies.");
+      console.log("\n✅ No local path dependencies.");
     }
 
     // ✅ 2. Detect committed and staged changes
@@ -88,8 +87,10 @@ for (const { name, rootPath, versionCheck } of libraries) {
     if (gitChanges.length === 0) {
       console.log("\n✅ No changes detected.");
     } else {
-      console.log("📁 Changes detected:");
-      gitChanges.forEach((file) => console.log(`   - ${file}`));
+      console.log("\n📁 Changes detected:");
+      gitChanges.forEach((file) => {
+        // console.log(`   - ${file}`);
+      });
     }
 
     // ✅ 3. Version check (if enabled and changes exist)
@@ -108,7 +109,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
       }
 
       if (!isVersionGreater(localVersion, publishedVersion)) {
-        console.error(`\n❌ Version not updated : ${name}`);
+        console.error(`\n❌ Version not updated`);
         console.error(`   - Local:     ${localVersion}`);
         console.error(`   - Published: ${publishedVersion}`);
         failed = true;

@@ -30,7 +30,7 @@
 
 body {
   font-family: var(--text-font-family);
-  color: var(--black-light);
+  color: var(--black-light-100);
 }
 
 .title {

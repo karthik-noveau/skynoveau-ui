@@ -1,5 +1,5 @@
 .buttonContainer {
-  color: var(--white);
+  color: var(--white-color);
   background-color: var(--primary-color);
   border-radius: 8px;
   height: fit-content;
@@ -18,5 +18,5 @@
   border: none;
 }
 .buttonContainer:hover {
-  background-color: var(--primary-dark-color);
+  background-color: var(--primary-dark-100);
 }

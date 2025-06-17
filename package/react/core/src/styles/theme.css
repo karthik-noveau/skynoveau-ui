@@ -14,18 +14,25 @@ html {
 }
 
 :root {
-  /* ---------- theme colors ---------- */
+  /* ---------- primary ---------- */
+  --primary-dark-400: #001b57;
+  --primary-dark-300: #002c8a;
+  --primary-dark-200: #003cbd;
+  --primary-dark-100: #004cf0;
   --primary-color: #256aff;
-  --primary-bold-color: #0a3cbf;
-  --primary-dark-color: #194fd9;
-  --primary-medium-color: #5b8fff;
-  --primary-light-color: #a8c5ff;
-  --primary-thin-color: #e6f0ff;
+  --primary-light-100: #578cff;
+  --primary-light-200: #bed2fd;
+  --primary-light-300: #e2ebfd;
+  --primary-light-400: #ecf2fd;
 
-  --secondary-color: #000000;
-  --secondary-bold-color: #0d0d0d;
-  --secondary-dark-color: #1a1a1a;
-  --secondary-medium-color: #333333;
-  --secondary-light-color: #666666;
-  --secondary-thin-color: #999999;
+  /* ---------- secondary ---------- */
+  --secondary-dark-400: #1a0500;
+  --secondary-dark-300: #330a00;
+  --secondary-dark-200: #4d0f00;
+  --secondary-dark-100: #661400;
+  --secondary-color: #671602;
+  --secondary-light-100: #9b2203;
+  --secondary-light-200: #f43e10;
+  --secondary-light-300: #f16846;
+  --secondary-light-400: #f19179;
 }

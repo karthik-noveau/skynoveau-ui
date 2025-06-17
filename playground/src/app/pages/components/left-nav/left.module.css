@@ -1,9 +1,10 @@
 .leftComponent {
   width: 200px;
   height: calc(100vh - 110px);
-  border-right: 0.5px solid var(--white-light-color);
+  border-right: 0.5px solid var(--white-light-200);
   overflow: auto;
   position: fixed;
+  padding-right: 20px;
 }
 .leftWrapper {
   height: 100%;
@@ -19,7 +20,7 @@
 .menuTitle {
   color: var(--black-color);
   margin-bottom: 5px;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .menuTitle.active {
   color: var(--primary-color);
@@ -30,21 +31,23 @@
   padding: 0px;
 }
 .menuItem {
-  color: var(--black-light-color);
-  padding-top: 4px;
+  color: var(--black-light-100);
   transition: color 0.2s;
-}
-.menuItem:hover {
-  color: var(--primary-color);
+  padding: 5px 10px;
+  margin-top: 4px;
+  transition: all 0.3s;
+  border-radius: 6px;
   cursor: pointer;
 }
+.menuItem:hover,
 .menuItem.active {
   color: var(--primary-color);
+  background: var(--primary-light-400);
 }
 
 /* ---------- sub menu ---------- */
 .subMenuItem {
-  color: var(--black-tint-color);
+  color: var(--black-light-100);
   margin-left: 15px;
 }
 

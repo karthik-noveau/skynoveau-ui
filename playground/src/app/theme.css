@@ -1,12 +1,23 @@
 :root {
-  /* ---------- theme colors ---------- */
-  --primary-color: #256aff !important;
-  --primary-light-color: #e6eeff !important;
-  --primary-tint-color: #f4f8ff !important;
-  --primary-dark-color: #0049e6 !important;
+  /* ---------- primary ---------- */
+  --primary-dark-400: #003cbd;
+  --primary-dark-300: #002c8a;
+  --primary-dark-400: #003cbd;
+  --primary-dark-100: #004cf0;
+  --primary-color: #256aff;
+  --primary-light-100: #578cff;
+  --primary-light-200: #bed2fd;
+  --primary-light-300: #e2ebfd;
+  --primary-light-400: #ecf2fd;
 
-  --secondary-color: #671602 !important;
-  --secondary-light-color: #9d3704 !important;
-  --secondary-tint-color: #000000 !important;
-  --secondary-dark-color: #e0e0e0 !important;
+  /* ---------- secondary ---------- */
+  --secondary-dark-400: #4d0f00;
+  --secondary-dark-300: #330a00;
+  --secondary-dark-400: #4d0f00;
+  --secondary-dark-100: #661400;
+  --secondary-color: #671602;
+  --secondary-light-100: #9b2203;
+  --secondary-light-200: #f43e10;
+  --secondary-light-300: #f16846;
+  --secondary-light-400: #f19179;
 }

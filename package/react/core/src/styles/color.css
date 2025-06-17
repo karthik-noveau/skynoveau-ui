@@ -18,38 +18,38 @@
 
 :root {
   /* ---------- white ---------- */
-  --white-ultra-bold: #999999;
-  --white-extra-bold: #b3b3b3;
-  --white-bold: #cccccc;
-  --white-dark: #e6e6e6;
-  --white: #ffffff;
-  --white-light: #e0e0e0;
-  --white-thin: #ebebeb;
-  --white-extra-thin: #f2f2f2;
-  --white-ultra-thin: #f5f5f5;
+  --white-dark-400: #999999;
+  --white-dark-300: #b3b3b3;
+  --white-dark-200: #cccccc;
+  --white-dark-100: #e6e6e6;
+  --white-color: #ffffff;
+  --white-light-100: #e0e0e0;
+  --white-light-200: #ebebeb;
+  --white-light-300: #f2f2f2;
+  --white-light-400: #f5f5f5;
 
   /* ---------- black ---------- */
-  --black-ultra-bold: #000000;
-  --black-extra-bold: #000000;
-  --black-bold: #000000;
-  --black-dark: #000000;
-  --black: #000000;
-  --black-light: #1a1a1a;
-  --black-thin: #4d4d4d;
-  --black-extra-thin: #666666;
-  --black-ultra-thin: #808080;
+  --black-dark-400: #000000;
+  --black-dark-300: #000000;
+  --black-dark-200: #000000;
+  --black-dark-100: #000000;
+  --black-color: #000000;
+  --black-light-100: #1a1a1a;
+  --black-light-200: #4d4d4d;
+  --black-light-300: #666666;
+  --black-light-400: #808080;
 
   /* ---------- gray ---------- */
-  --gray-ultra-bold: #1a1a1a;
-  --gray-extra-bold: #333333;
-  --gray-bold: #4d4d4d;
-  --gray-dark: #666666;
-  --gray: #808080;
-  --gray-light: #999999;
-  --gray-thin: #cccccc;
-  --gray-extra-thin: #e6e6e6;
-  --gray-ultra-thin: #f5f5f5;
+  --gray-dark-400: #1a1a1a;
+  --gray-dark-300: #333333;
+  --gray-dark-200: #4d4d4d;
+  --gray-dark-100: #666666;
+  --gray-color: #808080;
+  --gray-light-100: #999999;
+  --gray-light-200: #cccccc;
+  --gray-light-300: #e6e6e6;
+  --gray-light-400: #f5f5f5;
 
   /* ---------- shadow ---------- */
-  --box-shadow: 1px 1px 14px 1px #0000000d;
+  --box-shadow-100: 1px 1px 14px 1px #0000000d;
 }

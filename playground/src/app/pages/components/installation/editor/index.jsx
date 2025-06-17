@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { FaRegCopy, FaCheck } from "react-icons/fa";
+import { FaRegCopy } from "react-icons/fa";
+import { GrCheckmark } from "react-icons/gr";
 
 import styles from "./editor.module.css";
 
@@ -15,9 +16,13 @@ export const InstallCommand = ({ command }) => {
   return (
     <div className={styles.wrapper}>
       <code className={`text-14 ${styles.command}`}>{command}</code>
-      <button className={`text-16 ${styles.copyButton}`} onClick={handleCopy}>
-        {copied ? <FaCheck /> : <FaRegCopy />}
-      </button>
+      <div className={`text-16 ${styles.copyButton}`} onClick={handleCopy}>
+        {copied ? (
+          <GrCheckmark className={`${styles.copyIcon}`} />
+        ) : (
+          <FaRegCopy className={`${styles.copyIcon}`} />
+        )}
+      </div>
     </div>
   );
 };

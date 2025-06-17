@@ -19,7 +19,13 @@ export const LeftNav = () => {
           />
         </Menu>
 
-        <Menu title="All Components" path="/components">
+        <Menu title="Components">
+          <MenuItem
+            label="All Components"
+            path=""
+            isActive={location.pathname === `/components`}
+          />
+
           {COMPONENTS_LIST.map((item, index) => {
             let path = item.path;
             let isActive = location.pathname === `/components${path}`;
@@ -62,18 +68,12 @@ export const LeftNav = () => {
   );
 };
 
-const Menu = ({ title, path, isActive, children }) => {
-  const navigate = useNavigate();
+const Menu = ({ title, children }) => {
   return (
     <div className={`${styles.menuContainer}`}>
       {/* ---------- title ---------- */}
       <div
-        className={`text-16 weight-500 ${styles.menuTitle} ${
-          styles.componentsOverview
-        }  ${isActive && styles.active}`}
-        onClick={() => {
-          path && navigate(path);
-        }}
+        className={`text-16 weight-500 ${styles.menuTitle} ${styles.componentsOverview}  `}
       >
         {title}
       </div>

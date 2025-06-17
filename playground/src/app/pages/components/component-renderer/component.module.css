@@ -3,6 +3,7 @@
 }
 .componentRenderContainer .description {
   margin-top: 5px;
+  color: var(--black-light-200);
 }
 .titleContainer {
   width: 100%;
@@ -45,7 +46,7 @@
 }
 .count {
   color: var(--white-color);
-  background-color: var(--black-dark-color);
+  background-color: var(--black-color);
   border-radius: 50%;
   font-weight: 400;
   margin: 0 5px;

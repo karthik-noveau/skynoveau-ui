@@ -6,7 +6,7 @@
 }
 
 .icon {
-  color: var(--black);
+  color: var(--black-tint-color);
   border-radius: 6px;
   padding: 7px;
   transition: all 0.2s;

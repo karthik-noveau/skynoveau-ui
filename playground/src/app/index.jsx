@@ -8,7 +8,7 @@ import "./theme.css";
 
 // --------- Lazy-loaded components ----------
 const HomePage = LazyImport(() => import("./pages/home"), 0);
-const ThemePage = LazyImport(() => import("./pages/theme"), 0);
+const ThemePage = LazyImport(() => import("./pages/theme-preview"), 0);
 
 const ComponentsSystem = LazyImport(() => import("./pages/components"), 0);
 const ComponentPreview = LazyImport(

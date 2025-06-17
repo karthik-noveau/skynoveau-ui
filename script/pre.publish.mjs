@@ -28,7 +28,7 @@ try {
   const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
   const name = pkg.name;
 
-  console.log(`📦 Pre publish checking in ${name}...`);
+  console.log(`📦 Pre publish checking... in [ ${name} ]`);
 
   // ✅ 1. Check local path dependencies
   const allDeps = {

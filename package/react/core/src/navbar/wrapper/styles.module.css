@@ -4,5 +4,5 @@
   z-index: 1000;
   background: white;
   transition: height 0.3s;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow-100);
 }
