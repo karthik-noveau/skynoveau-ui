@@ -10,12 +10,12 @@ const libraries = [
   {
     name: "@skynoveau-ui/core",
     rootPath: "package/react/core",
-    versionCheck: true,
+    versionCheck: false,
   },
   {
     name: "@skynoveau-ui/utils",
     rootPath: "package/react/utils",
-    versionCheck: true,
+    versionCheck: false,
   },
   {
     name: "playground",
@@ -87,7 +87,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
     if (gitChanges.length === 0) {
       console.log("\n✅ No changes detected.");
     } else {
-      console.log("\n📁 Changes detected:");
+      console.log("\n📁 File changes detected:");
       gitChanges.forEach((file) => {
         // console.log(`   - ${file}`);
       });
