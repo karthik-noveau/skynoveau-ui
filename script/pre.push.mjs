@@ -58,7 +58,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
     );
 
     if (fileDeps.length > 0) {
-      console.error(`❌ Local path dependencies found in ${name}:`);
+      console.error(`\n❌ Local path dependencies found in ${name}:`);
       fileDeps.forEach(([dep, path]) => console.error(`   - ${dep}: ${path}`));
       failed = true;
     } else {
@@ -86,7 +86,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
     );
 
     if (gitChanges.length === 0) {
-      console.log("✅ No changes detected.");
+      console.log("\n✅ No changes detected.");
     } else {
       console.log("📁 Changes detected:");
       gitChanges.forEach((file) => console.log(`   - ${file}`));
@@ -103,34 +103,36 @@ for (const { name, rootPath, versionCheck } of libraries) {
           stdio: ["pipe", "pipe", "ignore"],
         }).trim();
       } catch {
-        console.warn(`⚠️  ${name} not found on npm. Skipping version check.`);
+        console.warn(`\n⚠️  ${name} not found on npm. Skipping version check.`);
         continue;
       }
 
       if (!isVersionGreater(localVersion, publishedVersion)) {
-        console.error(`❌ Version not updated : ${name}`);
+        console.error(`\n❌ Version not updated : ${name}`);
         console.error(`   - Local:     ${localVersion}`);
         console.error(`   - Published: ${publishedVersion}`);
         failed = true;
       } else {
-        console.log("✅ Version is greater than published.");
+        console.log("\n✅ Version is greater than published.");
       }
     } else if (!versionCheck) {
-      console.log("ℹ️  Version check skipped.");
+      console.log("\nℹ️  Version check skipped.");
     }
 
     console.log(); // spacer
   } catch (err) {
-    console.error(`⚠️  Error checking ${name}: ${err.message}`);
+    console.error(`\n⚠️  Error checking ${name}: ${err.message}`);
     failed = true;
   }
 }
 
 if (failed) {
   console.error(
-    "\n🚫 Pre-push checks failed. Fix the issues above before pushing."
+    "\n **************** Pre push checks failed ****************\n"
   );
   process.exit(1);
 } else {
-  console.log("✅ All pre-push checks passed.\n");
+  console.log(
+    "\n **************** All pre push checks passed ****************\n"
+  );
 }

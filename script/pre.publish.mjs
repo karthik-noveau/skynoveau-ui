@@ -1,88 +1,83 @@
 import fs from "fs";
+import path from "path";
 import { execSync } from "child_process";
 
-const libraries = [
-  {
-    name: "@skynoveau-ui/core",
-    basePath: "package/react/core",
-    versionCheck: true,
-  },
-  {
-    name: "@skynoveau-ui/utils",
-    basePath: "package/react/utils",
-    versionCheck: true,
-  },
-  {
-    name: "playground",
-    basePath: "playground",
-    versionCheck: false,
-  },
-];
+const currentDir = process.cwd();
+const repoRoot = execSync("git rev-parse --show-toplevel", {
+  encoding: "utf-8",
+}).trim();
 
-// Files to check for changes inside each library
-const filesToCheck = [
-  "src",
-  "package.json",
-  "eslint.config.js",
-  "tsconfig.json",
-  "vite.config.js",
-  "readme.md",
-];
+process.chdir(repoRoot);
 
-// Helper to compare semantic versions
+const pkgPath = path.join(currentDir, "package.json");
+
 function isVersionGreater(local, remote) {
   const parse = (v) => v.replace(/^v/, "").split(".").map(Number);
   const [lMajor, lMinor, lPatch] = parse(local);
   const [rMajor, rMinor, rPatch] = parse(remote);
-  if (lMajor > rMajor) return true;
-  if (lMajor === rMajor && lMinor > rMinor) return true;
-  if (lMajor === rMajor && lMinor === rMinor && lPatch > rPatch) return true;
-  return false;
+  return (
+    lMajor > rMajor ||
+    (lMajor === rMajor && lMinor > rMinor) ||
+    (lMajor === rMajor && lMinor === rMinor && lPatch > rPatch)
+  );
 }
 
 let failed = false;
 
-for (const { name, basePath, versionCheck } of libraries) {
-  if (!versionCheck) continue;
+try {
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
+  const name = pkg.name;
 
-  try {
-    // Check all specified files for changes inside this library's basePath
-    let hasChanges = false;
-    let changedFilesList = "";
+  console.log(`📦 Pre publish checking in ${name}...`);
 
-    for (const file of filesToCheck) {
-      const checkPath = `${basePath}/${file}`;
-      try {
-        // Ignore untracked files with --untracked-files=no
-        const output = execSync(
-          `git status --porcelain --untracked-files=no ${checkPath}`,
-          {
-            encoding: "utf-8",
-          }
-        ).trim();
-        if (output) {
-          hasChanges = true;
-          output.split("\n").forEach((line) => {
-            changedFilesList += `   --  ${line.trim()}\n`;
-          });
-        }
-      } catch {
-        // File/folder might not exist, silently ignore
-      }
-    }
+  // ✅ 1. Check local path dependencies
+  const allDeps = {
+    ...pkg.dependencies,
+    ...pkg.devDependencies,
+    ...pkg.peerDependencies,
+    ...pkg.optionalDependencies,
+  };
 
-    if (!hasChanges) {
-      // No relevant file changes detected, allow push for this package
-      continue;
-    }
+  const fileDeps = Object.entries(allDeps).filter(
+    ([, val]) => typeof val === "string" && val.startsWith("file:")
+  );
 
-    // Read local package.json version
-    const localPkg = JSON.parse(
-      fs.readFileSync(`${basePath}/package.json`, "utf-8")
+  if (fileDeps.length > 0) {
+    console.error(`\n❌ Local path dependencies found in ${name}:`);
+    fileDeps.forEach(([dep, val]) => console.error(`   - ${dep}: ${val}`));
+    failed = true;
+  } else {
+    console.log("\n✅ No local path dependencies.");
+  }
+
+  // ✅ 2. Check "main" and "exports" are correctly set for publish
+  const expectedMain = "./dist/index.js";
+  const expectedExportImport = "./dist/index.js";
+
+  if (pkg.main !== expectedMain) {
+    console.error(`\n❌ Invalid "main" field: expected "${expectedMain}"`);
+    console.error(`   - Current value: ${pkg.main}`);
+    failed = true;
+  } else {
+    console.log("\n✅ Valid 'main' field for publish.");
+  }
+
+  const exportImportPath = pkg.exports?.["."]?.import;
+  if (exportImportPath !== expectedExportImport) {
+    console.error(
+      `\n❌ Invalid "exports['.'].import": expected "${expectedExportImport}"`
     );
-    const localVersion = localPkg.version;
+    console.error(`   - Current value: ${exportImportPath}`);
+    failed = true;
+  } else {
+    console.log("\n✅ Valid 'exports.import' field for publish.");
+  }
 
-    // Get published version from npm
+  // ✅ 3. Version check
+  const versionCheck = true;
+  if (versionCheck) {
+    const localVersion = pkg.version;
+
     let publishedVersion = "0.0.0";
     try {
       publishedVersion = execSync(`npm view ${name} version`, {
@@ -90,29 +85,32 @@ for (const { name, basePath, versionCheck } of libraries) {
         stdio: ["pipe", "pipe", "ignore"],
       }).trim();
     } catch {
-      console.warn(`⚠️ ${name} not found on npm, skipping version comparison.`);
-      continue;
+      console.warn(`\n⚠️  ${name} not found on npm. Skipping version check.`);
     }
 
-    // If local version is NOT greater than published, block push
     if (!isVersionGreater(localVersion, publishedVersion)) {
-      console.error(`\nPackage : ${name}`);
-      console.error(`File changes :\n${changedFilesList.trimEnd()}`);
-      console.error(`Local version : ${localVersion}`);
-      console.error(`Published version : ${publishedVersion}`);
-      console.error(`❌ Version not updated\n`);
+      console.error(`\n❌ Version not updated: ${name}`);
+      console.error(`   - Local:     ${localVersion}`);
+      console.error(`   - Published: ${publishedVersion}`);
       failed = true;
+    } else {
+      console.log("\n✅ Version is greater than published.");
     }
-  } catch (err) {
-    console.error(`⚠️ Error checking ${name}: ${err.message}`);
-    failed = true;
+  } else {
+    console.log("\nℹ️  Version check skipped.");
   }
+} catch (err) {
+  console.error(`\n⚠️  Error checking package: ${err.message}`);
+  failed = true;
 }
 
 if (failed) {
-  console.error("🚫 Fix the issues above before pushing.");
+  console.error(
+    "\n**************** Pre publish checks failed ****************\n"
+  );
   process.exit(1);
+} else {
+  console.log(
+    "\n**************** All pre publish checks passed ****************\n"
+  );
 }
-
-// If we reach here, all checks passed
-process.exit(0);
