@@ -92,11 +92,3 @@ if (failed) {
   console.log("\n.prebuild-complete written");
   console.log("\n***************** Pre build successful *****************\n");
 }
-
-// At the end of pre.build.mjs
-
-const latestCommit = execSync("git rev-parse HEAD", {
-  encoding: "utf-8",
-}).trim();
-fs.writeFileSync(".prebuild-hash", latestCommit);
-console.log("✅ Wrote .prebuild-hash for validation");
