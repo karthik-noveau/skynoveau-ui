@@ -11,7 +11,6 @@ export interface BreadCrumbItem {
   active?: Boolean;
 }
 
-
 export interface BreadCrumbProps {
   data?: BreadCrumbItem[];
   icon?: React.ReactNode;
@@ -32,7 +31,6 @@ const RenderIcon: React.FC<RenderIconProps> = ({ type }) => {
       return <MdArrowForwardIos />;
   }
 };
-
 
 export const BreadCrumb: React.FC<BreadCrumbProps> & {
   icon?: React.FC<RenderIconProps>;
