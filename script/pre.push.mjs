@@ -11,74 +11,157 @@ const libraries = [
   {
     name: "@skynoveau-ui/core",
     rootPath: "package/react/core",
-    autoUpdate: true,
+    versionCheck: true,
+    updateExportsToDist: true,
+    updateVersionInRootPackageJson: true,
   },
   {
     name: "@skynoveau-ui/utils",
     rootPath: "package/react/utils",
-    autoUpdate: false,
+    versionCheck: false,
+    updateExportsToDist: false,
+    updateVersionInRootPackageJson: false,
+  },
+  {
+    name: "playground",
+    rootPath: "playground",
+    versionCheck: false,
+    updateExportsToDist: false,
+    updateVersionInRootPackageJson: false,
   },
 ];
 
-for (const { name, rootPath, autoUpdate } of libraries) {
-  try {
-    if (!autoUpdate) continue;
+function bumpPatch(version) {
+  const [major, minor, patch] = version.split(".").map(Number);
+  return `${major}.${minor}.${patch + 1}`;
+}
 
-    console.log(`\n📦 Updating ${name}`);
+let failed = false;
+
+for (const {
+  name,
+  rootPath,
+  versionCheck,
+  updateExportsToDist,
+  updateVersionInRootPackageJson,
+} of libraries) {
+  try {
+    console.log(`\n📦 Pre push Checking... in [ ${name} ]`);
 
     const pkgPath = `${rootPath}/package.json`;
     const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 
-    // ✅ 1. Update exports field
-    const desiredExports = {
-      ".": {
-        import: "./dist/index.js",
-        types: "./dist/index.d.ts",
-      },
-    };
-    let updated = false;
-
-    if (JSON.stringify(pkg.exports) !== JSON.stringify(desiredExports)) {
-      pkg.exports = desiredExports;
-      updated = true;
-      console.log("✅ Updated exports field to use dist.");
-    }
-
-    // ✅ 2. Get published version and bump patch
-    const publishedVersion = execSync(`npm view ${name} version`, {
+    // ✅ Git change check
+    const committed = execSync(`git diff --name-only origin/master...HEAD`, {
       encoding: "utf-8",
-      stdio: ["pipe", "pipe", "ignore"],
-    }).trim();
+    })
+      .trim()
+      .split("\n");
 
-    const bumpPatch = (version) => {
-      const parts = version.split(".").map(Number);
-      parts[2] += 1;
-      return parts.join(".");
-    };
+    const staged = execSync(`git diff --name-only --cached`, {
+      encoding: "utf-8",
+    })
+      .trim()
+      .split("\n");
 
-    const nextVersion = bumpPatch(publishedVersion);
-    if (pkg.version !== nextVersion) {
-      pkg.version = nextVersion;
-      updated = true;
-      console.log(`✅ Bumped version: ${publishedVersion} → ${nextVersion}`);
+    const allChangedFiles = Array.from(
+      new Set([...committed, ...staged])
+    ).filter(Boolean);
+    const gitChanges = allChangedFiles.filter((file) =>
+      file.startsWith(rootPath)
+    );
+
+    if (gitChanges.length === 0) {
+      console.log("\n✅ No changes detected.");
     } else {
-      console.log("✅ Version already updated.");
+      console.log("\n📁 File changes detected:");
     }
 
-    // ✅ 3. Write changes if any
-    if (updated) {
-      fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-      execSync(`git add ${pkgPath}`);
-      execSync(`git commit -m "chore(${name}): update version and exports"`);
-      execSync(`git push`);
-      console.log("🚀 Changes committed and pushed.");
-    } else {
-      console.log("🟢 No changes to commit.");
+    // ✅ Version check + bump
+    if (versionCheck && gitChanges.length > 0) {
+      let publishedVersion = "0.0.0";
+      try {
+        publishedVersion = execSync(`npm view ${name} version`, {
+          encoding: "utf-8",
+          stdio: ["pipe", "pipe", "ignore"],
+        }).trim();
+      } catch {
+        console.warn(`\n⚠️  ${name} not found on npm. Skipping version check.`);
+      }
+
+      if (pkg.version === publishedVersion) {
+        const nextVersion = bumpPatch(publishedVersion);
+        pkg.version = nextVersion;
+        fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+        execSync(`git add ${pkgPath}`);
+        execSync(
+          `git commit -m \"chore(${name}): bump version to ${nextVersion}\"`
+        );
+        console.log(
+          `\n✅ Bumped version: ${publishedVersion} → ${nextVersion}`
+        );
+      } else {
+        console.log(
+          `\n✅ Local version (${pkg.version}) already ahead of published.`
+        );
+      }
+    } else if (!versionCheck) {
+      console.log("\nℹ️  Version check skipped.");
+    }
+
+    // ✅ Update exports to dist
+    if (updateExportsToDist) {
+      const desiredExports = {
+        ".": {
+          import: "./dist/index.js",
+          types: "./dist/index.d.ts",
+        },
+      };
+      if (JSON.stringify(pkg.exports) !== JSON.stringify(desiredExports)) {
+        pkg.exports = desiredExports;
+        fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+        execSync(`git add ${pkgPath}`);
+        console.log(`\n✅ Updated exports field to use dist.`);
+      } else {
+        console.log(`\n✅ Exports already set to dist.`);
+      }
+    }
+
+    // ✅ Update root package.json version
+    if (updateVersionInRootPackageJson) {
+      const rootPkgPath = path.resolve("./package.json");
+      const rootPkg = JSON.parse(fs.readFileSync(rootPkgPath, "utf-8"));
+
+      const current = rootPkg.dependencies?.[name];
+      let publishedVersion = execSync(`npm view ${name} version`, {
+        encoding: "utf-8",
+      }).trim();
+
+      if (current !== publishedVersion) {
+        rootPkg.dependencies = {
+          ...rootPkg.dependencies,
+          [name]: publishedVersion,
+        };
+        fs.writeFileSync(rootPkgPath, JSON.stringify(rootPkg, null, 2));
+        execSync(`git add package.json`);
+        console.log(
+          `\n✅ Updated ${name} version in root package.json → ${publishedVersion}`
+        );
+      } else {
+        console.log(
+          `\n✅ ${name} version already up to date in root package.json`
+        );
+      }
     }
   } catch (err) {
-    console.error(`❌ Failed to update ${name}: ${err.message}`);
-    process.exit(1);
+    console.error(`\n❌ Error checking ${name}: ${err.message}`);
+    failed = true;
   }
 }
 
-console.log("\n✅ All pre-push tasks completed.\n");
+if (failed) {
+  console.error("\n❌ Pre-push checks failed. Fix the issues above.");
+  process.exit(1);
+} else {
+  console.log("\n✅ All pre-push checks passed.");
+}
