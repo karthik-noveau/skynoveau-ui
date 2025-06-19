@@ -24,7 +24,7 @@ export default function App() {
         <Route path="/theme" element={<ThemePage />} />
         <Route path="/components" element={<ComponentsSystem />} />
         <Route path="/components/installation" element={<ComponentsSystem />} />
-        <Route path="/components/:id" element={<ComponentsSystem />} />
+        <Route path="/components/:componentId" element={<ComponentsSystem />} />
         <Route
           path="/components/:componentId/:variantId/preview"
           element={<ComponentPreview />}

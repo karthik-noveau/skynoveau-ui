@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { ComponentCollections } from "./all-components";
 import { ComponentRenderer } from "./component-renderer";
 import { LeftNav } from "./left-nav";
@@ -7,23 +7,49 @@ import { NavigationBar } from "./navbar";
 
 import styles from "./components.module.css";
 import { Installation } from "./installation";
+import { BreadCrumb, Button } from "@skynoveau-ui/core";
 
 export default function ComponentsSystem() {
   const location = useLocation();
+  const { componentId } = useParams();
+  const { breadCrumbList, renderComponent } = useMemo(() => {
+    let breadCrumbList = [];
+    let renderComponent = null;
 
-  const renderComponent = useMemo(() => {
     if (location.pathname === "/components/installation") {
-      return <Installation />;
+      breadCrumbList = [
+        { label: "Home", path: "/" },
+        { label: "Intallation", path: "/components/installation" },
+      ];
+      renderComponent = <Installation />;
     } else if (location.pathname === "/components") {
-      return <ComponentCollections />;
+      breadCrumbList = [
+        { label: "Home", path: "/" },
+        { label: "Components", path: "/components" },
+      ];
+      renderComponent = <ComponentCollections />;
     } else {
-      return <ComponentRenderer />;
+      breadCrumbList = [
+        { label: "Components", path: "/components" },
+        { label: componentId, path: `/components/${componentId}` },
+      ];
+      renderComponent = <ComponentRenderer />;
     }
-  }, [location.pathname]);
+
+    return { breadCrumbList, renderComponent };
+  }, [location.pathname, componentId]);
 
   return (
     <>
       <NavigationBar />
+
+      <div className={`wrapper`}>
+        <div
+          className={`container container-margin-top ${styles.breadCrumbContainer}`}
+        >
+          <BreadCrumb />
+        </div>
+      </div>
 
       <div className={`wrapper`}>
         <div className={`container ${styles.componentContainer}`}>

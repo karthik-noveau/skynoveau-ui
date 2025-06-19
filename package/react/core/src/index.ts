@@ -7,3 +7,4 @@ export * from "./button";
 export * from "./loader";
 export * from "./image";
 export * from "./navbar";
+export * from "./breadcrumb";

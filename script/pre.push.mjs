@@ -1,6 +1,18 @@
 import fs from "fs";
 import { execSync } from "child_process";
 
+// Parse VERSION_CHECK from environment (expecting a JSON string)
+let versionCheckMap = {};
+try {
+  versionCheckMap = process.env.VERSION_CHECK
+    ? JSON.parse(process.env.VERSION_CHECK)
+    : {};
+} catch (e) {
+  console.warn(
+    "⚠️  Invalid VERSION_CHECK JSON format. Skipping all version checks."
+  );
+}
+
 const repoRoot = execSync("git rev-parse --show-toplevel", {
   encoding: "utf-8",
 }).trim();
@@ -10,17 +22,14 @@ const libraries = [
   {
     name: "@skynoveau-ui/core",
     rootPath: "package/react/core",
-    versionCheck: false,
   },
   {
     name: "@skynoveau-ui/utils",
     rootPath: "package/react/utils",
-    versionCheck: false,
   },
   {
     name: "playground",
     rootPath: "playground",
-    versionCheck: false,
   },
 ];
 
@@ -37,7 +46,9 @@ function isVersionGreater(local, remote) {
 
 let failed = false;
 
-for (const { name, rootPath, versionCheck } of libraries) {
+for (const { name, rootPath } of libraries) {
+  const versionCheck = versionCheckMap[name] === true;
+
   try {
     console.log(`\n📦 Pre push Checking... in [ ${name} ]`);
 
@@ -89,7 +100,7 @@ for (const { name, rootPath, versionCheck } of libraries) {
     } else {
       console.log("\n📁 File changes detected:");
       gitChanges.forEach((file) => {
-        // console.log(`   - ${file}`);
+        console.log(`   - ${file}`);
       });
     }
 

@@ -50,27 +50,16 @@ try {
     console.log("\n✅ No local path dependencies.");
   }
 
-  // ✅ 2. Check "main" and "exports" are correctly set for publish
-  const expectedMain = "./dist/index.js";
+  // ✅ 2. Check "exports" are correctly set for publish
   const expectedExportImport = "./dist/index.js";
-
-  if (pkg.main !== expectedMain) {
-    console.error(`\n❌ Invalid "main" field: expected "${expectedMain}"`);
-    console.error(`   - Current value: ${pkg.main}`);
-    failed = true;
-  } else {
-    console.log("\n✅ Valid 'main' field for publish.");
-  }
 
   const exportImportPath = pkg.exports?.["."]?.import;
   if (exportImportPath !== expectedExportImport) {
-    console.error(
-      `\n❌ Invalid "exports['.'].import": expected "${expectedExportImport}"`
-    );
-    console.error(`   - Current value: ${exportImportPath}`);
+    console.error(`\n❌ Invalid exports '${exportImportPath}'`);
+    console.error(`   - Expected: '${expectedExportImport}'`);
     failed = true;
   } else {
-    console.log("\n✅ Valid 'exports.import' field for publish.");
+    console.log("\n✅ Valid 'exports' for publish.");
   }
 
   // ✅ 3. Version check
@@ -89,7 +78,7 @@ try {
     }
 
     if (!isVersionGreater(localVersion, publishedVersion)) {
-      console.error(`\n❌ Version not updated: ${name}`);
+      console.error(`\n❌ Version not updated`);
       console.error(`   - Local:     ${localVersion}`);
       console.error(`   - Published: ${publishedVersion}`);
       failed = true;

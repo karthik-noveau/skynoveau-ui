@@ -10,7 +10,7 @@ import styles from "./component.module.css";
 
 export const ComponentRenderer = () => {
   const [baseVariant, setBaseVariant] = useState(null);
-  const { id } = useParams();
+  const { componentId } = useParams();
   const navigate = useNavigate();
   // useScrollToTop();
 
@@ -19,13 +19,13 @@ export const ComponentRenderer = () => {
 
     COMPONENTS_LIST.forEach((item) => {
       if (!data) {
-        if (item.path === `/${id}`) {
+        if (item.path === `/${componentId}`) {
           data = item;
           setBaseVariant(null);
         }
         if (item?.categories) {
           let info = item.categories.find((category) => {
-            let path = `/${id}`;
+            let path = `/${componentId}`;
             setBaseVariant(item.name);
             return category.path === path;
           });
@@ -38,7 +38,7 @@ export const ComponentRenderer = () => {
       ...data,
       variantsCount: data?.variants ? data.variants.length : 1,
     };
-  }, [id]);
+  }, [componentId]);
   return (
     <React.Fragment>
       {componentInfo ? (
