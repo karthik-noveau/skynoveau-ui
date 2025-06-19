@@ -1,25 +1,36 @@
 import fs from "fs";
 import path from "path";
 
-const corePkgPath = path.resolve("../package/react/core/package.json");
-
-const corePkg = JSON.parse(fs.readFileSync(corePkgPath, "utf-8"));
-
-// Update `exports` field if needed
-const desiredExports = {
-  ".": {
-    import: "./src/index.ts",
-    types: "./dist/index.d.ts",
+const libraries = [
+  {
+    name: "@skynoveau-ui/core",
+    rootPath: "../package/react/core",
   },
-};
+  {
+    name: "@skynoveau-ui/utils",
+    rootPath: "../package/react/utils",
+  },
+];
 
-const updated =
-  JSON.stringify(corePkg.exports) !== JSON.stringify(desiredExports);
+for (const { name, rootPath } of libraries) {
+  const pkgPath = path.resolve(rootPath, "package.json");
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 
-if (updated) {
-  corePkg.exports = desiredExports;
-  fs.writeFileSync(corePkgPath, JSON.stringify(corePkg, null, 2));
-  console.log("✅ Exports path updated in react/core package.json");
-} else {
-  console.log("✅ Exports path already correct in react/core package.json");
+  const desiredExports = {
+    ".": {
+      import: "./src/index.ts",
+      types: "./dist/index.d.ts",
+    },
+  };
+
+  const isUpdated =
+    JSON.stringify(pkg.exports) !== JSON.stringify(desiredExports);
+
+  if (isUpdated) {
+    pkg.exports = desiredExports;
+    fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+    console.log(`✅ [${name}] exports path updated to dev path\n`);
+  } else {
+    console.log(`✅ [${name}] exports path already in dev path\n`);
+  }
 }
