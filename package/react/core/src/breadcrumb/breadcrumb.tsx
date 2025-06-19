@@ -11,6 +11,7 @@ export interface BreadCrumbItem {
   active?: Boolean;
 }
 
+
 export interface BreadCrumbProps {
   data?: BreadCrumbItem[];
   icon?: React.ReactNode;
