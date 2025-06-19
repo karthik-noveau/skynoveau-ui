@@ -1,9 +1,13 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-if [ ! -f .prebuild-complete ]; then
-  echo "❌ You must run 'npm run pre-build' before pushing."
+LAST_PREBUILD_HASH=$(cat .prebuild-hash 2>/dev/null)
+CURRENT_HASH=$(git rev-parse HEAD)
+
+if [ "$LAST_PREBUILD_HASH" != "$CURRENT_HASH" ]; then
+  echo "❌ 'npm run pre-build' is required. Changes detected since last pre-build."
+  echo "   Run: npm run pre-build"
   exit 1
 fi
 
-echo "✅ Pre-build check passed"
+echo "✅ Pre-build check passed for current commit"
