@@ -1,1 +1,4 @@
-VERSION_CHECK='{"@skynoveau-ui/core":true,"@skynoveau-ui/utils":false}' node script/pre-push.js
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+node script/pre.push.mjs

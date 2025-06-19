@@ -8,6 +8,7 @@ import styles from "./styles.module.css";
 export interface BreadCrumbItem {
   label: string;
   path: string;
+  active?: Boolean;
 }
 
 export interface BreadCrumbProps {
@@ -37,10 +38,12 @@ export const BreadCrumb: React.FC<BreadCrumbProps> & {
   const navigate = useNavigate();
   return (
     <div className={`${styles.container} ${className}`}>
-      {data.map(({ label, path }, id) => (
+      {data.map(({ label, path, active }, id) => (
         <div key={path} className={styles.menuItem}>
           <span
-            className={`text-16 ${styles.label}`}
+            className={`text-16 weight-400 ${styles.label} ${
+              active && styles.active
+            }`}
             onClick={() => navigate(path)}
           >
             {label}

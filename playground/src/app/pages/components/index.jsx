@@ -7,7 +7,7 @@ import { NavigationBar } from "./navbar";
 
 import styles from "./components.module.css";
 import { Installation } from "./installation";
-import { BreadCrumb, Button } from "@skynoveau-ui/core";
+import { BreadCrumb } from "@skynoveau-ui/core";
 
 export default function ComponentsSystem() {
   const location = useLocation();
@@ -19,19 +19,28 @@ export default function ComponentsSystem() {
     if (location.pathname === "/components/installation") {
       breadCrumbList = [
         { label: "Home", path: "/" },
-        { label: "Intallation", path: "/components/installation" },
+        {
+          label: "Intallation",
+          path: "/components/installation",
+          active: true,
+        },
       ];
       renderComponent = <Installation />;
     } else if (location.pathname === "/components") {
       breadCrumbList = [
         { label: "Home", path: "/" },
-        { label: "Components", path: "/components" },
+        { label: "Components", path: "/components", active: true },
       ];
       renderComponent = <ComponentCollections />;
     } else {
       breadCrumbList = [
+        { label: "Home", path: "/" },
         { label: "Components", path: "/components" },
-        { label: componentId, path: `/components/${componentId}` },
+        {
+          label: componentId,
+          path: `/components/${componentId}`,
+          active: true,
+        },
       ];
       renderComponent = <ComponentRenderer />;
     }
@@ -47,7 +56,7 @@ export default function ComponentsSystem() {
         <div
           className={`container container-margin-top ${styles.breadCrumbContainer}`}
         >
-          <BreadCrumb />
+          <BreadCrumb data={breadCrumbList} />
         </div>
       </div>
 
