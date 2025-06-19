@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.label {
+  cursor: pointer;
+  color: var(--black-light-200);
+}
+.label.active {
+  color: var(--black-light-100);
+}
+.label:hover {
+  color: var(--black-color);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+}
