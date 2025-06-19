@@ -71,13 +71,13 @@ for (const { name, rootPath, playground } of libraries) {
         };
 
         fs.writeFileSync(fullPath, JSON.stringify(consumerPkg, null, 2));
-        console.log(`✅ Updated ${name} in ${consumerPath}`);
+        console.log(`✅ Latest dependence version updated`);
         console.log(`     ↪ Previous: ${prevVersion}`);
         console.log(`     ↪ Updated : ${latestVersion}`);
       }
     } else {
       console.log(
-        `ℹ️  Skipped consumer update for ${name} (playground: false)`
+        `ℹ️  Latest dependence version updated skipped`
       );
     }
   } catch (err) {
@@ -91,6 +91,6 @@ if (failed) {
   process.exit(1);
 } else {
   fs.writeFileSync(".prebuild-complete", new Date().toISOString());
-  console.log("\n✅ .prebuild-complete written");
+  console.log("\n.prebuild-complete written");
   console.log("\n***************** Pre build successful *****************\n");
 }
