@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*P>
 
 node_modules
+.prebuild-complete
 dist
 dist-ssr
 *.local
