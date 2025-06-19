@@ -32,6 +32,7 @@ const RenderIcon: React.FC<RenderIconProps> = ({ type }) => {
   }
 };
 
+
 export const BreadCrumb: React.FC<BreadCrumbProps> & {
   icon?: React.FC<RenderIconProps>;
 } = ({ data = [], icon = <RenderIcon type="arrow" />, className = "" }) => {
