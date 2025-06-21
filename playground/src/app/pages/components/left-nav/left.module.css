@@ -18,7 +18,7 @@
 }
 /* ---------- menu title ---------- */
 .menuTitle {
-  color: var(--black-color);
+  color: var(--black-light-100);
   margin-bottom: 5px;
   /* cursor: pointer; */
 }
@@ -31,7 +31,7 @@
   padding: 0px;
 }
 .menuItem {
-  color: var(--black-light-100);
+  color: var(--black-light-200);
   transition: color 0.2s;
   padding: 5px 10px;
   margin-top: 4px;

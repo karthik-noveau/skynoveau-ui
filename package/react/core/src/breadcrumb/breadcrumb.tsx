@@ -1,61 +1,48 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
 import { HiSlash } from "react-icons/hi2";
-
 import styles from "./styles.module.css";
-
 
 export interface BreadCrumbItem {
   label: string;
   path: string;
-  active?: Boolean;
+  active?: boolean;
 }
 
 export interface BreadCrumbProps {
   data?: BreadCrumbItem[];
-  icon?: React.ReactNode;
+  iconType?: "arrow" | "slash";
   className?: string;
+  onNavigate?: (path: string) => void;
 }
 
-interface RenderIconProps {
-  type: "arrow" | "slash" | string;
-}
+export const BreadCrumb: React.FC<BreadCrumbProps> = ({
+  data = [],
+  iconType = "arrow",
+  className = "",
+  onNavigate,
+}) => {
+  const RenderIcon = iconType === "slash" ? <HiSlash /> : <MdArrowForwardIos />;
 
-const RenderIcon: React.FC<RenderIconProps> = ({ type }) => {
-  switch (type) {
-    case "arrow":
-      return <MdArrowForwardIos />;
-    case "slash":
-      return <HiSlash />;
-    default:
-      return <MdArrowForwardIos />;
-  }
-};
-
-export const BreadCrumb: React.FC<BreadCrumbProps> & {
-  icon?: React.FC<RenderIconProps>;
-} = ({ data = [], icon = <RenderIcon type="arrow" />, className = "" }) => {
-  const navigate = useNavigate();
   return (
     <div className={`${styles.container} ${className}`}>
       {data.map(({ label, path, active }, id) => (
         <div key={path} className={styles.menuItem}>
           <span
             className={`text-16 weight-400 ${styles.label} ${
-              active && styles.active
+              active ? styles.active : ""
             }`}
-            onClick={() => navigate(path)}
+            onClick={() => onNavigate?.(path)}
           >
             {label}
           </span>
-          <span className={styles.icon}>{id < data.length - 1 && icon}</span>
+          <span className={styles.icon}>
+            {id < data.length - 1 && RenderIcon}
+          </span>
         </div>
       ))}
     </div>
   );
 };
-
-BreadCrumb.icon = RenderIcon;
 
 export default BreadCrumb;

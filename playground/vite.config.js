@@ -17,4 +17,7 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "./src/app/store"),
     },
   },
+  build: {
+    sourcemap: true, // 🔥 add this line
+  },
 });

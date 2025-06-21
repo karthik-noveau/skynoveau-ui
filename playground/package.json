@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "clean": "rimraf dist .vite node_modules",
+    "clean:install": "rimraf dist .vite node_modules && npm install",
+    "preview": "vite preview",
     "build": "vite build",
     "build:react/core": "chokidar \"../package/react/core/src/**/*\" \"../package/react/core/package.json\" --initial --verbose --debounce 1000 -c \"npm --prefix ../package/react/core run build && echo '✅ [react/core] build successfully'\"",
     "build:react/utils": "chokidar \"../package/react/utils/src/**/*\" \"../package/react/utils/package.json\" --initial --verbose --debounce 1000 -c \"npm --prefix ../package/react/utils run build && echo '✅ [react/utils] build successfully'\"",
@@ -37,11 +38,5 @@
     "rimraf": "^5.0.10",
     "vite": "^6.3.5",
     "vite-plugin-style-import": "^2.0.0"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
   }
 }
