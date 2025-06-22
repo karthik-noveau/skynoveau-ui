@@ -8,17 +8,14 @@
     "clean": "rimraf dist .vite node_modules",
     "preview": "vite preview",
     "build": "vite build",
-
     "build:react/core": "npm --prefix ../package/react/core run build && echo '✅ [react/core] build completed'",
     "build:react/utils": "npm --prefix ../package/react/utils run build && echo '✅ [react/utils] build completed'",
-
     "watch:react/core": "echo '📦 Installing [react/core]...' && npm --prefix ../package/react/core install && echo '📡 Watching [react/core]...' && chokidar \"../package/react/core/src/**/*\" \"../package/react/core/package.json\" --initial --verbose --debounce 500 -c \"npm run build:react/core\"",
     "watch:react/utils": "echo '📦 Installing [react/utils]...' && npm --prefix ../package/react/utils install && echo '📡 Watching [react/utils]...' && chokidar \"../package/react/utils/src/**/*\" \"../package/react/utils/package.json\" --initial --verbose --debounce 500 -c \"npm run build:react/utils\"",
-    
     "dev:watch": "npm i && node ../script/dev.setup.mjs && concurrently -n playground,core,utils -c green,cyan,magenta \"npm run dev\" \"npm run watch:react/core\""
   },
   "dependencies": {
-    "@skynoveau-ui/core": "file:../package/react/core",
+    "@skynoveau-ui/core": "1.0.11",
     "@skynoveau-ui/utils": "1.0.0",
     "copy-to-clipboard": "^3.3.3",
     "react": "^19.1.0",
