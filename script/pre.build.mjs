@@ -71,12 +71,12 @@ for (const { name, rootPath, playground } of libraries) {
         };
 
         fs.writeFileSync(fullPath, JSON.stringify(consumerPkg, null, 2));
-        console.log(`✅ Latest dependence version updated`);
+        console.log(`✅ Latest dependence version updated in [ playground ]`);
         console.log(`     ↪ Previous: ${prevVersion}`);
         console.log(`     ↪ Updated : ${latestVersion}`);
       }
     } else {
-      console.log(`ℹ️  Latest dependence version updated skipped`);
+      console.log(`ℹ️  Latest dependence version update skipped`);
     }
   } catch (err) {
     console.error(`\n⚠️  Error processing ${name}: ${err.message}`);
