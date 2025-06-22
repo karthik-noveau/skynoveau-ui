@@ -8,11 +8,12 @@
     "prepare": "husky install",
     "build": "npm --prefix ./playground run build",
     "prebuild": "node ./script/pre.build.mjs",
-    "preview": "npm --prefix ./playground run preview",
+    "preview": "npm --prefix ./playground vite preview",
     "clean:all": "npm --prefix ./playground run clean && npm --prefix ./package/react/core run clean",
-    "install:all": "npm i && npm --prefix ./playground i",
+    "install:all": "npm i && npm --prefix ./playground i && npm --prefix ./package/react/core install",
     "dev": "npm --prefix ./playground run dev",
-    "dev:watch": "npm --prefix ./playground run dev:watch"
+    "dev:watch": "npm --prefix ./playground run dev:watch",
+    "publish:core": "npm --prefix ./package/react/core run publish:package"
   },
   "repository": {
     "type": "git",
