@@ -5,11 +5,7 @@ const libraries = [
   {
     name: "@skynoveau-ui/core",
     rootPath: "../package/react/core",
-  },
-  {
-    name: "@skynoveau-ui/utils",
-    rootPath: "../package/react/utils",
-  },
+  }
 ];
 
 for (const { name, rootPath } of libraries) {

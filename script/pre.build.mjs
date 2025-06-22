@@ -12,12 +12,7 @@ const libraries = [
     name: "@skynoveau-ui/core",
     rootPath: "package/react/core",
     playground: true,
-  },
-  {
-    name: "@skynoveau-ui/utils",
-    rootPath: "package/react/utils",
-    playground: false,
-  },
+  }
 ];
 
 const consumers = ["playground/package.json"];

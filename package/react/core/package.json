@@ -13,7 +13,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "dev": "vite",
-    "clean:install": "rimraf dist .vite node_modules && npm install",
+    "clean": "rimraf dist .vite node_modules",
     "copy:assets": "cpx \"src/**/*.{css,svg,png,jpg,jpeg,woff,woff2,ttf,eot}\" dist",
     "build": "vite build && npm run copy:assets && tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -21,7 +21,7 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
+      "import": "./src/index.ts",
       "types": "./dist/index.d.ts"
     }
   },
