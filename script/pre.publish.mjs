@@ -50,9 +50,7 @@ try {
     console.log("\n✅ No local path dependencies.");
   }
 
-  // ✅ 2. Check "exports" are correctly set for publish
-
-  // ✅ 1. Update exports
+  // ✅ 2. Update exports
   const desiredExports = {
     ".": {
       import: "./dist/index.js",
