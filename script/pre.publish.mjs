@@ -51,15 +51,21 @@ try {
   }
 
   // ✅ 2. Check "exports" are correctly set for publish
-  const expectedExportImport = "./dist/index.js";
 
-  const exportImportPath = pkg.exports?.["."]?.import;
-  if (exportImportPath !== expectedExportImport) {
-    console.error(`\n❌ Invalid exports '${exportImportPath}'`);
-    console.error(`   - Expected: '${expectedExportImport}'`);
-    failed = true;
+  // ✅ 1. Update exports
+  const desiredExports = {
+    ".": {
+      import: "./dist/index.js",
+      types: "./dist/index.d.ts",
+    },
+  };
+
+  if (JSON.stringify(pkg.exports) !== JSON.stringify(desiredExports)) {
+    pkg.exports = desiredExports;
+    fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+    console.log(`✅ Updated exports in ${name} to 'dist/index.js'`);
   } else {
-    console.log("\n✅ Valid 'exports' for publish.");
+    console.log(`✅ Exports already set to 'dist/index.js'`);
   }
 
   // ✅ 3. Version check
