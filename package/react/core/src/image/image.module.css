@@ -8,9 +8,10 @@
   border-radius: var(--border-radius);
   object-fit: cover;
   display: block;
+  transition: all 0.5s;
 }
 
-.showImg.zoomEffect {
+.zoomEffect {
   animation: zoomOut 0.5s ease-out forwards;
 }
 
@@ -22,13 +23,9 @@
   cursor: pointer;
 }
 
-.imageHover {
-  scale: 1;
-  transition: scale 0.5s;
-}
-
 .imageHover:hover {
   scale: var(--image-hover-scale);
+  border-radius: var(--border-radius);
 }
 
 @keyframes zoomOut {

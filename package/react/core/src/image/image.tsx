@@ -5,7 +5,6 @@ import React, {
   ImgHTMLAttributes,
   ReactNode,
 } from "react";
-
 import styles from "./image.module.css";
 import { Skeleton } from "./placeholder/skeleton";
 
@@ -19,13 +18,11 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   responsivePoint?: number;
   alt?: string;
   className?: string;
-  placeholder?: ReactNode;
-  allowPlaceholder?: boolean;
+  placeholder?: string | ReactNode | boolean; // ✅ updated
+  zoomScale?: number | boolean; // ✅ updated
+  hoverScale?: number | boolean; // ✅ updated
   zoomEffectOnRender?: boolean;
   zoomEffectOnScroll?: boolean;
-  hoverEffect?: boolean;
-  zoomScale?: number;
-  hoverScale?: number;
   cursorPointer?: boolean;
   borderRadius?: string;
   onImageLoaded?: (loaded: boolean) => void;
@@ -36,18 +33,16 @@ const Image: React.FC<ImageProps> = ({
   responsivePoint = 768,
   alt = "",
   className = "",
-  placeholder,
-  allowPlaceholder = true,
-  zoomEffectOnRender = true,
-  zoomEffectOnScroll,
-  hoverEffect,
+  placeholder = <Skeleton />,
   zoomScale = 1.2,
   hoverScale = 1.2,
+  zoomEffectOnRender,
+  zoomEffectOnScroll,
   cursorPointer,
-  borderRadius = "6px",
+  borderRadius = "0px",
   onImageLoaded,
-  width,
-  height,
+  width = "100%",
+  height = "-webkit-fill-available",
   style,
   ...rest
 }) => {
@@ -55,8 +50,16 @@ const Image: React.FC<ImageProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [src, setSrc] = useState<string>("");
 
-  const containerRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+
+  const allowZoomScale = typeof zoomScale === "number";
+  const allowHoverScale = typeof hoverScale === "number";
+
+  const allowZoomEffectOnRender =
+    allowZoomScale && zoomEffectOnRender !== false;
+  const allowZoomEffectOnScroll =
+    allowZoomScale && zoomEffectOnScroll !== false;
 
   // Handle responsive image src
   useEffect(() => {
@@ -65,79 +68,77 @@ const Image: React.FC<ImageProps> = ({
     } else {
       const handleResize = () => {
         const width = window.innerWidth;
-        const selectedSrc =
-          width <= responsivePoint ? imgSrc.mobile : imgSrc.web;
-        setSrc(selectedSrc);
+        setSrc(width <= responsivePoint ? imgSrc.mobile : imgSrc.web);
       };
 
-      handleResize(); // Set initial src
+      handleResize();
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
     }
   }, [imgSrc, responsivePoint]);
 
-  // Handle scroll animation effect
+  // Scroll-based zoom effect
   useEffect(() => {
-    let observer: IntersectionObserver | null = null;
-    if (zoomEffectOnScroll) {
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setIsVisible(true);
-        },
-        { threshold: 0.9 }
-      );
-      if (imageRef.current) observer.observe(imageRef.current);
-    }
+    if (!allowZoomEffectOnScroll) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.9 }
+    );
+
+    if (imageRef.current) observer.observe(imageRef.current);
+
     return () => {
-      if (imageRef.current && observer) observer.unobserve(imageRef.current);
+      if (imageRef.current) observer.unobserve(imageRef.current);
     };
-  }, [zoomEffectOnScroll]);
+  }, [allowZoomEffectOnScroll]);
 
   return (
     <div
       ref={containerRef}
       style={
         {
-          "--image-zoom-scale": zoomScale,
-          "--image-hover-scale": hoverScale,
+          "--image-hover-scale": allowHoverScale ? hoverScale : undefined,
+          "--image-zoom-scale": allowZoomScale ? zoomScale : undefined,
           "--border-radius": borderRadius,
-          width: width || "100%",
-          height: height || "100%",
+          width,
+          height,
           ...style,
         } as React.CSSProperties
       }
       className={`${styles.imageContainer} ${className}`}
     >
-      {(placeholder || allowPlaceholder) &&
-        !isLoaded &&
-        (placeholder ? (
-          placeholder
-        ) : (
-          <Skeleton
-            parentRef={containerRef}
-            width={width || "100%"}
-            height={height || "100%"}
-          />
-        ))}
+      {!isLoaded &&
+        (placeholder === false ? null : typeof placeholder === "string" ? (
+          <img src={placeholder} alt="placeholder" className={styles.showImg} />
+        ) : React.isValidElement(placeholder) ? (
+          React.cloneElement(placeholder, {
+            ...(typeof placeholder.type === "string"
+              ? {}
+              : { width, height, borderRadius }),
+          })
+        ) : null)}
 
       <img
         ref={imageRef}
         src={src}
         alt={alt}
+        width={width}
+        height={height}
         className={`
-          ${!allowPlaceholder || isLoaded ? styles.showImg : styles.hideImg} 
-          ${cursorPointer ? styles.cursorPointer : ""} 
-          ${hoverEffect ? styles.imageHover : ""} 
-          ${zoomEffectOnRender ? styles.zoomEffect : ""} 
-          ${isVisible ? styles.zoomEffect : ""} 
+          ${isLoaded ? styles.showImg : styles.hideImg}
+          ${allowHoverScale ? styles.imageHover : ""}
+          ${allowZoomEffectOnRender ? styles.zoomEffect : ""}
+          ${allowZoomEffectOnScroll && isVisible ? styles.zoomEffect : ""}
+          ${cursorPointer ? styles.cursorPointer : ""}
           ${className}
-        `}
+          `}
         onLoad={() => {
-          onImageLoaded?.(true);
-          setIsLoaded(true);
+            onImageLoaded?.(true);
+            setIsLoaded(true);
         }}
-        width={width || "100%"}
-        height={height || "100%"}
         {...rest}
       />
     </div>

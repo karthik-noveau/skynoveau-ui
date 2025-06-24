@@ -18,6 +18,22 @@
   animation: wave-squares 2s infinite ease-out;
 }
 
+.skeleton {
+  background: linear-gradient(
+    to right,
+    rgba(130, 130, 130, 0.2) 8%,
+    rgba(130, 130, 130, 0.3) 18%,
+    rgba(130, 130, 130, 0.2) 33%
+  );
+  background-size: 800px 100px;
+  animation: wave-squares 2s infinite ease-out;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: inline-block;
+}
+
+
 @keyframes wave-squares {
   0% {
     background-position: -368px 0;

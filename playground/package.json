@@ -14,8 +14,9 @@
     "dev:watch": "node ../script/dev.setup.mjs && npm i ../package/react/core && concurrently -n playground,core,utils -c green,cyan,magenta \"npm run dev\" \"npm run watch:react/core\""
   },
   "dependencies": {
-    "@skynoveau-ui/core": "1.0.15",
+    "@skynoveau-ui/core": "file:../package/react/core",
     "@skynoveau-ui/utils": "1.0.0",
+    "antd": "^5.26.2",
     "copy-to-clipboard": "^3.3.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

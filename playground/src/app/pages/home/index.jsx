@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Image } from "@skynoveau-ui/core";
+import { Image as AntImage } from "antd";
 
 import { Button, Helmet } from "@skynoveau-ui/core";
 

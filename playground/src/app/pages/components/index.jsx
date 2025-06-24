@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { BreadCrumb } from "@skynoveau-ui/core";
 
 import { ComponentCollections } from "./all-components";
 import { ComponentRenderer } from "./component-renderer";
@@ -8,7 +9,6 @@ import { LeftNav } from "./left-nav";
 import { NavigationBar } from "./navbar";
 
 import styles from "./components.module.css";
-import { BreadCrumb } from "@skynoveau-ui/core";
 
 export default function ComponentsSystem() {
   const location = useLocation();

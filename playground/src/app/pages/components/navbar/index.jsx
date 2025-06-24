@@ -1,10 +1,4 @@
-import {
-  Button,
-  Image,
-  Navbar,
-  NavbarMobile,
-  NavbarWeb,
-} from "@skynoveau-ui/core";
+import { Image, Navbar, NavbarMobile, NavbarWeb } from "@skynoveau-ui/core";
 import { FaGithub } from "react-icons/fa";
 
 import { NAV_CONFIG } from "./constants";
@@ -58,7 +52,12 @@ const LogoRenderer = () => {
   const navigate = useNavigate();
   return (
     <div className={`${styles.logoContainer}`} onClick={() => navigate("/")}>
-      <Image width="35px" imgSrc={NAV_CONFIG.logo.imgSrc} />
+      <Image
+        width="35px"
+        height="35px"
+        borderRadius="4px"
+        imgSrc={NAV_CONFIG.logo.imgSrc}
+      />
       <p className={`text-20 weight-400`}>Skynoveau UI</p>
     </div>
   );

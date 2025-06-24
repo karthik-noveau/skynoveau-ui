@@ -22,25 +22,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   padding,
   margin,
   borderRadius = "3px",
-  parentRef,
 }) => {
-  const [computedHeight, setComputedHeight] = useState<number | undefined>(
-    undefined
-  );
-
-  useEffect(() => {
-    let isHeightPx = typeof height === "string" && height.includes("px");
-    console.log("isHeightPx :: in ", parentRef?.current?.offsetHeight);
-    if (!isHeightPx && parentRef?.current) {
-      const parentHeight = parentRef.current.offsetHeight;
-      if (parentHeight > 0) {
-        setComputedHeight(parentHeight);
-      }
-    }
-  }, [height, parentRef]);
-
-  console.log("isHeightPx :: out ", parentRef?.current?.offsetHeight);
-
   return (
     <div
       className={`${styles.skeleton} ${className}`}
@@ -48,7 +30,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
         width,
         maxWidth,
         minWidth,
-        height: computedHeight || "100px", // fallback if parent height is 0
+        height,
         padding,
         margin,
         borderRadius,
