@@ -1,17 +1,31 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Read local and remote refs from stdin
+while read local_ref local_sha remote_ref remote_sha
+do
+  # If we're deleting a branch or pushing a tag, skip the check
+  if [ "$local_sha" = "0000000000000000000000000000000000000000" ]; then
+    echo "🪓 Skipping build: branch or tag deleted."
+    exit 0
+  fi
 
-# ❌ Check for current prebuild status
-if [ ! -f .prebuild-complete ]; then
-  echo "❌ You must run 'npm run pre-build' before pushing."
-  exit 1
-fi
+  # If nothing new is being pushed (already up-to-date), skip
+  if git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
+    echo "🔄 Everything up-to-date. Skipping prebuild."
+    exit 0
+  fi
 
-# ❌ Delete the old .prebuild-complete file if it exists
-if [ -f .prebuild-complete ]; then
-  rm .prebuild-complete
-  echo "🧹 Removed outdated .prebuild-complete"
-fi
+  # Otherwise, run the build
+  echo "🔨 Changes detected. Running prebuild..."
 
-echo "✅ Pre-build check passed"
+  # Optional cleanup
+  if [ -f .prebuild-complete ]; then
+    rm .prebuild-complete
+    echo "🧹 Removed outdated .prebuild-complete"
+  fi
+
+  echo "✅ Prebuild check complete. Proceeding with push."
+done
+
+exit 0
