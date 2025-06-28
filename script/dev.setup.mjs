@@ -1,9 +1,15 @@
 import fs from "fs";
 import path from "path";
-import { LIBRARY_LIST } from "./constant";
+import { execSync } from "child_process";
+import { LIBRARY_LIST } from "./constant.js";
+
+const repoRoot = execSync("git rev-parse --show-toplevel", {
+  encoding: "utf-8",
+}).trim();
+process.chdir(repoRoot);
 
 for (const { name, rootPath } of LIBRARY_LIST) {
-  const pkgPath = path.resolve(rootPath, "package.json");
+  const pkgPath = path.join(rootPath, "package.json");
   const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 
   const desiredExports = {
