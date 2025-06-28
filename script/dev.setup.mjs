@@ -1,14 +1,8 @@
 import fs from "fs";
 import path from "path";
+import { LIBRARIES } from "./constant";
 
-const libraries = [
-  {
-    name: "@skynoveau-ui/core",
-    rootPath: "../package/react/core",
-  }
-];
-
-for (const { name, rootPath } of libraries) {
+for (const { name, rootPath } of LIBRARIES) {
   const pkgPath = path.resolve(rootPath, "package.json");
   const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 

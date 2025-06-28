@@ -1,24 +1,17 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
+import { LIBRARIES } from "./constant";
 
 const repoRoot = execSync("git rev-parse --show-toplevel", {
   encoding: "utf-8",
 }).trim();
 process.chdir(repoRoot);
 
-const libraries = [
-  {
-    name: "@skynoveau-ui/core",
-    rootPath: "package/react/core",
-    playground: true,
-  }
-];
-
 const consumers = ["playground/package.json"];
 let failed = false;
 
-for (const { name, rootPath, playground } of libraries) {
+for (const { name, rootPath, playground } of LIBRARIES) {
   try {
     console.log(`\n📦 Pre building... in [ ${name} ]`);
 
