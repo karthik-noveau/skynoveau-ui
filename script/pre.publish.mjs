@@ -99,11 +99,11 @@ try {
 
 if (failed) {
   console.error(
-    "\n**************** Pre publish checks failed ****************\n"
+    "\n**************** Pre-publish checks failed ****************\n"
   );
   process.exit(1);
 } else {
   console.log(
-    "\n**************** All pre publish checks passed ****************\n"
+    "\n**************** Pre-publish checks completed ****************\n"
   );
 }

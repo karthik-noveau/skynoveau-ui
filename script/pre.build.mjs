@@ -78,5 +78,7 @@ if (failed) {
 } else {
   fs.writeFileSync(".prebuild-complete", new Date().toISOString());
   console.log("\n.prebuild-complete written");
-  console.log("\n***************** Pre build check successful *****************\n");
+  console.log(
+    "\n***************** Pre-publish checks completed *****************\n"
+  );
 }
