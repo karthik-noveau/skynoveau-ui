@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { LIBRARIES } from "./constant";
+import { LIBRARY_LIST } from "./constant";
 
-for (const { name, rootPath } of LIBRARIES) {
+for (const { name, rootPath } of LIBRARY_LIST) {
   const pkgPath = path.resolve(rootPath, "package.json");
   const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 

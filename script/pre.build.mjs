@@ -1,17 +1,16 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import { LIBRARIES } from "./constant";
+import { LIBRARY_LIST, PLAYGROUND_LIST } from "./constant.js";
 
 const repoRoot = execSync("git rev-parse --show-toplevel", {
   encoding: "utf-8",
 }).trim();
 process.chdir(repoRoot);
 
-const consumers = ["playground/package.json"];
 let failed = false;
 
-for (const { name, rootPath, playground } of LIBRARIES) {
+for (const { name, rootPath, allowVersionChange } of LIBRARY_LIST) {
   try {
     console.log(`\n📦 Pre building... in [ ${name} ]`);
 
@@ -39,17 +38,18 @@ for (const { name, rootPath, playground } of LIBRARIES) {
     try {
       latestVersion = execSync(`npm view ${name} version`, {
         encoding: "utf-8",
-      }).trim();
+        stdio: ["pipe", "pipe", "ignore"], // ⛔️ suppress stderr (where npm notices are printed)
+      });
     } catch {
       console.warn(`⚠️  Could not fetch latest version for ${name}`);
       failed = true;
       continue;
     }
 
-    // ✅ 3. Update version in consumer (only if `playground: true`)
-    if (playground) {
-      for (const consumerPath of consumers) {
-        const fullPath = path.resolve(consumerPath);
+    // ✅ 3. Update latest dependency version of library in playground
+    if (allowVersionChange) {
+      for (const { name, rootPath } of PLAYGROUND_LIST) {
+        const fullPath = path.resolve(rootPath);
         const consumerPkg = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
         const prevVersion = consumerPkg.dependencies?.[name] || "(not found)";
 
@@ -59,12 +59,12 @@ for (const { name, rootPath, playground } of LIBRARIES) {
         };
 
         fs.writeFileSync(fullPath, JSON.stringify(consumerPkg, null, 2));
-        console.log(`✅ Latest dependence version updated in [ playground ]`);
+        console.log(`✅ Latest dependency version updated in ${name}`);
         console.log(`     ↪ Previous: ${prevVersion}`);
         console.log(`     ↪ Updated : ${latestVersion}`);
       }
     } else {
-      console.log(`ℹ️  Latest dependence version update skipped`);
+      console.log(`ℹ️  Latest dependency version update skipped`);
     }
   } catch (err) {
     console.error(`\n⚠️  Error processing ${name}: ${err.message}`);
@@ -78,5 +78,5 @@ if (failed) {
 } else {
   fs.writeFileSync(".prebuild-complete", new Date().toISOString());
   console.log("\n.prebuild-complete written");
-  console.log("\n***************** Pre build successful *****************\n");
+  console.log("\n***************** Pre build check successful *****************\n");
 }
