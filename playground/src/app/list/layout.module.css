@@ -10,11 +10,7 @@
 .autoLayout {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 50px;
   justify-content: flex-start;
   align-items: flex-start;
-}
-.col-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
 }

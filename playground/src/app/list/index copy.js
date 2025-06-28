@@ -1,78 +1,60 @@
-import styles from "./renderer.override.module.css";
-
-// ---------- Hamburger Menu ----------
-import { HamburgerMenu as HamburgerMenuVariant1 } from "skynoveau-ui/navbar/hamburger/variant-1/inxdex";
-import { HamburgerMenu as HamburgerMenuVariant2 } from "skynoveau-ui/navbar/hamburger/variant-2/inxdex";
-import { HamburgerMenu as HamburgerMenuVariant3 } from "skynoveau-ui/navbar/hamburger/variant-3/inxdex";
-
-// ---------- Navbar web ----------
-import { NavbarWeb as NavbarWebVariant1 } from "skynoveau-ui/navbar/web/default";
-import { NavbarWeb as NavbarWebVariant2 } from "skynoveau-ui/navbar/web/center";
-
-// ---------- Navbar mobile ----------
-import { NavbarMobile as NavbarMobileBottomVariant1 } from "skynoveau-ui/navbar/mobile/bottom-dropdown/variant-1";
-import { NavbarMobile as NavbarMobileRightVariant1 } from "skynoveau-ui/navbar/mobile/right-dropdown/default";
-import { NavbarMobile as NavbarMobileCircleVariant1 } from "skynoveau-ui/navbar/mobile/circle-no-dropdown";
-
+// ---------- accordian ----------
+import { Accordian } from "skynoveau-ui/accordian/default";
+import { Maintenance as ImageMaintenance } from "skynoveau-ui/banner/maintenance/image-render";
+import { Maintenance as VideoMaintenance } from "skynoveau-ui/banner/maintenance/video-render";
+// ---------- banner ----------
+import { PageBanner } from "skynoveau-ui/banner/page";
+import { ParallaxBanner } from "skynoveau-ui/banner/parallax";
+// ---------- button ----------
+import { Button as BasicButton } from "skynoveau-ui/button/basic";
+import { Button as RippleButton } from "skynoveau-ui/button/ripple";
+import { Button as ShineButton } from "skynoveau-ui/button/shine";
+// ---------- card layout ----------
+import { CardComponent as CardSingleInsideText } from "skynoveau-ui/card/single-layout/arrow-icon";
+import { CardComponent as CardSplitArrow } from "skynoveau-ui/card/split-layout/text-inside";
+import { ContactComponent as ContactAddressForm } from "skynoveau-ui/contact/contact-form";
+// ---------- contact ----------
+import { ContactComponent as ContactSplitForm } from "skynoveau-ui/contact/split-form";
+// ---------- cursor ----------
+import { CustomCursor } from "skynoveau-ui/cursor";
 // ---------- footer ----------
 import { Footer } from "skynoveau-ui/footer/default";
 import { Footer as FooterSquareLogo } from "skynoveau-ui/footer/square-logo";
-
+// ---------- google map ----------
+import { GoogleMap } from "skynoveau-ui/google-map";
 // ---------- loader ----------
 import { Loader as BasicLoader } from "skynoveau-ui/loader/basic";
 import { Loader as BasicCompactLoader } from "skynoveau-ui/loader/basic/compact";
 import { Loader as BasicFullscreenLoader } from "skynoveau-ui/loader/basic/fullscreen";
 import { Loader as LogoCircleLoader } from "skynoveau-ui/loader/logo-circle";
-
+// ---------- modal ----------
+import { Modal as ModalVariant1 } from "skynoveau-ui/modal/video";
+// ---------- Hamburger Menu ----------
+import { HamburgerMenu as HamburgerMenuVariant1 } from "skynoveau-ui/navbar/hamburger/variant-1/inxdex";
+import { HamburgerMenu as HamburgerMenuVariant2 } from "skynoveau-ui/navbar/hamburger/variant-2/inxdex";
+import { HamburgerMenu as HamburgerMenuVariant3 } from "skynoveau-ui/navbar/hamburger/variant-3/inxdex";
+// ---------- Navbar mobile ----------
+import { NavbarMobile as NavbarMobileBottomVariant1 } from "skynoveau-ui/navbar/mobile/bottom-dropdown/variant-1";
+import { NavbarMobile as NavbarMobileCircleVariant1 } from "skynoveau-ui/navbar/mobile/circle-no-dropdown";
+import { NavbarMobile as NavbarMobileRightVariant1 } from "skynoveau-ui/navbar/mobile/right-dropdown/default";
+import { NavbarWeb as NavbarWebVariant2 } from "skynoveau-ui/navbar/web/center";
+// ---------- Navbar web ----------
+import { NavbarWeb as NavbarWebVariant1 } from "skynoveau-ui/navbar/web/default";
 // ---------- pageNotFound ----------
 import PageNotFound from "skynoveau-ui/page-not-found";
-
-// ---------- whatsapp ----------
-import { WhatsApp } from "skynoveau-ui/whatsapp";
-
-// ---------- banner ----------
-import { PageBanner } from "skynoveau-ui/banner/page";
-import { ParallaxBanner } from "skynoveau-ui/banner/parallax";
-import { Maintenance as VideoMaintenance } from "skynoveau-ui/banner/maintenance/video-render";
-import { Maintenance as ImageMaintenance } from "skynoveau-ui/banner/maintenance/image-render";
-
-// ---------- contact ----------
-import { ContactComponent as ContactSplitForm } from "skynoveau-ui/contact/split-form";
-import { ContactComponent as ContactAddressForm } from "skynoveau-ui/contact/contact-form";
-
-// ---------- button ----------
-import { Button as BasicButton } from "skynoveau-ui/button/basic";
-import { Button as RippleButton } from "skynoveau-ui/button/ripple";
-import { Button as ShineButton } from "skynoveau-ui/button/shine";
-
-// ---------- google map ----------
-import { GoogleMap } from "skynoveau-ui/google-map";
-
 // ---------- scroll widgets ----------
 import { BackButton } from "skynoveau-ui/scroll-widget/back-button/variant-1";
 import { DownButton } from "skynoveau-ui/scroll-widget/down-button/variant-1";
-
-// ---------- cursor ----------
-import { CustomCursor } from "skynoveau-ui/cursor";
-
-// ---------- TextImageBlock ----------
-import { TextImageBlock } from "skynoveau-ui/text-image-section/variant-1";
-
-// ---------- modal ----------
-import { Modal as ModalVariant1 } from "skynoveau-ui/modal/video";
-
 // ---------- slider ----------
 import { Slider as GeneralSliderVariant1 } from "skynoveau-ui/slider/card-slider/variant-1";
-
 // ---------- tesitmonial ----------
 import { Slider as TestimonialSliderVariant1 } from "skynoveau-ui/slider/testimonial/variant-1";
+// ---------- TextImageBlock ----------
+import { TextImageBlock } from "skynoveau-ui/text-image-section/variant-1";
+// ---------- whatsapp ----------
+import { WhatsApp } from "skynoveau-ui/whatsapp";
 
-// ---------- card layout ----------
-import { CardComponent as CardSingleInsideText } from "skynoveau-ui/card/single-layout/arrow-icon";
-import { CardComponent as CardSplitArrow } from "skynoveau-ui/card/split-layout/text-inside";
-
-// ---------- accordian ----------
-import { Accordian } from "skynoveau-ui/accordian/default";
+import styles from "./renderer.override.module.css";
 
 export const COMPONENTS_LIST = [
   {

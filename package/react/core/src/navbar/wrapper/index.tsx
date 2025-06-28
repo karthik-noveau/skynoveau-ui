@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+
 import { EmptyNavbar } from "../empty";
 
 import styles from "./styles.module.css";

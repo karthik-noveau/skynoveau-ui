@@ -1,6 +1,7 @@
 import React from "react";
-import { MdArrowForwardIos } from "react-icons/md";
 import { HiSlash } from "react-icons/hi2";
+import { MdArrowForwardIos } from "react-icons/md";
+
 import styles from "./styles.module.css";
 
 export interface BreadCrumbItem {

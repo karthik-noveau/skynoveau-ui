@@ -1,12 +1,14 @@
 import React, {
-  useState,
-  useEffect,
-  useRef,
   ImgHTMLAttributes,
   ReactNode,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
-import styles from "./image.module.css";
+
 import { Skeleton } from "./placeholder/skeleton";
+
+import styles from "./image.module.css";
 
 type ResponsiveSrc = {
   mobile: string;

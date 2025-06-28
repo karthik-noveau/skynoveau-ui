@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import { COMPONENTS_LIST } from "@list/index";
 
 import styles from "./left.module.css";
@@ -52,6 +51,7 @@ export const LeftNav = () => {
                     }
                     return (
                       <SubMenuItem
+                        key={index}
                         label={subItem.name}
                         index={index}
                         path={`/components${subItem.path}`}

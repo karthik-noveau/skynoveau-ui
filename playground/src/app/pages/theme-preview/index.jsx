@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import { Button, Image, Navbar, NavbarWeb } from "@skynoveau-ui/core";
 
 import styles from "./styles.module.css";

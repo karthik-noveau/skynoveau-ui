@@ -1,6 +1,9 @@
 export const LOADER_SIZE = {
-  BASE: "BASE",
-  MEDIUM: "MEDIUM",
-  SMALL: "SMALL",
-  TINY: "TINY",
+  BASE: "base",
+  MEDIUM: "medium",
+  SMALL: "small",
+  TINY: "tiny",
+  MINI: "mini",
+  MICRO: "micro",
+  NANO: "nano",
 } as const;

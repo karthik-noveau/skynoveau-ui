@@ -1,4 +1,5 @@
-import React, { Suspense, useState, useEffect, ComponentType, FC } from "react";
+import React, { ComponentType, FC,Suspense, useEffect, useState } from "react";
+
 import { Loader } from "../loader";
 
 export type LazyImportProps = <P extends object>(

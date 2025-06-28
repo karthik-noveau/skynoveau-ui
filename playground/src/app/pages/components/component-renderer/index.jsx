@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { MdArrowBackIos } from "react-icons/md";
-
+import { useNavigate, useParams } from "react-router-dom";
 // import { useScrollToTop } from "@skynoveau-ui/utils";
 import { COMPONENTS_LIST } from "@list/index";
+
 import { VariantRenderer } from "../variant-renderer";
 
 import styles from "./component.module.css";
@@ -70,8 +70,8 @@ export const ComponentRenderer = () => {
             </p>
           </div>
           <div className={`${styles.variantsContainer}`}>
-            {componentInfo.variants.map((data) => {
-              return <VariantRenderer data={data} />;
+            {componentInfo.variants.map((data, index) => {
+              return <VariantRenderer key={index} data={data} />;
             })}
           </div>
         </div>

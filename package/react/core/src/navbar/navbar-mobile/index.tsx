@@ -1,9 +1,10 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { ReactNode,useEffect, useState } from "react";
 import { Sling as Hamburger } from "hamburger-react";
 
-import styles from "./styles.module.css";
-import NavMenu from "./menu";
 import { NavbarWrapper } from "../wrapper";
+import NavMenu from "./menu";
+
+import styles from "./styles.module.css";
 
 export interface NavbarMobileProps {
   logoRenderer: ReactNode;

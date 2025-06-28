@@ -1,13 +1,13 @@
 import React, {
+  ReactNode,
+  useCallback,
   useEffect,
   useMemo,
   useState,
-  ReactNode,
-  useCallback,
 } from "react";
 
-import { NavMenu } from "./menu";
 import { NavbarWrapper } from "../wrapper";
+import { NavMenu } from "./menu";
 
 import styles from "./styles.module.css";
 

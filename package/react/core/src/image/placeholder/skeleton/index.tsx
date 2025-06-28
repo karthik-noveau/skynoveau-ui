@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef,useState } from "react";
+
 import styles from "./skeleton.module.css";
 
 export interface SkeletonProps {

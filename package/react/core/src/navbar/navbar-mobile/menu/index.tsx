@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import { CSSTransition } from "react-transition-group";
-import { GoArrowRight, GoArrowLeft } from "react-icons/go";
 import { FaGithub } from "react-icons/fa";
 import { FiLinkedin } from "react-icons/fi";
+import { GoArrowLeft,GoArrowRight } from "react-icons/go";
+import { CSSTransition } from "react-transition-group";
 
 import styles from "./menu.module.css";
 import "./csstransition.override.css";

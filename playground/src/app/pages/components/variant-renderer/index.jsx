@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiShare1 } from "react-icons/ci";
 import { useLocation } from "react-router-dom";
 
-import styles from "./variant.module.css";
 import { CopyCode } from "./copy-code";
+import { PropsControls } from "./props-control";
+
+import styles from "./variant.module.css";
 
 export const VariantRenderer = ({ data }) => {
   const location = useLocation();
 
+  const initialProps = Object.entries(data.propsConfig || {}).reduce(
+    (acc, [key, value]) => {
+      acc[key] = value.defaultValue;
+      return acc;
+    },
+    {}
+  );
+
+  const [propsState, setPropsState] = useState(initialProps);
+
   return (
     <div className={`${styles.variantRendererWrapper}`}>
-      {/* ---------- header ---------- */}
       <div className={`${styles.header}`}>
         <div className={`text-18 weight-400 ${styles.leftSection}`}>
           {data.name}
-
           <div
             className={`text-14 ${styles.newTabContainer}`}
             onClick={() => {
@@ -32,19 +42,24 @@ export const VariantRenderer = ({ data }) => {
         )}
       </div>
 
-      {/* ---------- frame ---------- */}
+      {/* Props panel */}
+      {data.propsConfig && (
+        <div className={styles.propsPanel}>
+          <PropsControls
+            config={data.propsConfig}
+            values={propsState}
+            setValues={setPropsState}
+          />
+        </div>
+      )}
+
       <div className={`${styles.frame}`}>
         <div className={`${styles.frameWrapper}`}>
           <div className={`${styles.frameContainer}`}>
-            <data.component
-              {...(data?.className && {
-                className: data.className,
-              })}
-            />
+            <data.Component {...propsState} />
           </div>
         </div>
 
-        {/* ---------- usage code ---------- */}
         <div className={`text-18 weight-400 ${styles.codeSection}`}>
           <div className={`text-18 weight-400 ${styles.lineContainer}`}>
             <div className={`text-12 ${styles.title}`}>Code</div>

@@ -1,12 +1,12 @@
-import { COMPONENTS_LIST } from "@list/index";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
+import { COMPONENTS_LIST } from "@list/index";
 
 export default function Preview() {
   const { componentId } = useParams();
   const { variantId } = useParams();
 
-  // eslint-disable-next-line no-unused-vars
+   
   const componentInfo = useMemo(() => {
     let data = null;
 
@@ -30,5 +30,5 @@ export default function Preview() {
     return data;
   }, [componentId, variantId]);
 
-  return <componentInfo.component />;
+  return <componentInfo.Component />;
 }

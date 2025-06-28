@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { VscCheck } from "react-icons/vsc";
 import { HiOutlineClipboard } from "react-icons/hi2";
+import { VscCheck } from "react-icons/vsc";
 import copy from "copy-to-clipboard";
 
 import styles from "./styles.module.css";

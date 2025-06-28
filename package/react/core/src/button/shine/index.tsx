@@ -1,7 +1,9 @@
 import React from "react";
+
+import { Loader } from "../../loader";
 import { LOADER_SIZE } from "../../loader/constant";
 import { BaseButton } from "../base";
-import { Loader } from "../../loader";
+
 import styles from "./button.module.css";
 
 export type ShineButtonProps = {
@@ -30,11 +32,7 @@ export const ShineButton: React.FC<ShineButtonProps> = ({
     >
       {loading && (
         <span className={styles.loaderContainer}>
-          <Loader
-            showText={false}
-            size={LOADER_SIZE.TINY}
-            color="var(--white-color)"
-          />
+          <Loader size={LOADER_SIZE.TINY} color="var(--white-color)" />
         </span>
       )}
       {children}

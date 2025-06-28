@@ -1,10 +1,10 @@
-import { Image, Navbar, NavbarMobile, NavbarWeb } from "@skynoveau-ui/core";
 import { FaGithub } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Image, Navbar, NavbarMobile, NavbarWeb } from "@skynoveau-ui/core";
 
 import { NAV_CONFIG } from "./constants";
 
 import styles from "./styles.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
 
 export const NavigationBar = () => {
   const navigate = useNavigate();

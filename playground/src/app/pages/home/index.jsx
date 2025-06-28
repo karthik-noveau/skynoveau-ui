@@ -1,18 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { NavigationBar } from "@pages/components/navbar";
 import { Image } from "@skynoveau-ui/core";
-import { Image as AntImage } from "antd";
-
 import { Button, Helmet } from "@skynoveau-ui/core";
+import { Image as AntImage } from "antd";
 
 import styles from "./home.module.css";
 
+import antImg from "./assets/ant-img.png";
+import cssImg from "./assets/css-img.png";
+import htmlImg from "./assets/html-img.png";
 //technologies images
 import ReactImg from "./assets/react-img.png";
-import htmlImg from "./assets/html-img.png";
-import cssImg from "./assets/css-img.png";
-import antImg from "./assets/ant-img.png";
-import { NavigationBar } from "@pages/components/navbar";
 
 const TECH_STACK = [
   { image: ReactImg, name: "React" },

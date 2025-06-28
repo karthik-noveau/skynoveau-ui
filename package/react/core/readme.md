@@ -269,6 +269,18 @@ Open an [issue](https://github.com/skynoveau/skynoveau-ui/issues) or email us at
 
 ## 🚀 Made with ❤️ by Skynoveau Technology
 
-give in tsx and default export and type export
+## Types of size props
 
-need to remove the antd completly from playground
+```bash
+{
+BASE: "base",
+MEDIUM: "medium",
+SMALL: "small",
+TINY: "tiny",
+MINI: "mini",
+MICRO: "micro",
+NANO: "nano",
+}
+```
+
+give in tsx and default export and type export

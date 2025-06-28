@@ -1,12 +1,13 @@
-import React, { useRef, type MouseEvent } from "react";
+import React, { type MouseEvent, useRef } from "react";
+
 import { Loader } from "../../loader";
 import { LOADER_SIZE } from "../../loader/constant";
 import { BaseButton } from "../base";
+
 import styles from "./button.module.css";
 
 export type RippleButtonProps = {
   loading?: boolean;
-  allowNew?: boolean;
   children: React.ReactNode;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
@@ -14,7 +15,6 @@ export type RippleButtonProps = {
 export const RippleButton: React.FC<RippleButtonProps> = ({
   loading = false,
   children,
-  allowNew,
   onClick,
   ...rest
 }) => {
@@ -61,11 +61,7 @@ export const RippleButton: React.FC<RippleButtonProps> = ({
 
       {loading && (
         <span className={styles.loaderContainer}>
-          <Loader
-            showText={false}
-            size={LOADER_SIZE.TINY}
-            color="var(--white-color)"
-          />
+          <Loader size={LOADER_SIZE.TINY} color="var(--white-color)" />
         </span>
       )}
       {children}
