@@ -1,10 +1,16 @@
 import { useState } from "react";
-import { Button, Loader, RippleButton, ShineButton } from "@skynoveau-ui/core";
+import {
+  Button,
+  Loader,
+  PageBanner,
+  RippleButton,
+  ShineButton,
+} from "@skynoveau-ui/core";
 
 import styles from "./layout.module.css";
 
-export const COMPONENTS_LIST = [
-  {
+export const COMPONENTS_LIST = {
+  button: {
     name: "Button",
     path: "/button",
     variants: [
@@ -12,13 +18,7 @@ export const COMPONENTS_LIST = [
         name: "Button",
         path: "/button",
         componentName: "Button",
-        Component: () => {
-          return (
-            <>
-              <Button>Submit</Button>
-            </>
-          );
-        },
+        Component: (props) => <Button {...props}>Submit</Button>,
       },
       {
         name: "Ripple Button",
@@ -48,7 +48,7 @@ export const COMPONENTS_LIST = [
       },
     ],
   },
-  {
+  loader: {
     name: "Loader",
     path: "/loader",
     variants: [
@@ -68,15 +68,32 @@ export const COMPONENTS_LIST = [
       {
         name: "Fullscreen Loader",
         path: "/fullscreen-loader",
-        componentName: "Loader",
+        componentName: `Loader`,
         Component: () => {
-          const [isClicked, setIsClicked] = useState(false);
+          const [loaderType, setLoaderType] = useState(null);
+          const LOADER_TYPES = { default: "default", customized: "customized" };
+
           return (
-            <>
-              <Button loading onClick={() => setIsClicked(!isClicked)}>
-                <p className={`text-16`}>Show loader</p>
+            <div className={`${styles.autoLayout}`}>
+              <Button
+                onClick={() => {
+                  setLoaderType(LOADER_TYPES.default);
+                }}
+              >
+                <p className={`text-14`}>Default Loader</p>
               </Button>
-              {isClicked && (
+              <Button
+                onClick={() => {
+                  setLoaderType(LOADER_TYPES.customized);
+                }}
+              >
+                <p className={`text-14`}>Customized Loader</p>
+              </Button>
+              {loaderType === LOADER_TYPES.default && (
+                <Loader type="fullscreen" size="base" />
+              )}
+
+              {loaderType === LOADER_TYPES.customized && (
                 <Loader
                   type="fullscreen"
                   size="base"
@@ -84,10 +101,27 @@ export const COMPONENTS_LIST = [
                   color="var(--white-color)"
                 />
               )}
-            </>
+            </div>
           );
         },
       },
     ],
   },
-];
+  pageBanner: {
+    name: "pageBanner",
+    path: "/page-banner",
+    variants: [
+      {
+        name: "PageBanner",
+        path: "/page-banner",
+        componentName: "PageBanner",
+        Component: () => (
+          <PageBanner
+            title="About"
+            description="Let's start to know about us"
+          />
+        ),
+      },
+    ],
+  },
+};

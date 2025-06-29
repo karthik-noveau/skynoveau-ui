@@ -7,3 +7,4 @@ export * from "./image";
 export * from "./lazy-import";
 export * from "./loader";
 export * from "./navbar";
+export * from "./page-banner";

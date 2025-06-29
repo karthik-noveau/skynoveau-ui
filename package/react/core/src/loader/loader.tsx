@@ -1,16 +1,10 @@
 import React, { ReactNode } from "react";
 
+import { LOADER_SIZE } from "./constant";
 // import { LOADER_SIZE } from "./constant";
 import { LoaderWrapper } from "./wrapper";
 
 import styles from "./loader.module.css";
-
-export const LOADER_SIZE = {
-  base: "base",
-  medium: "medium",
-  small: "small",
-  tiny: "tiny",
-} as const;
 
 type LoaderProps = {
   children?: ReactNode;
@@ -52,7 +46,7 @@ export const Loader: React.FC<LoaderProps> = ({
   size = LOADER_SIZE.medium,
   loading = true,
   color = "var(--black-color)",
-  bgColor = "transparent",
+  bgColor = "var(--white-color)",
   type,
 }) => {
   if (!loading) return null;

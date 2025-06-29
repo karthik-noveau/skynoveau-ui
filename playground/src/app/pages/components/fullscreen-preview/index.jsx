@@ -6,11 +6,10 @@ export default function Preview() {
   const { componentId } = useParams();
   const { variantId } = useParams();
 
-   
   const componentInfo = useMemo(() => {
     let data = null;
 
-    COMPONENTS_LIST.forEach((item) => {
+    Object.values(COMPONENTS_LIST).forEach((item) => {
       if (!data) {
         if (item.path === `/${componentId}`) data = item;
         if (item?.categories) {

@@ -11,13 +11,15 @@ export const ComponentCollections = () => {
 
   return (
     <div className={`${styles.collectionsContaier}`}>
-      <h1 className={`text-24 weight-400 ${styles.title}`}>Components overview</h1>
+      <h1 className={`text-24 weight-400 ${styles.title}`}>
+        Components overview
+      </h1>
       <p className={`text-16 ${styles.description}`}>
         Components use custom variants to allow you to completely customize the
         look and feel of each component.
       </p>
       <div className={`${styles.collectionsCards}`}>
-        {COMPONENTS_LIST.map((item, index) => {
+        {Object.values(COMPONENTS_LIST).map((item, index) => {
           if (!item.categories) {
             return (
               <div

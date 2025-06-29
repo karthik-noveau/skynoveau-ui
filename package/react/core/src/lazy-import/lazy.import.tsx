@@ -1,4 +1,4 @@
-import React, { ComponentType, FC,Suspense, useEffect, useState } from "react";
+import React, { ComponentType, FC, Suspense, useEffect, useState } from "react";
 
 import { Loader } from "../loader";
 
@@ -48,8 +48,8 @@ const LazyImport = <P extends object>(
             delay === 0
               ? "no manual delay"
               : loadTime >= delay
-              ? "component was slow, shown immediately"
-              : `extended delay to ${delay}ms`
+                ? "component was slow, shown immediately"
+                : `extended delay to ${delay}ms`
           }`
         );
       });
@@ -60,7 +60,7 @@ const LazyImport = <P extends object>(
     }, []);
 
     return (
-      <Suspense fallback={<Loader loading />}>
+      <Suspense fallback={<Loader loading type="fullscreen" />}>
         {show ? <LazyComponent {...props} /> : <Loader loading />}
       </Suspense>
     );

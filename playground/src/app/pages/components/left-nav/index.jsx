@@ -25,7 +25,7 @@ export const LeftNav = () => {
             isActive={location.pathname === `/components`}
           />
 
-          {COMPONENTS_LIST.map((item, index) => {
+          {Object.values(COMPONENTS_LIST).map((item, index) => {
             let path = item.path;
             let isActive = location.pathname === `/components${path}`;
             if (item?.categories) {

@@ -17,12 +17,12 @@ export const CopyCode = ({ text }) => {
   return (
     <div className={styles.copyWrapper} onClick={handleCopy}>
       {copied ? (
-        <VscCheck className={styles.copyIcon} />
+        <VscCheck className={`text-12 ${styles.copyIcon}`} />
       ) : (
-        <HiOutlineClipboard className={styles.copyIcon} />
+        <HiOutlineClipboard className={`text-12 ${styles.copyIcon}`} />
       )}
 
-      <div className={`weight-400 ${styles.copyText}`}>{text}</div>
+      <div className={`text-12 weight-400 ${styles.copyText}`}>{text}</div>
     </div>
   );
 };

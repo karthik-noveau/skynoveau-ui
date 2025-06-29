@@ -116,10 +116,22 @@ const Image: React.FC<ImageProps> = ({
         (placeholder === false ? null : typeof placeholder === "string" ? (
           <img src={placeholder} alt="placeholder" className={styles.showImg} />
         ) : React.isValidElement(placeholder) ? (
-          React.cloneElement(placeholder, {
+          React.cloneElement(placeholder as React.ReactElement<any>, {
             ...(typeof placeholder.type === "string"
               ? {}
-              : { width, height, borderRadius }),
+              : {
+                  width:
+                    !(placeholder as React.ReactElement<any>).props?.width &&
+                    width
+                      ? width
+                      : (placeholder as React.ReactElement<any>).props?.width,
+                  height:
+                    !(placeholder as React.ReactElement<any>).props?.height &&
+                    height
+                      ? height
+                      : (placeholder as React.ReactElement<any>).props?.height,
+                  borderRadius,
+                }),
           })
         ) : null)}
 
@@ -130,18 +142,19 @@ const Image: React.FC<ImageProps> = ({
         width={width}
         height={height}
         className={`
-          ${isLoaded ? styles.showImg : styles.hideImg}
-          ${allowHoverScale ? styles.imageHover : ""}
-          ${allowZoomEffectOnRender ? styles.zoomEffect : ""}
-          ${allowZoomEffectOnScroll && isVisible ? styles.zoomEffect : ""}
-          ${cursorPointer ? styles.cursorPointer : ""}
-          ${className}
-          `}
+        ${isLoaded ? styles.showImg : styles.hideImg}
+        ${allowHoverScale ? styles.imageHover : ""}
+        ${allowZoomEffectOnRender ? styles.zoomEffect : ""}
+        ${allowZoomEffectOnScroll && isVisible ? styles.zoomEffect : ""}
+        ${cursorPointer ? styles.cursorPointer : ""}
+        ${className}
+        `}
         onLoad={() => {
-            onImageLoaded?.(true);
-            setIsLoaded(true);
+          onImageLoaded?.(true);
+          setIsLoaded(true);
         }}
         {...rest}
+        style={style}
       />
     </div>
   );

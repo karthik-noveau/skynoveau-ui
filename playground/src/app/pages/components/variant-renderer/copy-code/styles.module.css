@@ -1,12 +1,11 @@
 .copyWrapper {
   display: flex;
   align-items: center;
-  color: var(--black-dark-color);
+  color: var(--black-light-100);
   background-color: #e8e8e8;
-  border-radius: 6px;
-  padding: 4px 12px;
-  margin: 5px 0 0px 0;
-  gap: 5px;
+  border-radius: 5px;
+  padding: 3px 10px;
+  gap: 3px;
   font-family: monospace;
   font-size: 14px;
   width: fit-content;
@@ -16,12 +15,10 @@
 .copyText {
   white-space: nowrap;
   overflow-x: auto;
-  font-size: 13px;
 }
 
 .copyIcon {
   transition: color 0.2s;
-  font-size: 13px;
   position: relative;
   top: -0.5px;
 }
