@@ -7,6 +7,7 @@ import { ComponentRenderer } from "./component-renderer";
 import { Installation } from "./installation";
 import { LeftNav } from "./left-nav";
 import { NavigationBar } from "./navbar";
+import { getLabel } from "./utils";
 
 import styles from "./components.module.css";
 
@@ -36,7 +37,7 @@ export default function ComponentsSystem() {
       items = [
         { label: "Home", path: "/" },
         { label: "Components", path: "/components" },
-        { label: componentId, path: path, active: true },
+        { label: getLabel(componentId), path: path, active: true },
       ];
       component = <ComponentRenderer />;
     }
@@ -50,9 +51,9 @@ export default function ComponentsSystem() {
       <NavigationBar />
 
       {/* Breadcrumb */}
-      <div className="wrapper">
+      <div className={`wrapper ${styles.breadCrumbWrapper}`}>
         <div
-          className={`container container-margin-top ${styles.breadCrumbContainer}`}
+          className={`container container-padding ${styles.breadCrumbContainer}`}
         >
           <BreadCrumb
             data={breadcrumbItems}

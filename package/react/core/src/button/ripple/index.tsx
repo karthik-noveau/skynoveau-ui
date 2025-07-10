@@ -61,7 +61,7 @@ export const RippleButton: React.FC<RippleButtonProps> = ({
 
       {loading && (
         <span className={styles.loaderContainer}>
-          <Loader size={LOADER_SIZE.TINY} color="var(--white-color)" />
+          <Loader size={LOADER_SIZE.tiny} color="var(--white-color)" />
         </span>
       )}
       {children}

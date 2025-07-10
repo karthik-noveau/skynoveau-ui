@@ -1,71 +1,55 @@
-import React, { useMemo, useState } from "react";
-import { MdArrowBackIos } from "react-icons/md";
+import React, { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-// import { useScrollToTop } from "@skynoveau-ui/utils";
 import { COMPONENTS_LIST } from "@list/index";
+import { useScrollToTop } from "@skynoveau-ui/core";
 
+import { getComponentName, getLabel } from "../utils";
 import { VariantRenderer } from "../variant-renderer";
 
 import styles from "./component.module.css";
 
 export const ComponentRenderer = () => {
-  const [baseVariant, setBaseVariant] = useState(null);
   const { componentId } = useParams();
   const navigate = useNavigate();
-  // useScrollToTop();
+  useScrollToTop({ dep: [componentId] });
 
   const componentInfo = useMemo(() => {
-    let data = null;
+    let data;
+    let componentName = getComponentName(componentId);
+    if (COMPONENTS_LIST?.[componentName]) {
+      data = COMPONENTS_LIST[componentName];
+    } else {
+      Object.keys(COMPONENTS_LIST).forEach((key) => {
+        let { subComponents } = COMPONENTS_LIST[key];
+        if (!data) data = subComponents?.[componentName];
+      });
+    }
 
-    Object.values(COMPONENTS_LIST).forEach((item) => {
-      if (!data) {
-        if (item.path === `/${componentId}`) {
-          data = item;
-          setBaseVariant(null);
-        }
-        if (item?.categories) {
-          let info = item.categories.find((category) => {
-            let path = `/${componentId}`;
-            setBaseVariant(item.name);
-            return category.path === path;
-          });
-          data = info;
-        }
-      }
-    });
-
-    return {
-      ...data,
-      variantsCount: data?.variants ? data.variants.length : 1,
-    };
+    return data;
   }, [componentId]);
+
   return (
     <React.Fragment>
       {componentInfo ? (
         <div className={`${styles.componentRenderContainer}`}>
           <div className={`${styles.titleContainer}`}>
-            <h1 className={`text-24 weight-400 ${styles.title}`}>
-              {baseVariant && (
-                <>
-                  <span
-                    className={`ellipsis ${styles.navigateBack}`}
-                    onClick={() => navigate("/components")}
-                  >
-                    {baseVariant}
-                  </span>
-                  <MdArrowBackIos className={`${styles.icon}`} />
-                </>
-              )}
+            <h1 className={`text-20 weight-400 ${styles.title}`}>
+              <>
+                <span
+                  className={`ellipsis ${styles.navigateBack}`}
+                  onClick={() => navigate("/components")}
+                >
+                  {getLabel(componentId)}
+                </span>
+              </>
 
               <span className={`ellipsis `}> {componentInfo.name}</span>
             </h1>
-            <p className={`text-16 ${styles.description}`}>
+            <p className={`text-14 ${styles.description}`}>
               This component features
-              {componentInfo.variantsCount && (
-                <span className={`text-14 ${styles.count}`}>
-                  {componentInfo.variantsCount}
-                </span>
-              )}
+              <span className={`text-12 ${styles.count}`}>
+                {componentInfo.variants.length}
+              </span>
               variants , with options to expand for greater customization.
             </p>
           </div>

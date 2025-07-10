@@ -1,4 +1,4 @@
-import React, { useEffect, useRef,useState } from "react";
+import React from "react";
 
 import styles from "./skeleton.module.css";
 
@@ -12,6 +12,7 @@ export interface SkeletonProps {
   margin?: string | number;
   borderRadius?: string | number;
   parentRef?: React.RefObject<HTMLElement>;
+  aspectRatio?: string | number;
 }
 
 export const Skeleton: React.FC<SkeletonProps> = ({
@@ -23,18 +24,17 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   padding,
   margin,
   borderRadius = "3px",
+  aspectRatio,
 }) => {
   return (
     <div
       className={`${styles.skeleton} ${className}`}
       style={{
-        width,
-        maxWidth,
-        minWidth,
-        height,
+        ...(!aspectRatio && { width, maxWidth, minWidth, height }),
         padding,
         margin,
         borderRadius,
+        aspectRatio,
       }}
     />
   );

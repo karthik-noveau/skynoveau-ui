@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: var(--text-16);
+  font-weight: 500;
+}
+
+.description {
+  font-size: var(--text-15);
+  font-weight: 300;
+}
+
+.list {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+}
+
+.item {
+  font-size: var(--text-14);
+  font-weight: 300;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.table {
+  border: 1px dashed #ccc;
+  padding: 1rem;
+}

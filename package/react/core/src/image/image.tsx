@@ -20,14 +20,15 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   responsivePoint?: number;
   alt?: string;
   className?: string;
-  placeholder?: string | ReactNode | boolean; // ✅ updated
-  zoomScale?: number | boolean; // ✅ updated
-  hoverScale?: number | boolean; // ✅ updated
+  placeholder?: string | ReactNode | boolean;
+  zoomScale?: number | boolean;
+  hoverScale?: number | boolean;
   zoomEffectOnRender?: boolean;
   zoomEffectOnScroll?: boolean;
   cursorPointer?: boolean;
   borderRadius?: string;
   onImageLoaded?: (loaded: boolean) => void;
+  aspectRatio?: string;
 }
 
 const Image: React.FC<ImageProps> = ({
@@ -37,14 +38,15 @@ const Image: React.FC<ImageProps> = ({
   className = "",
   placeholder = <Skeleton />,
   zoomScale = 1.2,
-  hoverScale = 1.2,
+  hoverScale = false,
   zoomEffectOnRender,
   zoomEffectOnScroll,
   cursorPointer,
   borderRadius = "0px",
   onImageLoaded,
   width = "100%",
-  height = "-webkit-fill-available",
+  height = "auto",
+  aspectRatio,
   style,
   ...rest
 }) => {
@@ -131,6 +133,7 @@ const Image: React.FC<ImageProps> = ({
                       ? height
                       : (placeholder as React.ReactElement<any>).props?.height,
                   borderRadius,
+                  aspectRatio,
                 }),
           })
         ) : null)}

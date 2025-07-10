@@ -1,0 +1,12 @@
+.container {
+  display: grid;
+  width: 100%;
+  gap: 50px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.layoutShift {
+  grid-template-columns: 1fr;
+  gap: 25px;
+  place-items: center;
+}

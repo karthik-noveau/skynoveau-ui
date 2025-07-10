@@ -11,8 +11,7 @@
   top: 75px;
   background-color: var(--white-color);
   margin-bottom: 25px;
-  padding: 25px 0 15px 0;
-  z-index: 99;
+  padding: 20px 0 15px 0;
 }
 .titleContainer::after {
   content: "";
@@ -34,12 +33,6 @@
 .navigateBack {
   cursor: pointer;
 }
-.title .icon {
-  rotate: 180deg;
-  position: relative;
-  right: 5px;
-  font-size: 23px;
-}
 .variantsContainer {
   display: grid;
   gap: 30px;
@@ -52,18 +45,14 @@
   margin: 0 5px;
   display: inline-block;
   text-align: center;
-  padding: 0;
+  padding: 1.2px 0;
   width: 21px;
 }
 
 /* ------------------------ media queries ------------------------ */
 /* --------------------------------------------------------------- */
-@media (max-width: 1170px) {
+@media (max-width: 768px) {
   .titleContainer {
-    top: 70px;
-    padding-top: 10px;
-  }
-  .title .icon {
-    font-size: 20px;
+    padding-top: 0px;
   }
 }

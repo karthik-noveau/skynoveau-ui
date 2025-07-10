@@ -1,9 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { NavigationBar } from "@pages/components/navbar";
-import { Image } from "@skynoveau-ui/core";
 import { Button, Helmet } from "@skynoveau-ui/core";
-import { Image as AntImage } from "antd";
 
 import styles from "./home.module.css";
 
@@ -43,46 +41,58 @@ export default function HomePage() {
       <NavigationBar />
 
       {/* ---------- product info ---------- */}
-      <div className={`wrapper wrapper-margin-top ${styles.infoWrapper}`}>
-        <div className={`container ${styles.infoContainer}`}>
-          <div className={`${styles.infoSection}`}>
-            <h1 className={`title-40 ${styles.title}`}>
-              Make <span>beautiful</span> websites regardless of your design
-              experience.
-            </h1>
-            <p className={`text-18 ${styles.description}`}>
-              Sky UI is a collection of components and utilities that are used
-              to build modern interfaces
-            </p>
-            <Button
-              className={`text-18 ${styles.exploreButton}`}
-              onClick={() => navigate("/components")}
-            >
-              Explore Components
-            </Button>
 
-            {/* ---------- tech stact ---------- */}
-            <div className={`wrapper wrapper-margin-top`}>
-              <h1 className={`title-30 weight-400 ${styles.stackTitle}`}>
-                We used Tech Stack
-              </h1>
-              <div
-                className={`container container-margin-top ${styles.techContainer}`}
-              >
-                {TECH_STACK.map((item) => {
-                  return (
-                    <div className={` ${styles.techImageWrapper}`}>
-                      <img src={item.image} alt={item.name} />
-                      <p className={`text-18 weight-400 ${styles.techName}`}>
-                        {item.name}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
+      <div className={`${styles.infoContainer}`}>
+        <div className={`${styles.infoSection}`}>
+          <h1 className={`text-60 weight-500 ${styles.title}`}>
+            Build modern <br />
+            web applications with
+            <span> Skynoveau UI</span>
+          </h1>
+          <p className={`text-18 ${styles.description}`}>
+            A developer-first design system to create fast, modern web
+            applications.
+          </p>
+          <Button
+            className={`text-18 ${styles.exploreButton}`}
+            onClick={() => navigate("/components")}
+          >
+            Browse Components
+          </Button>
+
+          {/* ---------- tech stact ---------- */}
+          <div className={`wrapper wrapper-margin-top`}>
+            <h1
+              className={`title-18 weight-300 container-margin-top ${styles.stackTitle}`}
+            >
+              {/* Library build with */}
+            </h1>
+            <div
+              className={`container container-margin-top ${styles.techContainer}`}
+            >
+              {TECH_STACK.map((item, index) => {
+                return (
+                  <div key={index} className={` ${styles.techImageWrapper}`}>
+                    <img src={item.image} alt={item.name} />
+                    {/* <p className={`text-18 weight-400 ${styles.techName}`}>
+                      {item.name}
+                    </p> */}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
+        <p className={`text-16 ${styles.footer}`}>
+          Source code is available on{" "}
+          <a
+            href="https://github.com/karthik-noveau/skynoveau-ui"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
+          </a>
+        </p>
       </div>
     </>
   );

@@ -30,23 +30,25 @@
 .collectionsCards .card:hover p {
   color: var(--primary-color);
 }
-.categoryWrapper {
+
+.subCardWrapper {
   width: 100%;
-}
-.categoryContainer {
   display: flex;
-  gap: 15px;
   justify-content: flex-start;
-  flex-wrap: wrap;
   border-right: 0;
   border-left: 0;
   padding: 60px 25px 30px 25px;
   position: relative;
   margin: 20px 0;
-  background-color: var(--gray-light-bgcolor);
+  background-color: var(--gray-light-400);
   border-radius: 10px;
 }
-.categoryTitle {
+.subCardContainer {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.subCardTitle {
   position: absolute;
   top: 15px;
   color: var(--black-color);
@@ -56,7 +58,7 @@
 /* --------------------------------------------------------------- */
 
 @media (max-width: 590px) {
-  .categoryContainer {
+  .subCardContainer .card {
     align-items: center;
     justify-content: center;
   }
@@ -64,7 +66,13 @@
     justify-content: center;
     margin-top: 20px;
   }
-  .categoryTitle {
+  .subCardWrapper {
+    justify-content: center;
+  }
+  .subCardContainer {
+    justify-content: center;
+  }
+  .subCardTitle {
     text-align: center;
     left: 0;
     right: 0;

@@ -5,25 +5,22 @@
   background: rgba(217, 96, 219, 0.15);
   background: linear-gradient(
     120deg,
-    rgba(217, 96, 219, 0.15) 0%,
-    rgba(16, 115, 242, 0.15) 50%,
-    rgba(50, 232, 223, 0.15) 100%
+    rgb(217 96 219 / 5%) 0%,
+    rgb(16 115 242 / 6%) 50%,
+    rgb(50 232 223 / 5%) 100%
   );
-  min-height: calc(100vh - 190px);
+  min-height: calc(100vh - 70px);
   max-width: 100%;
-  border-radius: 60px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 0px;
 }
 .infoSection {
   max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
 }
 
 .stackTitle {
@@ -33,12 +30,13 @@
 
 .infoContainer .title {
   text-align: center;
-  margin-top: 50px;
   font-family: var(--text-font-family);
+  color: var(--black-light-100);
 }
 .description {
   text-align: center;
   margin-top: 20px;
+  color: var(--black-light-100);
 }
 .infoContainer h1 span {
   background: rgb(217, 96, 219);
@@ -64,6 +62,7 @@
   );
   margin-top: 50px;
   padding: 8px 35px;
+  border-radius: 25px;
 }
 
 /* ---------- tech ---------- */
@@ -72,10 +71,10 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 70px;
+  gap: 20px;
   row-gap: 0px;
   max-width: 700px;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 .techImageWrapper {
   border-radius: 8px;
@@ -84,35 +83,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
 }
 .techImageWrapper img {
-  width: 50px;
+  width: 40px;
   object-fit: contain;
+}
+
+/* ---------- footer ---------- */
+.footer {
+  margin-top: 5px;
+}
+.footer a {
+  color: var(--primary-color);
 }
 
 /* ------------------------ media queries ------------------------ */
 /* --------------------------------------------------------------- */
-@media (max-width: 1440px) {
-  .infoContainer {
-    width: 92%;
-    margin-bottom: 10px;
-  }
-  .infoSection {
-    max-width: 90%;
-  }
-}
-@media (max-width: 1170px) {
-  .headerWrapper {
-    display: flex;
-    justify-content: center;
-  }
-}
-@media (max-width: 500px) {
-  .infoContainer {
-    border-radius: 40px;
-  }
-  .infoContainer .title {
-    margin-top: 10px;
-  }
+@media (max-width: 768px) {
 }

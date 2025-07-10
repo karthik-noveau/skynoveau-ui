@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 // import { useScrollToTop } from "@skynoveau-ui/utils";
 import { COMPONENTS_LIST } from "@list/index";
 
+import { getLabel, getPath } from "../utils";
+
 import styles from "./collections.module.css";
 
 export const ComponentCollections = () => {
@@ -19,43 +21,50 @@ export const ComponentCollections = () => {
         look and feel of each component.
       </p>
       <div className={`${styles.collectionsCards}`}>
-        {Object.values(COMPONENTS_LIST).map((item, index) => {
-          if (!item.categories) {
-            return (
-              <div
-                className={`${styles.card}`}
-                onClick={() => {
-                  navigate(`/components${item.path}`);
-                }}
-                key={index}
-              >
-                <p className={`text-16`}>{item.name}</p>
-              </div>
-            );
-          } else {
-            return (
-              <div key={index} className={`${styles.categoryWrapper}`}>
-                <div className={`${styles.categoryContainer}`}>
-                  <p className={`text-16 weight-400 ${styles.categoryTitle}`}>
-                    {item.name}
-                  </p>
-                  {item.categories.map((category, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className={`${styles.card}`}
-                        onClick={() => {
-                          navigate(`/components${category.path}`);
-                        }}
-                      >
-                        <p className={`text-14`}>{category.name}</p>
-                      </div>
-                    );
-                  })}
+        {Object.keys(COMPONENTS_LIST).map((componentName, index) => {
+          let { subComponents } = COMPONENTS_LIST[componentName];
+
+          return (
+            <>
+              {!subComponents && (
+                <div
+                  className={`${styles.card}`}
+                  onClick={() => {
+                    navigate(`/components/${getPath(componentName)}`);
+                  }}
+                  key={index}
+                >
+                  <p className={`text-16`}>{getLabel(componentName)}</p>
                 </div>
-              </div>
-            );
-          }
+              )}
+
+              {subComponents && (
+                <>
+                  <div key={index} className={`${styles.subCardWrapper}`}>
+                    <div key={index} className={`${styles.subCardContainer}`}>
+                      <p className={`text-16 ${styles.subCardTitle}`}>
+                        {getLabel(componentName)}
+                      </p>
+
+                      {Object.keys(subComponents).map(
+                        (subComponentName, index) => {
+                          return (
+                            <div key={index} className={`${styles.card}`}>
+                              <p
+                                className={`text-16 weight-400 ${styles.categoryTitle}`}
+                              >
+                                {getLabel(subComponentName)}
+                              </p>
+                            </div>
+                          );
+                        }
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+            </>
+          );
         })}
       </div>
     </div>

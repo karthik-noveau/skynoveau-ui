@@ -14,6 +14,7 @@ export const NavigationBar = () => {
       responsivePoint={768}
       web={
         <NavbarWeb
+          allowSticky={false}
           layoutType="twoColumn"
           shadow={true}
           logoRenderer={<LogoRenderer />}
@@ -30,6 +31,7 @@ export const NavigationBar = () => {
       }
       mobile={
         <NavbarMobile
+          allowSticky={false}
           logoRenderer={<LogoRenderer />}
           menuRenderer={
             <NavbarMobile.Menu
@@ -64,5 +66,13 @@ const LogoRenderer = () => {
 };
 
 const LastMenu = () => {
-  return <FaGithub className={`text-20 ${styles.icon}`} />;
+  return (
+    <a
+      href="https://github.com/karthik-noveau/skynoveau-ui"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <FaGithub className={`text-20 ${styles.icon}`} />
+    </a>
+  );
 };

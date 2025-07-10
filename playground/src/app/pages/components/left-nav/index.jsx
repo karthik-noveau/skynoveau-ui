@@ -2,6 +2,8 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { COMPONENTS_LIST } from "@list/index";
 
+import { getLabel, getPath } from "../utils";
+
 import styles from "./left.module.css";
 
 export const LeftNav = () => {
@@ -21,40 +23,39 @@ export const LeftNav = () => {
         <Menu title="Components">
           <MenuItem
             label="All Components"
-            path=""
+            path=" "
             isActive={location.pathname === `/components`}
           />
 
-          {Object.values(COMPONENTS_LIST).map((item, index) => {
-            let path = item.path;
-            let isActive = location.pathname === `/components${path}`;
-            if (item?.categories) {
-              path = item.categories[0].path;
-              isActive = false;
-            }
+          {Object.keys(COMPONENTS_LIST).map((componentName, index) => {
+            let { subComponents } = COMPONENTS_LIST[componentName];
+
+            let isActive =
+              location.pathname === `/components/${getPath(componentName)}`;
+
             return (
               <>
                 <MenuItem
-                  label={item.name}
+                  label={getLabel(componentName)}
                   index={index}
-                  path={path}
+                  path={subComponents ? "" : `/${getPath(componentName)}`}
                   isActive={isActive}
                 />
 
-                {item?.categories &&
-                  item.categories.map((subItem, index) => {
-                    let isActive = false;
-                    if (`/components${subItem.path}` === location.pathname) {
-                      isActive = true;
-                    } else {
-                      isActive = false;
-                    }
+                {subComponents &&
+                  Object.keys(subComponents).map((subComponentName, index) => {
+                    let isActive =
+                      `/components/${getPath(subComponentName)}` ===
+                      location.pathname
+                        ? true
+                        : false;
+
                     return (
                       <SubMenuItem
                         key={index}
-                        label={subItem.name}
+                        label={getLabel(subComponentName)}
                         index={index}
-                        path={`/components${subItem.path}`}
+                        path={`/${getPath(subComponentName)}`}
                         isActive={isActive}
                       />
                     );
@@ -73,7 +74,7 @@ const Menu = ({ title, children }) => {
     <div className={`${styles.menuContainer}`}>
       {/* ---------- title ---------- */}
       <div
-        className={`text-16 weight-500 ${styles.menuTitle} ${styles.componentsOverview}  `}
+        className={`text-16 weight-400 ${styles.menuTitle} ${styles.componentsOverview}  `}
       >
         {title}
       </div>
@@ -88,11 +89,11 @@ const MenuItem = ({ isActive, index, path, label }) => {
   return (
     <div
       key={index}
-      className={`text-16 weight-400 ${styles.menuItem} ${
-        isActive && styles.active
-      }`}
+      className={`text-14 weight-400 ${styles.menuItem} ${
+        path && styles.hover
+      } ${path && isActive && styles.active}`}
       onClick={() => {
-        navigate(`/components${path}`);
+        path && navigate(`/components${path}`);
       }}
     >
       {label}
@@ -105,9 +106,9 @@ const SubMenuItem = ({ isActive, index, path, label }) => {
   return (
     <div
       key={index}
-      className={`text-16 ${styles.menuItem} ${styles.subMenuItem} ${
-        isActive && styles.active
-      }`}
+      className={`text-14 weight-400 ${styles.menuItem} ${styles.subMenuItem} ${
+        path && styles.hover
+      } ${isActive && styles.active}`}
       onClick={() => {
         navigate(`/components${path}`);
       }}

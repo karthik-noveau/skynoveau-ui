@@ -4,6 +4,15 @@
   position: relative;
 }
 
+.breadCrumbWrapper {
+  margin-bottom: 60px;
+}
+.breadCrumbContainer {
+  position: fixed;
+  top: 70px;
+  background-color: var(--white-color);
+  z-index: 99;
+}
 .rightComponent {
   width: 100%;
   padding-left: 200px;

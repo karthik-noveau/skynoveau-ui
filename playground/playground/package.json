@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "@skynoveau-ui/core": "file:../../package/react/core"
-  }
-}

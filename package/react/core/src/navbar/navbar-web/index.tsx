@@ -18,23 +18,30 @@ export interface NavbarWebProps {
   logoRenderer?: ReactNode;
   menuRenderer?: ReactNode;
   rightMenuRenderer?: ReactNode;
+  allowSticky?: boolean;
+  navHeight?: number;
 }
 
 type NavbarWebComponent = React.FC<NavbarWebProps> & { Menu?: typeof NavMenu };
 
-export const NavbarWeb: NavbarWebComponent = ({
-  layoutType,
-  logoRenderer,
-  menuRenderer,
-  rightMenuRenderer,
-}) => {
-  const [navHeight, setNavHeight] = useState("70px");
+export const NavbarWeb: NavbarWebComponent = (props: NavbarWebProps) => {
+  const {
+    layoutType,
+    logoRenderer,
+    menuRenderer,
+    rightMenuRenderer,
+    allowSticky = true,
+    navHeight: height = 70,
+  } = props;
+  const [navHeight, setNavHeight] = useState(`${height}px`);
 
   const listenScrollEvent = useCallback(() => {
     const scrolled = window.scrollY > 10;
 
-    setNavHeight(scrolled ? "75px" : "70px");
-  }, []);
+    setNavHeight(
+      scrolled ? `${allowSticky ? height + 5 : height}px` : `${height}px`
+    );
+  }, [allowSticky, height]);
 
   useEffect(() => {
     window.addEventListener("scroll", listenScrollEvent);
@@ -65,11 +72,7 @@ export const NavbarWeb: NavbarWebComponent = ({
     }
   }, [layoutType, logoRenderer, menuRenderer, rightMenuRenderer]);
 
-  return (
-    <>
-      <NavbarWrapper navHeight={navHeight}>{RenderLayout}</NavbarWrapper>
-    </>
-  );
+  return <NavbarWrapper navHeight={navHeight}>{RenderLayout}</NavbarWrapper>;
 };
 
 NavbarWeb.Menu = NavMenu;

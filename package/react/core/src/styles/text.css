@@ -7,8 +7,11 @@
 
   --text-10: 1rem;
   --text-12: 1.2rem;
+  --text-13: 1.3rem;
   --text-14: 1.4rem;
+  --text-15: 1.5rem;
   --text-16: 1.6rem;
+  --text-12: 1.2rem;
   --text-18: 1.8rem;
   --text-20: 2rem;
   --text-22: 2.2rem;
@@ -26,6 +29,11 @@
   --text-46: 4.6rem;
   --text-48: 4.8rem;
   --text-50: 5rem;
+  --text-52: 5.2rem;
+  --text-55: 5.5rem;
+  --text-56: 5.6rem;
+  --text-58: 5.8rem;
+  --text-60: 6rem;
 }
 
 body {
@@ -57,8 +65,18 @@ body {
   --line-height: var(--text-line-height);
   --letter-spacing: var(--text-letter-spacing);
 }
+.text-13 {
+  --font-size: var(--text-13);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
 .text-14 {
   --font-size: var(--text-14);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
+.text-15 {
+  --font-size: var(--text-15);
   --line-height: var(--text-line-height);
   --letter-spacing: var(--text-letter-spacing);
 }
@@ -149,6 +167,31 @@ body {
 }
 .text-50 {
   --font-size: var(--text-50);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
+.text-52 {
+  --font-size: var(--text-52);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
+.text-55 {
+  --font-size: var(--text-55);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
+.text-56 {
+  --font-size: var(--text-56);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
+.text-58 {
+  --font-size: var(--text-58);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
+.text-60 {
+  --font-size: var(--text-60);
   --line-height: var(--text-line-height);
   --letter-spacing: var(--text-letter-spacing);
 }
