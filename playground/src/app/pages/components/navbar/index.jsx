@@ -71,8 +71,9 @@ const LastMenu = () => {
       href="https://github.com/karthik-noveau/skynoveau-ui"
       target="_blank"
       rel="noreferrer"
+      className={`text-14 ${styles.githubContainer}`}
     >
-      <FaGithub className={`text-20 ${styles.icon}`} />
+      <FaGithub className={`text-20 ${styles.icon}`} /> Star on GitHub
     </a>
   );
 };

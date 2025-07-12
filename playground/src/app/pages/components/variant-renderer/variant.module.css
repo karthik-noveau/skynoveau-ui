@@ -1,13 +1,11 @@
 /* ---------- header ---------- */
-.variantRendererWrapper {
-  /* min-width: 150px; */
-}
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 5px;
-  margin: 0 10px;
+  padding: 10px 5px;
+  margin: 0 15px;
   border-bottom: 0.5px solid var(--gray-light-300);
 }
 .header .section {
@@ -50,10 +48,10 @@
 }
 
 .frameContainer {
-  width: 100%;
+  width: calc(100% - 50px);
   display: grid;
   align-items: center;
-  padding: 15px;
+  padding: 50px 25px;
 }
 .infoText {
   text-align: center;

@@ -1,0 +1,52 @@
+/* TechStackSlider.module.css */
+
+.sliderWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.swiper {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  background: #6c6ae8;
+  padding: 20px 15px;
+  border-radius: 15px;
+}
+
+.item img {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  /* border: 1px solid var(--gray-dark-100); */
+  border-radius: 4px;
+}
+
+.shadowLeft,
+.shadowRight {
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.shadowLeft {
+  left: 0;
+  /* background: linear-gradient(to right, #f5fcfd, transparent); */
+}
+
+.shadowRight {
+  right: 0;
+  /* background: linear-gradient(to left, #f5fcfd, transparent); */
+}

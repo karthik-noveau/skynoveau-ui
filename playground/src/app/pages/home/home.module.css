@@ -15,6 +15,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 30px;
 }
 .infoSection {
   max-width: 1200px;
@@ -74,7 +75,6 @@
   gap: 20px;
   row-gap: 0px;
   max-width: 700px;
-  margin-top: 5px;
 }
 .techImageWrapper {
   border-radius: 8px;
@@ -89,9 +89,27 @@
   object-fit: contain;
 }
 
+/* ---------- showcase ---------- */
+.showCaseContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.showCaseContainer img {
+  width: 300px;
+}
+.landingTitle {
+  text-align: center;
+  width: 90%;
+  color: var(--black-light-100);
+}
+.landingDescription {
+  margin-top: 5px;
+}
+
 /* ---------- footer ---------- */
 .footer {
-  margin-top: 5px;
+  margin-top: 70px;
 }
 .footer a {
   color: var(--primary-color);
@@ -100,4 +118,7 @@
 /* ------------------------ media queries ------------------------ */
 /* --------------------------------------------------------------- */
 @media (max-width: 768px) {
+  .infoContainer .title {
+    font-size: var(--text-42);
+  }
 }

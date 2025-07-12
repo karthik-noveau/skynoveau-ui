@@ -15,3 +15,13 @@
 .icon:hover {
   background-color: var(--white-thin-color);
 }
+
+.githubContainer {
+  display: flex;
+  align-items: center;
+  background-color: var(--black-color);
+  border-radius: 12px;
+  color: var(--white-color);
+  padding: 0px 15px 0px 10px;
+  margin-left: 10px;
+}
