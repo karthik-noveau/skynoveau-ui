@@ -6,14 +6,11 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "build": "npm --prefix ./playground run build",
-    "prebuild": "node ./script/pre.build.mjs",
-    "preview": "npm --prefix ./playground vite preview",
-    "clean:all": "npm --prefix ./playground run clean && npm --prefix ./package/react/core run clean",
-    "install:all": "npm install && npm --prefix ./playground install && npm --prefix ./package/react/core install",
-    "dev": "npm --prefix ./playground run dev",
-    "dev:watch": "npm --prefix ./playground run dev:watch",
-    "publish:core": "npm --prefix ./package/react/core run publish:package"
+    "dev": "node script/dev.mjs",
+    "prebuild": "node script/pre.build.mjs",
+    "publish": "node script/publish.mjs",
+    "clean:all": "node script/clean.mjs",
+    "install:all": "node script/install.mjs"
   },
   "repository": {
     "type": "git",
@@ -27,6 +24,8 @@
   },
   "homepage": "https://github.com/karthik-noveau/skynoveau-ui#readme",
   "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.2.0",
     "husky": "^8.0.3"
   }
 }

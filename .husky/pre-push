@@ -20,9 +20,9 @@ do
   echo "🔨 Changes detected. Running prebuild...\n"
 
   # Optional cleanup
-  if [ -f .prebuild-complete ]; then
-    rm .prebuild-complete
-    echo "🧹 Removed outdated .prebuild-complete"
+  if [ -f .pre-build-complete ]; then
+    rm .pre-build-complete
+    echo "🧹 Removed outdated .pre-build-complete"
   fi
 
   echo "✅ Prebuild check complete.\n"

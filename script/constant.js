@@ -8,7 +8,7 @@ export const LIBRARY_LIST = [
 
 export const PLAYGROUND_LIST = [
   {
-    name: "playground",
-    rootPath: "./playground/package.json",
+    name: "play/react",
+    rootPath: "./playground/react",
   },
 ];

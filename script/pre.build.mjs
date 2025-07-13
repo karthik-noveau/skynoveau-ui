@@ -39,7 +39,7 @@ for (const { name, rootPath, allowVersionChange } of LIBRARY_LIST) {
       latestVersion = execSync(`npm view ${name} version`, {
         encoding: "utf-8",
         stdio: ["pipe", "pipe", "ignore"], // ⛔️ suppress stderr (where npm notices are printed)
-      });
+      }).trim();
     } catch {
       console.warn(`⚠️  Could not fetch latest version for ${name}`);
       failed = true;
@@ -48,18 +48,20 @@ for (const { name, rootPath, allowVersionChange } of LIBRARY_LIST) {
 
     // ✅ 3. Update latest dependency version of library in playground
     if (allowVersionChange) {
-      for (const { name, rootPath } of PLAYGROUND_LIST) {
-        const fullPath = path.resolve(rootPath);
-        const consumerPkg = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
-        const prevVersion = consumerPkg.dependencies?.[name] || "(not found)";
+      for (const { name: playground_name, rootPath } of PLAYGROUND_LIST) {
+        const pkgPath = path.join(rootPath, "package.json");
+        const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
+        const prevVersion = pkg.dependencies?.[name] || "(not found)";
 
-        consumerPkg.dependencies = {
-          ...(consumerPkg.dependencies || {}),
+        pkg.dependencies = {
+          ...(pkg.dependencies || {}),
           [name]: latestVersion,
         };
 
-        fs.writeFileSync(fullPath, JSON.stringify(consumerPkg, null, 2));
-        console.log(`✅ Latest dependency version updated in ${name}`);
+        fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+        console.log(
+          `✅ Latest dependency version updated in ${playground_name}`
+        );
         console.log(`     ↪ Previous: ${prevVersion}`);
         console.log(`     ↪ Updated : ${latestVersion}`);
       }
@@ -73,12 +75,14 @@ for (const { name, rootPath, allowVersionChange } of LIBRARY_LIST) {
 }
 
 if (failed) {
-  console.error("\n❌ Pre build checks failed\n");
+  console.error(
+    "\n***************** Pre-build checks failed *****************\n"
+  );
   process.exit(1);
 } else {
-  fs.writeFileSync(".prebuild-complete", new Date().toISOString());
-  console.log("\n.prebuild-complete written");
+  fs.writeFileSync(".pre-build-complete", new Date().toISOString());
+  console.log("\n.pre-build-complete written");
   console.log(
-    "\n***************** Pre-publish checks completed *****************\n"
+    "\n***************** Pre-build checks completed *****************\n"
   );
 }

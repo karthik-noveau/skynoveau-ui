@@ -6,17 +6,10 @@
   "scripts": {
     "lint": "eslint . --ext .js,.jsx --fix",
     "build": "vite build",
-    "clean": "rimraf dist .vite node_modules",
-    "dev": "vite",
-    "build:react/core": "npm --prefix ../package/react/core run build && echo '✅ [react/core] build completed'",
-    "build:react/utils": "npm --prefix ../package/react/utils run build && echo '✅ [react/utils] build completed'",
-    "watch:react/core": "echo '🔎 Watching [react/core]...' && chokidar \"../package/react/core/src/**/*\" \"../package/react/core/package.json\" --initial --verbose --debounce 500 -c \"npm run build:react/core\"",
-    "watch:react/utils": "echo '🔎 Watching [react/utils]...' && chokidar \"../package/react/utils/src/**/*\" \"../package/react/utils/package.json\" --initial --verbose --debounce 500 -c \"npm run build:react/utils\"",
-    "dev:watch": "node ../script/dev.setup.mjs && npm i ../package/react/core && concurrently -n playground,core,utils -c green,cyan,magenta \"npm run dev\" \"npm run watch:react/core\""
+    "dev": "vite"
   },
   "dependencies": {
-    "@skynoveau-ui/core": "file:../package/react/core",
-    "@skynoveau-ui/utils": "1.0.0",
+    "@skynoveau-ui/core": "1.0.19",
     "antd": "^5.26.2",
     "copy-to-clipboard": "^3.3.3",
     "react": "^19.1.0",
@@ -39,7 +32,6 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.0.0",
-    "rimraf": "^5.0.10",
     "rollup": "^4.44.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0",

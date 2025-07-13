@@ -1,6 +1,6 @@
 {
   "name": "@skynoveau-ui/core",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "description": "Skynoveau UI is a modern React-based design system offering customizable, accessible, and responsive UI components built for scalability and speed.",
   "author": "Karthik Noveau",
   "license": "MIT",
@@ -13,14 +13,12 @@
   "main": "./dist/index.js",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "clean": "rimraf dist .vite node_modules",
     "copy:assets": "cpx \"src/**/*.{css,svg,png,jpg,jpeg,woff,woff2,ttf,eot}\" dist",
-    "build": "vite build && npm run copy:assets && tsc",
-    "publish:package": "node ../../../script/pre.publish.mjs && npm run build && npm publish --access public"
+    "build": "vite build && npm run copy:assets && tsc"
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
+      "import": "./src/index.ts",
       "types": "./dist/index.d.ts"
     }
   },
@@ -70,7 +68,6 @@
     "globals": "^16.0.0",
     "path": "^0.12.7",
     "prettier": "^3.6.2",
-    "rimraf": "^5.0.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0",
