@@ -18,8 +18,8 @@ do
 
   # Check for .pre-build-complete file
   if [ ! -f .pre-build-complete ]; then
-    echo "❌ Push rejected: .pre-build-complete not found."
-    echo "🔧 Run the build script to generate it before pushing."
+    echo "❌ Push rejected: .pre-build-complete not found"
+    echo "🔧 Run : npm run prebuild\n"
     exit 1
   fi
 
