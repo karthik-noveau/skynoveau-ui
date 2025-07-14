@@ -9,7 +9,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@skynoveau-ui/core": "file:../../package/react/core",
+    "@skynoveau-ui/core": "1.0.22",
     "antd": "^5.26.2",
     "copy-to-clipboard": "^3.3.3",
     "react": "^19.1.0",
