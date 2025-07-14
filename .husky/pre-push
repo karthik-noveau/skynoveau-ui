@@ -6,26 +6,28 @@ while read local_ref local_sha remote_ref remote_sha
 do
   # If we're deleting a branch or pushing a tag, skip the check
   if [ "$local_sha" = "0000000000000000000000000000000000000000" ]; then
-    echo "🪓 Skipping build: branch or tag deleted.\n"
+    echo "🪓 Skipping check: branch or tag deleted."
     exit 0
   fi
 
   # If nothing new is being pushed (already up-to-date), skip
   if git merge-base --is-ancestor "$local_sha" "$remote_sha"; then
-    echo "🔄 Everything up-to-date. Skipping prebuild.\n"
+    echo "🔄 Everything up-to-date. Skipping check."
     exit 0
   fi
 
-  # Otherwise, run the build
-  echo "🔨 Changes detected. Running prebuild...\n"
-
-  # Optional cleanup
-  if [ -f .pre-build-complete ]; then
-    rm .pre-build-complete
-    echo "🧹 Removed outdated .pre-build-complete"
+  # Check for .pre-build-complete file
+  if [ ! -f .pre-build-complete ]; then
+    echo "❌ Push rejected: .pre-build-complete not found."
+    echo "🔧 Run the build script to generate it before pushing."
+    exit 1
   fi
 
-  echo "✅ Prebuild check complete.\n"
+  echo "✅ Build verified. Proceeding with push..."
+
+  # Remove the marker file after allowing the push
+  rm .pre-build-complete
+  echo "🧹 Removed .pre-build-complete after successful check."
 done
 
 exit 0
