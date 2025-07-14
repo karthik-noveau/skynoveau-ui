@@ -4,9 +4,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 5px;
+  padding: 10px 5px 0px 5px;
   margin: 0 15px;
-  border-bottom: 0.5px solid var(--gray-light-300);
+  /* border-bottom: 0.5px solid var(--gray-light-300); */
 }
 .header .section {
   display: flex;
@@ -29,7 +29,14 @@
 .newTabIcon {
   position: relative;
   top: 0px;
+  padding: 5px;
   font-size: 20px;
+  border-radius: 6px;
+  transition: 0.3s all;
+}
+
+.newTabIcon:hover {
+  background-color: var(--gray-light-300);
 }
 
 .description {
@@ -51,7 +58,7 @@
   width: calc(100% - 50px);
   display: grid;
   align-items: center;
-  padding: 50px 25px;
+  padding: 25px 25px;
 }
 .infoText {
   text-align: center;

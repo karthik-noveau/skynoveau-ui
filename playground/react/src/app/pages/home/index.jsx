@@ -34,11 +34,19 @@ const TECH_STACK = [
 ];
 
 const SHOW_CASE = [
-  { image: DhanikaImg },
-  { image: LexlumiereImg },
-  { image: UnisysImg },
-  { image: WoodheadCreative },
-  { image: WoodheadEvents },
+  { image: DhanikaImg, name: "Dhanika", url: "https://dhanika.co.in" },
+  { image: LexlumiereImg, name: "Lexlumiere", url: "https://lexlumiere.com" },
+  { image: UnisysImg, name: "Unisys", url: "https://unisystechnologies.com" },
+  {
+    image: WoodheadCreative,
+    name: "Woodhead Creative",
+    url: "https://woodheadcreative.co",
+  },
+  {
+    image: WoodheadEvents,
+    name: "Woodhead Events",
+    url: "https://woodheadevents.com",
+  },
 ];
 
 export default function HomePage() {
@@ -61,11 +69,11 @@ export default function HomePage() {
           <div className={`wrapper wrapper-margin-top`}>
             <div className={`container container-margin-top`}>
               <h1 className={`text-60 weight-500 ${styles.title}`}>
-                Build modern web applications with <span> Skynoveau UI</span>
+                Build Modern Web Apps with <span> Skynoveau UI</span>
               </h1>
               <p className={`text-18 ${styles.description}`}>
-                A developer-first design system to create fast, modern web
-                applications
+                A developer-first design system to create fast and responsive
+                web apps
               </p>
             </div>
           </div>
@@ -83,9 +91,6 @@ export default function HomePage() {
                 return (
                   <div key={index} className={` ${styles.techImageWrapper}`}>
                     <img src={item.image} alt={item.name} />
-                    {/* <p className={`text-18 weight-400 ${styles.techName}`}>
-                      {item.name}
-                    </p> */}
                   </div>
                 );
               })}
@@ -94,12 +99,12 @@ export default function HomePage() {
         </div>
         {/* ---------- show case ---------- */}
         <h1
-          className={`text-34 weight-400 wrapper-margin-top ${styles.landingTitle}`}
+          className={`text-28 weight-400 wrapper-margin-top ${styles.landingTitle}`}
         >
-          Showcase
+          Deployed Sites
         </h1>
         <p className={`text-16 weight-300 ${styles.landingDescription}`}>
-          Choose Skynoveau UI to build your landing pages
+          Developed using the Skynoveau UI component library
         </p>
         <div
           className={`container container-margin-top ${styles.showCaseContainer}`}
@@ -107,13 +112,9 @@ export default function HomePage() {
           <TechStackSlide items={SHOW_CASE} />
         </div>
         <p className={`text-16 ${styles.footer}`}>
-          Source code is available on{" "}
-          <a
-            href="https://github.com/karthik-noveau/skynoveau-ui"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Github
+          Made with ♥️ by{" "}
+          <a href="https://skynoveau.in/" target="_blank" rel="noreferrer">
+            Skynoveau
           </a>
         </p>
       </div>

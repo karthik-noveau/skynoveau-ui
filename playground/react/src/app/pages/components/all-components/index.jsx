@@ -51,7 +51,7 @@ export const ComponentCollections = () => {
                           return (
                             <div key={index} className={`${styles.card}`}>
                               <p
-                                className={`text-16 weight-400 ${styles.categoryTitle}`}
+                                className={`text-16 ${styles.categoryTitle}`}
                               >
                                 {getLabel(subComponentName)}
                               </p>

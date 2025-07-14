@@ -33,7 +33,7 @@
 .menuItem {
   color: var(--black-light-200);
   transition: color 0.2s;
-  padding: 5px 10px;
+  padding: 6px 12px;
   margin-top: 4px;
   transition: all 0.3s;
   border-radius: 6px;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "@skynoveau-ui/core";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,7 +10,6 @@ import styles from "./style.module.css";
 export const TechStackSlide = ({ items }) => {
   return (
     <div className={styles.sliderWrapper}>
-      <div className={styles.shadowLeft}></div>
       <Swiper
         className={styles.swiper}
         slidesPerView={"auto"}
@@ -19,9 +19,11 @@ export const TechStackSlide = ({ items }) => {
         speed={3000}
         modules={[Autoplay]}
       >
-        {items.map((item, index) => (
+        {items.map(({ name, image, url }, index) => (
           <SwiperSlide key={index} className={styles.item}>
-            <img src={item.image} alt={item.name} title={item.name} />
+            <a href={url} target="_blank" rel="noreferrer">
+              <Image imgSrc={image} alt={name} />
+            </a>
           </SwiperSlide>
         ))}
       </Swiper>
