@@ -4,6 +4,8 @@ import path from "path";
 
 const args = process.argv.slice(2);
 
+console.log("args :: dev", process.argv);
+
 let target = null;
 let isWatchMode = false;
 
@@ -36,7 +38,7 @@ console.log(
 if (isWatchMode) {
   // ✅ Step 0: Run dev.setup.mjs first
   try {
-    execSync("node script/dev.setup.mjs", {
+    execSync(`node script/dev.setup.mjs ${target}`, {
       stdio: "inherit",
       shell: true,
     });
@@ -51,17 +53,17 @@ if (isWatchMode) {
   const commands = [];
 
   const pkg_name = name.split("/")[1]; // e.g., 'react'
-  const libPath = `./package/${pkg_name}/core`;
-  const absLibPath = path.resolve(libPath);
+  const libRootPath = `./package/${pkg_name}/core`;
+  const libPath = path.resolve(libRootPath);
 
-  const build_cmd = `npm --prefix ${libPath} run build && echo '✅ [${pkg_name}/core] build completed'`;
+  const build_cmd = `npm --prefix ${libRootPath} run build && echo '✅ [${pkg_name}/core] build completed'`;
 
-  const watch_cmd = `echo '🔎 Watching [${pkg_name}/core]...' && chokidar "${absLibPath}/src/**/*" "${absLibPath}/package.json" --initial --verbose --debounce 500 -c "${build_cmd}"`;
+  const watch_cmd = `echo '🔎 Watching [${pkg_name}/core]...' && chokidar "${libPath}/src/**/*" "${libPath}/package.json" --initial --verbose --debounce 500 -c "${build_cmd}"`;
 
   commands.push({
     name: `${pkg_name}-core`,
     command: watch_cmd,
-    cwd: ".", // from project root
+    cwd: ".",
     prefixColor: "cyan",
   });
 

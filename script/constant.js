@@ -8,7 +8,8 @@ export const LIBRARY_LIST = [
 
 export const PLAYGROUND_LIST = [
   {
-    name: "play/react",
+    name: "playground/react",
     rootPath: "./playground/react",
+    localPkgList: ["@skynoveau-ui/core", "@skynoveau-ui/utils"],
   },
 ];

@@ -1,18 +1,15 @@
+import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import { execSync } from "child_process";
-import { LIBRARY_LIST } from "./constant.js";
-
-const repoRoot = execSync("git rev-parse --show-toplevel", {
-  encoding: "utf-8",
-}).trim();
-process.chdir(repoRoot);
+import { LIBRARY_LIST, PLAYGROUND_LIST } from "./constant.js";
 
 const args = process.argv.slice(2);
-const play_name = args[1].split("/")[1];
+const target = args[0].split("/")[1];
 
-for (const { name, rootPath } of LIBRARY_LIST) {
-  if (name.startsWith(play_name)) {
+for (const { name, rootPath, localPkgList } of PLAYGROUND_LIST) {
+  if (name.startsWith(`playground/${target}`)) {
+    console.log("\nDev setup initiated ... \n");
+
     const pkgPath = path.join(rootPath, "package.json");
     const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
 
@@ -33,5 +30,27 @@ for (const { name, rootPath } of LIBRARY_LIST) {
     } else {
       console.log(`✅ [${name}] exports path already in dev path\n`);
     }
+
+    const filteredPkgList = LIBRARY_LIST.filter(({ name }) =>
+      localPkgList.includes(name)
+    );
+
+    filteredPkgList.forEach(({ name, rootPath: pkgRootPath }) => {
+      const absolutePkgPath = path.resolve(pkgRootPath);
+      console.log(
+        `Installing ${name} from ${absolutePkgPath} into ${rootPath}`
+      );
+      try {
+        execSync(`npm install ${absolutePkgPath}`, {
+          cwd: path.resolve(rootPath),
+          stdio: "inherit",
+          shell: true,
+        });
+        console.log(`✅ Installed local ${name} in ${rootPath}`);
+      } catch (err) {
+        console.error(`❌ Failed to install local ${name} in ${rootPath}`);
+        process.exit(1);
+      }
+    });
   }
 }
