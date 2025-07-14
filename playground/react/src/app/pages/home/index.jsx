@@ -61,8 +61,7 @@ export default function HomePage() {
           <div className={`wrapper wrapper-margin-top`}>
             <div className={`container container-margin-top`}>
               <h1 className={`text-60 weight-500 ${styles.title}`}>
-                Build modern web applications with
-                <span> SkynoveauUI</span>
+                Build modern web applications with <span> Skynoveau UI</span>
               </h1>
               <p className={`text-18 ${styles.description}`}>
                 A developer-first design system to create fast, modern web

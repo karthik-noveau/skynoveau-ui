@@ -4,8 +4,6 @@ import path from "path";
 
 const args = process.argv.slice(2);
 
-console.log("args :: dev", process.argv);
-
 let target = null;
 let isWatchMode = false;
 
