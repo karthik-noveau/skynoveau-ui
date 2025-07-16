@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { COMPONENTS_LIST } from "@list/index";
+import { COMPONENTS } from "@list/index";
 
 import { getLabel, getPath } from "../utils";
 
@@ -12,73 +12,83 @@ export const LeftNav = () => {
   return (
     <div className={`${styles.leftWrapper}`}>
       <div className={`scrollbar ${styles.leftComponent}`}>
-        <Menu title="Installation" path="/components/installation">
-          <MenuItem
-            label="CLI"
-            path="/installation"
-            isActive={location.pathname === `/components/installation`}
-          />
-        </Menu>
+        <Section label="Installation">
+          <Menu path="/components/installation">
+            <MenuItem
+              label="CLI"
+              path="/installation"
+              isActive={location.pathname === `/components/installation`}
+            />
+          </Menu>
+        </Section>
 
-        <Menu title="Components">
-          <MenuItem
-            label="All Components"
-            path=" "
-            isActive={location.pathname === `/components`}
-          />
+        <Section label="Components">
+          <Menu>
+            <MenuItem
+              label="All Components"
+              path=" "
+              isActive={location.pathname === `/components`}
+            />
+          </Menu>
 
-          {Object.keys(COMPONENTS_LIST).map((componentName, index) => {
-            let { subComponents } = COMPONENTS_LIST[componentName];
-
-            let isActive =
-              location.pathname === `/components/${getPath(componentName)}`;
+          {Object.keys(COMPONENTS).map((categoryName, index) => {
+            let components = COMPONENTS[categoryName];
 
             return (
-              <>
-                <MenuItem
-                  label={getLabel(componentName)}
-                  index={index}
-                  path={subComponents ? "" : `/${getPath(componentName)}`}
-                  isActive={isActive}
-                />
-
-                {subComponents &&
-                  Object.keys(subComponents).map((subComponentName, index) => {
-                    let isActive =
-                      `/components/${getPath(subComponentName)}` ===
-                      location.pathname
-                        ? true
-                        : false;
-
-                    return (
-                      <SubMenuItem
-                        key={index}
-                        label={getLabel(subComponentName)}
-                        index={index}
-                        path={`/${getPath(subComponentName)}`}
-                        isActive={isActive}
+              <Menu key={index} label={categoryName}>
+                {Object.keys(components).map((componentName) => {
+                  const { subComponents } = components[componentName];
+                  return (
+                    <React.Fragment key={componentName}>
+                      <MenuItem
+                        label={componentName}
+                        path={`/${getPath(componentName)}`}
+                        isActive={
+                          `/components/${getPath(componentName)}` ===
+                          location.pathname
+                        }
                       />
-                    );
-                  })}
-              </>
+                      {subComponents &&
+                        Object.keys(subComponents).map((subComponentName) => (
+                          <SubMenuItem
+                            label={getLabel(subComponentName)}
+                            key={subComponentName}
+                            path={`/${getPath(subComponentName)}`}
+                            isActive={
+                              `/components/${getPath(subComponentName)}` ===
+                              location.pathname
+                            }
+                          />
+                        ))}
+                    </React.Fragment>
+                  );
+                })}
+              </Menu>
             );
           })}
-        </Menu>
+        </Section>
       </div>
     </div>
   );
 };
 
-const Menu = ({ title, children }) => {
+const Section = ({ label, children }) => {
+  return (
+    <div className={`${styles.section}`}>
+      <div className={`text-16 weight-400 ${styles.label}`}>{label}</div>
+
+      {children}
+    </div>
+  );
+};
+
+const Menu = ({ label = "", children }) => {
   return (
     <div className={`${styles.menuContainer}`}>
-      {/* ---------- title ---------- */}
-      <div
-        className={`text-16 weight-400 ${styles.menuTitle} ${styles.componentsOverview}  `}
-      >
-        {title}
-      </div>
-      {/* ---------- menu item ---------- */}
+      {label && (
+        <div className={`text-14 weight-400 ${styles.label}`}>{label}</div>
+      )}
+
       {children}
     </div>
   );

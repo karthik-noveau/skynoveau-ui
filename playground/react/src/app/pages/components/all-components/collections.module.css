@@ -8,22 +8,29 @@
   color: var(--black-light-300);
 }
 .collectionsCards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 50px;
-}
-.collectionsCards .card {
-  box-shadow: 4px 3px 6px 1px #00000012;
   display: grid;
-  place-items: center;
-  height: 80px;
+  grid-auto-flow: column; /* Fill rows first, then add new columns */
+  grid-auto-rows: auto;
+  grid-template-rows: repeat(10, auto); /* Limit to 15 rows per column */
+  row-gap: 25px;
+  column-gap: 50px;
+  margin-top: 50px;
+  width: 100%;
+  height: 100%;
+  justify-content: start;
+}
+
+.collectionsCards .card {
+  /* box-shadow: 4px 3px 6px 1px #00000012; */
+  display: grid;
+  /* place-items: center; */
+  height: 35px;
   width: 250px;
   cursor: pointer;
   border-radius: 8px;
   border: 1px solid transparent;
   transition: border 0.5s;
-  background-color: var(--white-color);
+  /* background-color: var(--white-color); */
 }
 .collectionsCards .card p {
   transition: color 0.2s;
@@ -41,18 +48,17 @@
   border-right: 0;
   border-left: 0;
   padding: 60px 0px 30px 0px;
-  position: relative;
+  /* position: relative; */
   margin: 20px 0;
 }
 .subCardContainer {
-  display: flex;
+  display: grid;
   gap: 15px;
-  flex-wrap: wrap;
   color: var(--black-light-200);
 }
 .subCardTitle {
-  position: absolute;
-  top: 5px;
+  /* position: absolute;
+  top: 5px; */
   color: var(--black-color);
   background-color: var(--gray-light-400);
   padding: 8px 20px;

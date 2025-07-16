@@ -46,9 +46,9 @@ for (const { name, rootPath, localPkgList } of PLAYGROUND_LIST) {
           stdio: "inherit",
           shell: true,
         });
-        console.log(`✅ Installed local ${name} in ${rootPath}`);
+        console.log(`✅ Installed local ${name} in ${rootPath}\n`);
       } catch (err) {
-        console.error(`❌ Failed to install local ${name} in ${rootPath}`);
+        console.error(`❌ Failed to install local ${name} in ${rootPath}\n`);
         process.exit(1);
       }
     });

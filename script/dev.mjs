@@ -54,19 +54,19 @@ if (isWatchMode) {
   const libRootPath = `./package/${pkg_name}/core`;
   const libPath = path.resolve(libRootPath);
 
-  const build_cmd = `npm --prefix ${libRootPath} run build && echo '✅ [${pkg_name}/core] build completed'`;
+  const build_cmd = `npm --prefix ${libRootPath} run build && echo '✅ build completed'`;
 
-  const watch_cmd = `echo '🔎 Watching [${pkg_name}/core]...' && chokidar "${libPath}/src/**/*" "${libPath}/package.json" --initial --verbose --debounce 500 -c "${build_cmd}"`;
+  const watch_cmd = `echo '🔎 Watching [package/${pkg_name}]...' && chokidar "${libPath}/src/**/*" "${libPath}/package.json" --initial --verbose --debounce 500 -c "${build_cmd}"`;
 
   commands.push({
-    name: `${pkg_name}-core`,
+    name: `package-${pkg_name}`,
     command: watch_cmd,
     cwd: ".",
     prefixColor: "cyan",
   });
 
   commands.push({
-    name: "playground",
+    name: `playground-${pkg_name}`,
     command: "npm run dev",
     cwd: rootPath,
     prefixColor: "green",

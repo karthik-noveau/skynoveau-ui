@@ -12,10 +12,12 @@ export const NAV_CONFIG = {
       label: "Products",
       dropdown: [
         {
-          label: "Skynoveau workflow",
-          url: "https://workflow.skynoveau.in/space",
+          label: "Theme generator",
+          url: "https://zrwy2w.csb.app",
         },
-        { label: "Skynoveau editor", url: "https://editor.skynoveau.in" },
+        { label: "Pix Studio", url: "https://pix-studio.vercel.app" },
+        { label: "Mail Pilot", url: "https://editor.skynoveau.in" },
+        { label: "Blog Editor", url: "https://editor.skynoveau.in" },
       ],
     },
   ],

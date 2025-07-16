@@ -34,33 +34,29 @@ export const ComponentCollections = () => {
                   }}
                   key={index}
                 >
-                  <p className={`text-16`}>{getLabel(componentName)}</p>
+                  <p className={`text-14`}>{getLabel(componentName)}</p>
                 </div>
               )}
 
               {subComponents && (
                 <>
-                  <div key={index} className={`${styles.subCardWrapper}`}>
-                    <div key={index} className={`${styles.subCardContainer}`}>
-                      <p className={`text-16 ${styles.subCardTitle}`}>
-                        {getLabel(componentName)}
-                      </p>
+                  {/* <div key={index} className={`${styles.subCardWrapper}`}>
+                    <div key={index} className={`${styles.subCardContainer}`}> */}
+                  <p className={`text-14 ${styles.subCardTitle}`}>
+                    {getLabel(componentName)}
+                  </p>
 
-                      {Object.keys(subComponents).map(
-                        (subComponentName, index) => {
-                          return (
-                            <div key={index} className={`${styles.card}`}>
-                              <p
-                                className={`text-16 ${styles.categoryTitle}`}
-                              >
-                                {getLabel(subComponentName)}
-                              </p>
-                            </div>
-                          );
-                        }
-                      )}
-                    </div>
-                  </div>
+                  {Object.keys(subComponents).map((subComponentName, index) => {
+                    return (
+                      <div key={index} className={`${styles.card}`}>
+                        <p className={`text-14 ${styles.categoryTitle}`}>
+                          {getLabel(subComponentName)}
+                        </p>
+                      </div>
+                    );
+                  })}
+                  {/* </div>
+                  </div> */}
                 </>
               )}
             </>

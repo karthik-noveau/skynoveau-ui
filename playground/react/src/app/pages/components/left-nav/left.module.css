@@ -11,29 +11,35 @@
   margin-top: 23px;
 }
 
+/* ---------- section ---------- */
+.section {
+  margin-bottom: 25px;
+}
+.section .label {
+  color: var(--black-light-100);
+  margin-bottom: 5px;
+}
+
+/* ---------- menu ---------- */
 .menuContainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
 }
-/* ---------- menu title ---------- */
-.menuTitle {
-  color: var(--black-light-100);
+.menuContainer .label {
+  color: var(--black-light-400);
   margin-bottom: 5px;
-  /* cursor: pointer; */
+  padding: 4px 12px;
 }
-.menuTitle.active {
+.menuContainer .label.active {
   color: var(--primary-color);
 }
 
-/* ---------- menu ---------- */
-.menuItem:first-child {
-  padding: 0px;
-}
+/* ---------- menu item---------- */
 .menuItem {
   color: var(--black-light-200);
   transition: color 0.2s;
-  padding: 6px 12px;
+  padding: 4px 12px;
   margin-top: 4px;
   transition: all 0.3s;
   border-radius: 6px;
