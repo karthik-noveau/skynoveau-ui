@@ -1,16 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import { useScrollToTop } from "@skynoveau-ui/utils";
-import { COMPONENTS_LIST } from "@list/index";
+import { COMPONENTS } from "@list/index";
 
-import { getLabel, getPath } from "../utils";
+import { getPath } from "../utils";
 
 import styles from "./collections.module.css";
 
 export const ComponentCollections = () => {
-  const navigate = useNavigate();
-  // useScrollToTop();
-
   return (
     <div className={`${styles.collectionsContaier}`}>
       <h1 className={`text-24 weight-400 ${styles.title}`}>
@@ -21,48 +17,80 @@ export const ComponentCollections = () => {
         look and feel of each component.
       </p>
       <div className={`${styles.collectionsCards}`}>
-        {Object.keys(COMPONENTS_LIST).map((componentName, index) => {
-          let { subComponents } = COMPONENTS_LIST[componentName];
+        <Section
+          label="Installation"
+          className={`${styles.installationSection}`}
+        >
+          <Menu path="/components/installation">
+            <MenuItem
+              label="CLI"
+              path="/installation"
+              isActive={location.pathname === `/components/installation`}
+            />
+          </Menu>
+        </Section>
 
-          return (
-            <>
-              {!subComponents && (
-                <div
-                  className={`${styles.card}`}
-                  onClick={() => {
-                    navigate(`/components/${getPath(componentName)}`);
-                  }}
-                  key={index}
-                >
-                  <p className={`text-14`}>{getLabel(componentName)}</p>
-                </div>
-              )}
+        <Section label="Components">
+          {Object.keys(COMPONENTS).map((categoryName, index) => {
+            let components = COMPONENTS[categoryName];
 
-              {subComponents && (
-                <>
-                  {/* <div key={index} className={`${styles.subCardWrapper}`}>
-                    <div key={index} className={`${styles.subCardContainer}`}> */}
-                  <p className={`text-14 ${styles.subCardTitle}`}>
-                    {getLabel(componentName)}
-                  </p>
-
-                  {Object.keys(subComponents).map((subComponentName, index) => {
-                    return (
-                      <div key={index} className={`${styles.card}`}>
-                        <p className={`text-14 ${styles.categoryTitle}`}>
-                          {getLabel(subComponentName)}
-                        </p>
-                      </div>
-                    );
-                  })}
-                  {/* </div>
-                  </div> */}
-                </>
-              )}
-            </>
-          );
-        })}
+            return (
+              <Menu key={index} label={categoryName}>
+                {Object.keys(components).map((componentName) => {
+                  return (
+                    <React.Fragment key={componentName}>
+                      <MenuItem
+                        label={componentName}
+                        path={`/${getPath(componentName)}`}
+                        isActive={
+                          `/components/${getPath(componentName)}` ===
+                          location.pathname
+                        }
+                      />
+                    </React.Fragment>
+                  );
+                })}
+              </Menu>
+            );
+          })}
+        </Section>
       </div>
+    </div>
+  );
+};
+
+const Section = ({ label, className, children }) => {
+  return (
+    <div className={`${styles.section} ${className}`}>
+      <div className={`text-16 ${styles.label}`}>{label}</div>
+
+      {children}
+    </div>
+  );
+};
+const Menu = ({ label, children }) => {
+  return (
+    <div className={`${styles.menuContainer}`}>
+      <div className={`text-16 ${styles.label}`}>{label}</div>
+
+      <div className={`${styles.menuItems}`}>{children}</div>
+    </div>
+  );
+};
+
+const MenuItem = ({ isActive, index, path, label }) => {
+  const navigate = useNavigate();
+  return (
+    <div
+      key={index}
+      className={`text-14 weight-400 ${styles.menuItem} ${
+        path && styles.hover
+      } ${path && isActive && styles.active}`}
+      onClick={() => {
+        path && navigate(`/components${path}`);
+      }}
+    >
+      {label}
     </div>
   );
 };

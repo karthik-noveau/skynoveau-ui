@@ -18,6 +18,7 @@ export const NAV_CONFIG = {
         { label: "Pix Studio", url: "https://pix-studio.vercel.app" },
         { label: "Mail Pilot", url: "https://editor.skynoveau.in" },
         { label: "Blog Editor", url: "https://editor.skynoveau.in" },
+        { label: "Web Spliter", url: "https://webspliter.skynoveau.in" },
       ],
     },
   ],

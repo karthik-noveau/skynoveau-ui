@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { COMPONENTS } from "@list/index";
 
-import { getLabel, getPath } from "../utils";
+import { getPath } from "../utils";
 
 import styles from "./left.module.css";
 
@@ -37,7 +37,6 @@ export const LeftNav = () => {
             return (
               <Menu key={index} label={categoryName}>
                 {Object.keys(components).map((componentName) => {
-                  const { subComponents } = components[componentName];
                   return (
                     <React.Fragment key={componentName}>
                       <MenuItem
@@ -48,18 +47,6 @@ export const LeftNav = () => {
                           location.pathname
                         }
                       />
-                      {subComponents &&
-                        Object.keys(subComponents).map((subComponentName) => (
-                          <SubMenuItem
-                            label={getLabel(subComponentName)}
-                            key={subComponentName}
-                            path={`/${getPath(subComponentName)}`}
-                            isActive={
-                              `/components/${getPath(subComponentName)}` ===
-                              location.pathname
-                            }
-                          />
-                        ))}
                     </React.Fragment>
                   );
                 })}
@@ -104,23 +91,6 @@ const MenuItem = ({ isActive, index, path, label }) => {
       } ${path && isActive && styles.active}`}
       onClick={() => {
         path && navigate(`/components${path}`);
-      }}
-    >
-      {label}
-    </div>
-  );
-};
-
-const SubMenuItem = ({ isActive, index, path, label }) => {
-  const navigate = useNavigate();
-  return (
-    <div
-      key={index}
-      className={`text-14 weight-400 ${styles.menuItem} ${styles.subMenuItem} ${
-        path && styles.hover
-      } ${isActive && styles.active}`}
-      onClick={() => {
-        navigate(`/components${path}`);
       }}
     >
       {label}

@@ -24,7 +24,7 @@
 .menuContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 .menuContainer .label {
   color: var(--black-light-400);
@@ -37,7 +37,7 @@
 
 /* ---------- menu item---------- */
 .menuItem {
-  color: var(--black-light-200);
+  color: var(--black-light-100);
   transition: color 0.2s;
   padding: 4px 12px;
   margin-top: 4px;
@@ -52,11 +52,6 @@
 .menuItem.hover:hover {
   color: var(--primary-color);
   background: var(--primary-light-400);
-}
-
-/* ---------- sub menu ---------- */
-.subMenuItem {
-  margin-left: 20px;
 }
 
 /* ------------------------ media queries ------------------------ */

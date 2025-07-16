@@ -17,7 +17,7 @@ import {
 import styles from "./layout.module.css";
 
 export let COMPONENTS = {
-  general: {
+  General: {
     Button: {
       variants: [
         {
@@ -273,7 +273,7 @@ export let COMPONENTS = {
       },
     },
   },
-  layout: {
+  Layout: {
     TextMediaLayout: {
       variants: [
         {
@@ -389,7 +389,7 @@ export let COMPONENTS = {
       ],
     },
   },
-  navigation: {
+  Navigation: {
     NavBar: {
       variants: [
         {
@@ -418,7 +418,7 @@ export let COMPONENTS = {
       ],
     },
   },
-  template: {
+  Template: {
     Footer: {
       variants: [
         {

@@ -4,98 +4,98 @@
   margin-bottom: 50px;
 }
 .collectionsContaier .description {
-  margin-top: 8px;
+  margin-top: 10px;
+  margin-bottom: 50px;
   color: var(--black-light-300);
 }
-.collectionsCards {
-  display: grid;
-  grid-auto-flow: column; /* Fill rows first, then add new columns */
-  grid-auto-rows: auto;
-  grid-template-rows: repeat(10, auto); /* Limit to 15 rows per column */
-  row-gap: 25px;
-  column-gap: 50px;
-  margin-top: 50px;
-  width: 100%;
-  height: 100%;
-  justify-content: start;
+
+/* ---------- section ---------- */
+.section {
+  margin-top: 25px;
+}
+.section .label {
+  color: var(--black-light-100);
+  margin-bottom: 5px;
 }
 
-.collectionsCards .card {
-  /* box-shadow: 4px 3px 6px 1px #00000012; */
+/* ---------- menu ---------- */
+.menuContainer {
   display: grid;
-  /* place-items: center; */
-  height: 35px;
-  width: 250px;
-  cursor: pointer;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  transition: border 0.5s;
-  /* background-color: var(--white-color); */
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-.collectionsCards .card p {
-  transition: color 0.2s;
-  color: var(--black-light-200);
+.menuContainer .label {
+  color: var(--black-light-400);
+  margin-bottom: 10px;
 }
-
-.collectionsCards .card:hover p {
+.menuItems {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+.menuContainer .label.active {
   color: var(--primary-color);
 }
 
-.subCardWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  border-right: 0;
-  border-left: 0;
-  padding: 60px 0px 30px 0px;
-  /* position: relative; */
-  margin: 20px 0;
-}
-.subCardContainer {
+/* ---------- menu item---------- */
+.menuItem {
   display: grid;
-  gap: 15px;
-  color: var(--black-light-200);
-}
-.subCardTitle {
-  /* position: absolute;
-  top: 5px; */
-  color: var(--black-color);
-  background-color: var(--gray-light-400);
-  padding: 8px 20px;
+  place-items: center;
+  color: var(--black-light-100);
+  transition: color 0.2s;
+  padding: 4px 12px;
+  width: 200px;
+  height: 50px;
+  border: 0.5px solid var(--gray-light-300);
+  margin-top: 4px;
+  transition: all 0.3s;
   border-radius: 8px;
-  width: 215px;
-  text-align: center;
+  cursor: pointer;
+}
+.menuItem.active {
+  color: var(--primary-color);
+  background: var(--primary-light-400);
+}
+.menuItem.hover:hover {
+  box-shadow: var(--box-shadow-100);
+}
+.installationSection {
+  display: none;
+}
+.section > .label {
+  display: none;
 }
 
 /* ------------------------ media queries ------------------------ */
 /* --------------------------------------------------------------- */
 
-@media (max-width: 590px) {
-  .subCardContainer .card {
-    align-items: center;
-    justify-content: center;
+@media (max-width: 768px) {
+  .collectionsContaier .description {
+    margin-bottom: 25px;
   }
-  .collectionsCards {
-    justify-content: center;
-    margin-top: 20px;
+  .installationSection {
+    display: block;
   }
-  .subCardWrapper {
-    justify-content: center;
-  }
-  .subCardContainer {
-    justify-content: center;
+  .section > .label {
+    display: block;
   }
 }
-@media (max-width: 500px) {
+
+@media (max-width: 590px) {
   .collectionsContaier .description {
     margin-top: 10px;
   }
-  .collectionsCards {
-    gap: 20px;
+  .menuContainer .label {
+    text-align: center;
   }
-  .collectionsCards .card {
-    height: fit-content;
-    padding-top: 15px;
-    padding-bottom: 15px;
+  .menuItems {
+    justify-content: center;
+  }
+  .section .label {
+    text-align: center;
+  }
+  .installationSection {
+    display: block;
   }
 }
