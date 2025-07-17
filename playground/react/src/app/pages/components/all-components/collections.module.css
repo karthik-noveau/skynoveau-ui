@@ -21,7 +21,7 @@
 /* ---------- menu ---------- */
 .menuContainer {
   display: grid;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   margin-bottom: 20px;
 }
 .menuContainer .label {
@@ -58,7 +58,7 @@
   background: var(--primary-light-400);
 }
 .menuItem.hover:hover {
-  box-shadow: var(--box-shadow-100);
+  box-shadow: var(--box-shadow-300);
 }
 .installationSection {
   display: none;
