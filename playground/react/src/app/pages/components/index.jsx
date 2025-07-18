@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { BreadCrumb } from "@skynoveau-ui/core";
+import { useLocation, useParams } from "react-router-dom";
 
 import { ComponentCollections } from "./all-components";
 import { ComponentRenderer } from "./component-renderer";
@@ -13,10 +12,10 @@ import styles from "./components.module.css";
 
 export default function ComponentsSystem() {
   const location = useLocation();
-  const navigate = useNavigate();
+
   const { componentId } = useParams();
 
-  const { breadcrumbItems, ComponentToRender } = useMemo(() => {
+  const { ComponentToRender } = useMemo(() => {
     const path = location.pathname;
     let items = [];
     let component = null;
@@ -51,7 +50,7 @@ export default function ComponentsSystem() {
       <NavigationBar />
 
       {/* Breadcrumb */}
-      <div className={`wrapper ${styles.breadCrumbWrapper}`}>
+      {/* <div className={`wrapper ${styles.breadCrumbWrapper}`}>
         <div
           className={`container container-padding ${styles.breadCrumbContainer}`}
         >
@@ -62,7 +61,7 @@ export default function ComponentsSystem() {
             }}
           />
         </div>
-      </div>
+      </div> */}
 
       {/* Component Layout */}
       <div className="wrapper">

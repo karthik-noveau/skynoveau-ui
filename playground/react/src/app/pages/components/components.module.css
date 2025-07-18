@@ -2,6 +2,12 @@
   display: flex;
   gap: 60px;
   position: relative;
+  margin-top: 30px;
+}
+.rightComponent {
+  width: 100%;
+  padding-left: 200px;
+  padding-top: 25px;
 }
 
 .breadCrumbWrapper {
@@ -13,10 +19,6 @@
   background-color: var(--white-color);
   z-index: 99;
 }
-.rightComponent {
-  width: 100%;
-  padding-left: 200px;
-}
 
 /* ------------------------ media queries ------------------------ */
 /* --------------------------------------------------------------- */
@@ -25,6 +27,6 @@
     gap: 0px;
   }
   .rightComponent {
-    padding-left: 0px;
+    padding: 0px;
   }
 }

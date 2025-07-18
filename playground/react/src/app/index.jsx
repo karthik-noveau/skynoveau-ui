@@ -15,18 +15,27 @@ const ComponentPreview = LazyImport(
   0
 );
 
-
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/theme" element={<ThemePage />} />
+
         <Route path="/components" element={<ComponentsSystem />} />
         <Route path="/components/installation" element={<ComponentsSystem />} />
+
         <Route path="/components/:componentId" element={<ComponentsSystem />} />
         <Route
+          path="/components/:componentId/:componentTypeId"
+          element={<ComponentsSystem />}
+        />
+        <Route
           path="/components/:componentId/:variantId/preview"
+          element={<ComponentPreview />}
+        />
+        <Route
+          path="/components/:componentId/:componentTypeId/:variantId/preview"
           element={<ComponentPreview />}
         />
       </Routes>

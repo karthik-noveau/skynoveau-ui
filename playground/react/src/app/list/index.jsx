@@ -16,18 +16,16 @@ import {
 
 import styles from "./layout.module.css";
 
-export let COMPONENTS = {
+export let COMPONENTS_LIBRARY = {
   General: {
-    Button: {
+    ["button"]: {
       variants: [
         {
           label: "Button",
-          name: "Button",
           Component: (props) => <Button {...props}>Submit</Button>,
         },
         {
           label: "Ripple button",
-          name: "Button",
           Component: (props) => (
             <div className={`${styles.autoLayout}`}>
               <RippleButton {...props}>Ripple Effect</RippleButton>
@@ -39,7 +37,6 @@ export let COMPONENTS = {
         },
         {
           label: "Shine button",
-          name: "Button",
           Component: (props) => (
             <div className={`${styles.autoLayout}`}>
               <ShineButton {...props}>Shine Effect</ShineButton>
@@ -51,11 +48,10 @@ export let COMPONENTS = {
         },
       ],
     },
-    Loader: {
+    ["loader"]: {
       variants: [
         {
           label: "Loader",
-          name: "Loader",
           Component: () => (
             <div className={`${styles.autoLayout}`}>
               <Loader loading={true} size="base" />
@@ -67,7 +63,6 @@ export let COMPONENTS = {
         },
         {
           label: "Fullscreen loader",
-          name: "Loader",
           Component: () => {
             const [loaderType, setLoaderType] = useState(null);
             const LOADER_TYPES = {
@@ -109,11 +104,10 @@ export let COMPONENTS = {
         },
       ],
     },
-    Image: {
+    ["image"]: {
       variants: [
         {
           label: "Fixed width and height",
-          name: "Image",
           Component: () => (
             <Image
               width="400px"
@@ -125,7 +119,6 @@ export let COMPONENTS = {
         },
         {
           label: "Parent width and height",
-          name: "Image",
           Component: () => (
             <div style={{ width: "400px", height: "250px" }}>
               <Image
@@ -137,11 +130,10 @@ export let COMPONENTS = {
         },
       ],
     },
-    Text: {
+    ["text"]: {
       variants: [
         {
           label: "Text",
-          name: "Text",
           Component: () => (
             <>
               <Text>
@@ -194,78 +186,64 @@ export let COMPONENTS = {
         },
       ],
     },
-    InputFields: {
+    ["input fields"]: {
       variants: [
         {
           label: "Cards",
-          name: "Cards",
           Component: () => <></>,
         },
       ],
     },
-    Toast: {
+    ["alert"]: {
       subComponents: {
-        Toast: {
+        ["toast"]: {
           variants: [
             {
               label: "Cards",
-              name: "Cards",
               Component: () => <></>,
             },
           ],
         },
-        CompactToast: {
+        ["message"]: {
           variants: [
             {
               label: "Cards",
-              name: "Cards",
               Component: () => <></>,
             },
           ],
         },
       },
     },
-    Table: {
+    ["table"]: {
       variants: [
         {
           label: "Table",
-          name: "Table",
           Component: () => <></>,
         },
       ],
     },
-    Accordian: {
+    ["accordian"]: {
       variants: [
         {
           label: "Accordian",
-          name: "Accordian",
           Component: () => <></>,
         },
       ],
     },
-    Slider: {
-      variants: [
-        {
-          label: "Accordian",
-          name: "Accordian",
-          Component: () => <></>,
-        },
-      ],
+    ["slider"]: {
       subComponents: {
-        FullWidth: {
+        ["full width"]: {
           variants: [
             {
               label: "Full width",
-              name: "Full width",
               Component: () => <></>,
             },
           ],
         },
-        CustomWidth: {
+        ["custom width"]: {
           variants: [
             {
               label: "Custom width",
-              name: "Custom width",
               Component: () => <></>,
             },
           ],
@@ -274,11 +252,10 @@ export let COMPONENTS = {
     },
   },
   Layout: {
-    TextMediaLayout: {
+    ["text-media layout"]: {
       variants: [
         {
           label: "Right alignment",
-          name: "TextMediaLayout",
           Component: () => (
             <>
               <TextMediaLayout breakPoint="900" layout={["400px", "auto"]}>
@@ -321,7 +298,6 @@ export let COMPONENTS = {
         },
         {
           label: "Left alignment",
-          name: "TextMediaLayout",
           Component: () => (
             <>
               <TextMediaLayout breakPoint="900" layout={["auto", "400px"]}>
@@ -363,11 +339,10 @@ export let COMPONENTS = {
         },
       ],
     },
-    PageBanner: {
+    ["page banner"]: {
       variants: [
         {
           label: "Page banner",
-          name: "PageBanner",
           Component: () => (
             <div>
               <PageBanner
@@ -379,71 +354,74 @@ export let COMPONENTS = {
         },
       ],
     },
-    Cards: {
+    ["cards"]: {
       variants: [
         {
           label: "Cards",
-          name: "Cards",
           Component: () => <></>,
         },
       ],
     },
   },
   Navigation: {
-    NavBar: {
-      variants: [
-        {
-          label: "Cards",
-          name: "Cards",
-          Component: () => <></>,
+    ["navbar"]: {
+      subComponents: {
+        ["nav web"]: {
+          variants: [
+            {
+              label: "Cards",
+              Component: () => <></>,
+            },
+          ],
         },
-      ],
+        ["nav mobile"]: {
+          variants: [
+            {
+              label: "Cards",
+              Component: () => <></>,
+            },
+          ],
+        },
+      },
     },
-    Pagination: {
+    ["pagination"]: {
       variants: [
         {
           label: "Pagination",
-          name: "Pagination",
           Component: () => <></>,
         },
       ],
     },
-    Tabs: {
+    ["tabs"]: {
       variants: [
         {
           label: "Cards",
-          name: "Cards",
           Component: () => <></>,
         },
       ],
     },
   },
   Template: {
-    Footer: {
+    ["footer"]: {
       variants: [
         {
           label: "Cards",
-          name: "Cards",
           Component: () => <></>,
         },
       ],
     },
-    ContactForm: {
+    ["contact form"]: {
       variants: [
         {
           label: "Cards",
-          name: "Cards",
           Component: () => <></>,
         },
       ],
     },
   },
 };
-
 const flattenComponents = (components) => {
   const flat = {};
-
-  console.log("loop called");
 
   for (const category of Object.values(components)) {
     for (const [key, value] of Object.entries(category)) {
@@ -454,4 +432,4 @@ const flattenComponents = (components) => {
   return flat;
 };
 
-export const COMPONENTS_LIST = flattenComponents(COMPONENTS);
+export const COMPONENTS_LIST = flattenComponents(COMPONENTS_LIBRARY);

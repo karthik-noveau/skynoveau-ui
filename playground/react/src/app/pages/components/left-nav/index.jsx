@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { COMPONENTS } from "@list/index";
+import { COMPONENTS_LIBRARY } from "@list/index";
 
-import { getPath } from "../utils";
+import { getLabel, getPath } from "../utils";
 
 import styles from "./left.module.css";
 
@@ -31,17 +31,29 @@ export const LeftNav = () => {
             />
           </Menu>
 
-          {Object.keys(COMPONENTS).map((categoryName, index) => {
-            let components = COMPONENTS[categoryName];
+          {Object.keys(COMPONENTS_LIBRARY).map((categoryName, index) => {
+            let components = COMPONENTS_LIBRARY[categoryName];
 
             return (
               <Menu key={index} label={categoryName}>
                 {Object.keys(components).map((componentName) => {
+                  const { subComponents } = components[componentName];
+                  let subComponentName = null;
+
+                  if (subComponents) {
+                    subComponentName = Object.keys(subComponents)[0];
+                  }
                   return (
                     <React.Fragment key={componentName}>
                       <MenuItem
-                        label={componentName}
-                        path={`/${getPath(componentName)}`}
+                        label={getLabel(componentName)}
+                        path={`/${
+                          subComponentName
+                            ? `${getPath(componentName)}/${getPath(
+                                subComponentName
+                              )}`
+                            : getPath(componentName)
+                        }`}
                         isActive={
                           `/components/${getPath(componentName)}` ===
                           location.pathname
