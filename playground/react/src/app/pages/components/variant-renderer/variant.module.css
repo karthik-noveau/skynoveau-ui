@@ -32,7 +32,7 @@
 }
 
 .newTabIcon:hover {
-  background-color: var(--gray-light-400);
+  background-color: var(--gray-color-10000);
 }
 
 .description {

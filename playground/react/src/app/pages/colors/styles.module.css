@@ -1,0 +1,51 @@
+.baseTitle {
+  margin-bottom: 40px;
+}
+
+.wrapper {
+  display: grid;
+  gap: 10px;
+}
+.container {
+  margin-bottom: 35px;
+}
+
+.colorsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  column-gap: 10px;
+}
+
+.colorsContainer .box {
+  border-radius: 15px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  gap: 5px;
+}
+.rootBox {
+  margin-right: 25px;
+}
+.colorName {
+  text-align: center;
+  position: relative;
+  top: -15px;
+}
+.colorName.icon {
+  top: -2px;
+}
+
+/* ------------------------ media queries ------------------------ */
+/* --------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .rootBox {
+    margin-right: 0;
+  }
+  .container {
+    margin-bottom: 50px;
+  }
+}

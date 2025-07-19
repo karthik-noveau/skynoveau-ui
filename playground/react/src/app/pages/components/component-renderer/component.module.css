@@ -3,7 +3,7 @@
 }
 .componentRenderContainer .description {
   margin-top: 5px;
-  color: var(--black-light-200);
+  color: var(--black-color-200);
 }
 
 .rootComopnentTitle {
@@ -64,7 +64,7 @@
   flex-wrap: wrap;
   padding-bottom: 30px;
   margin-bottom: 25px;
-  border-bottom: 1px solid var(--gray-light-300);
+  border-bottom: 1px solid var(--gray-color-100);
 }
 .subCardsContainer .card {
   width: 200px;
@@ -74,13 +74,13 @@
   border-radius: 8px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
-  border: 1px solid var(--gray-light-300);
+  border: 1px solid var(--gray-color-200);
 }
 .subCardsContainer .card:hover,
 .subCardsContainer .card.active {
   border: 1px solid var(--primary-color);
-  background-color: var(--primary-light-400);
-  color: var(--primary-dark-100);
+  background-color: var(--primary-color-100);
+  color: var(--primary-color);
 }
 
 /* ---------- not found ---------- */

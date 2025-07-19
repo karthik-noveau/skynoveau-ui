@@ -1,7 +1,7 @@
 .leftComponent {
   width: 200px;
   height: calc(100vh - 150px);
-  border-right: 0.5px solid var(--white-light-200);
+  border-right: 0.5px solid var(--white-color-200);
   overflow: auto;
   position: fixed;
   padding-right: 20px;
@@ -16,7 +16,7 @@
   margin-bottom: 25px;
 }
 .section .label {
-  color: var(--black-light-100);
+  color: var(--black-color-100);
   margin-bottom: 5px;
 }
 
@@ -27,7 +27,7 @@
   margin-bottom: 20px;
 }
 .menuContainer .label {
-  color: var(--black-light-400);
+  color: var(--gray-color-500);
   margin-bottom: 5px;
   padding: 4px 12px;
 }
@@ -37,7 +37,7 @@
 
 /* ---------- menu item---------- */
 .menuItem {
-  color: var(--black-light-100);
+  color: var(--black-color-100);
   transition: color 0.2s;
   padding: 4px 12px;
   margin-top: 4px;
@@ -47,11 +47,11 @@
 }
 .menuItem.active {
   color: var(--primary-color);
-  background: var(--primary-light-400);
+  background: var(--primary-color-100);
 }
 .menuItem.hover:hover {
   color: var(--primary-color);
-  background: var(--primary-light-400);
+  background: var(--primary-color-100);
 }
 
 /* ------------------------ media queries ------------------------ */

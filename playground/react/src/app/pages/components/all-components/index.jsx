@@ -30,6 +30,16 @@ export const ComponentCollections = () => {
           </Menu>
         </Section>
 
+        <Section label="Colors" className={`${styles.installationSection}`}>
+          <Menu path="/components/colors">
+            <MenuItem
+              label="System color"
+              path="/colors"
+              isActive={location.pathname === `/components/colors`}
+            />
+          </Menu>
+        </Section>
+
         <Section label="Components">
           {Object.keys(COMPONENTS_LIBRARY).map((categoryName, index) => {
             let components = COMPONENTS_LIBRARY[categoryName];

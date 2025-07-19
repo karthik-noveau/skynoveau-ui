@@ -29,7 +29,7 @@
 
 .title,
 .description {
-  color: var(--white-dark-200);
+  color: var(--white-color-500);
   text-align: center;
   color: var(--white-color);
 }

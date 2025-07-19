@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { Colors } from "@pages/colors";
 
 import { ComponentCollections } from "./all-components";
 import { ComponentRenderer } from "./component-renderer";
@@ -26,6 +27,12 @@ export default function ComponentsSystem() {
         { label: "Installation", path: path, active: true },
       ];
       component = <Installation />;
+    } else if (path === "/components/colors") {
+      items = [
+        { label: "Home", path: "/" },
+        { label: "Components", path: path, active: true },
+      ];
+      component = <Colors />;
     } else if (path === "/components") {
       items = [
         { label: "Home", path: "/" },

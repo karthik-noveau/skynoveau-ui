@@ -1,7 +1,7 @@
 .copyWrapper {
   display: flex;
   align-items: center;
-  color: var(--black-light-100);
+  color: var(--black-color-100);
   background-color: #e8e8e8;
   border-radius: 5px;
   padding: 2px 10px;

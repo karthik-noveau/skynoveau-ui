@@ -32,12 +32,12 @@
 .infoContainer .title {
   text-align: center;
   font-family: var(--text-font-family);
-  color: var(--black-light-100);
+  color: var(--black-color-100);
 }
 .description {
   text-align: center;
   margin-top: 20px;
-  color: var(--black-light-100);
+  color: var(--black-color-100);
 }
 .infoContainer h1 span {
   background: rgb(217, 96, 219);
@@ -103,7 +103,7 @@
 .landingTitle {
   text-align: center;
   width: 90%;
-  color: var(--black-light-100);
+  color: var(--black-color-100);
 }
 .landingDescription {
   margin-top: 5px;

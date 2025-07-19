@@ -29,6 +29,11 @@ export const LeftNav = () => {
               path=" "
               isActive={location.pathname === `/components`}
             />
+            <MenuItem
+              label="Colors"
+              path="/colors"
+              isActive={location.pathname === `/components/colors`}
+            />
           </Menu>
 
           {Object.keys(COMPONENTS_LIBRARY).map((categoryName, index) => {

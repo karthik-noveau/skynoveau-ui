@@ -12,10 +12,10 @@
 
 .label {
   cursor: pointer;
-  color: var(--black-light-200);
+  color: var(--black-color-200);
 }
 .label.active {
-  color: var(--black-light-100);
+  color: var(--black-color-100);
 }
 .label:hover {
   color: var(--black-color);

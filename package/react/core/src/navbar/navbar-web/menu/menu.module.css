@@ -6,7 +6,7 @@
 /* ------------ menus ----------- */
 .menuItem {
   width: max-content;
-  color: var(--black-light-200);
+  color: var(--black-color-200);
   text-align: center;
   padding: 1rem;
   transition: background 0.5s;

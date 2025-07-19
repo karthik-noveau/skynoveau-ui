@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { LazyImport } from "@skynoveau-ui/core";
 
 import "./styles.css";
-import "./theme.css";
 
 // --------- Lazy-loaded components ----------
 const HomePage = LazyImport(() => import("./pages/home"), 0);
@@ -24,6 +23,7 @@ export default function App() {
 
         <Route path="/components" element={<ComponentsSystem />} />
         <Route path="/components/installation" element={<ComponentsSystem />} />
+        <Route path="/components/colors" element={<ComponentsSystem />} />
 
         <Route path="/components/:componentId" element={<ComponentsSystem />} />
         <Route
