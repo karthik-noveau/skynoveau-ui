@@ -19,13 +19,13 @@
 
 .colorsContainer .box {
   border-radius: 15px;
-  width: 100px;
-  height: 100px;
+  width: 85px;
+  height: 85px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   cursor: pointer;
-  gap: 5px;
+  gap: 1px;
 }
 .rootBox {
   margin-right: 25px;
@@ -33,7 +33,7 @@
 .colorName {
   text-align: center;
   position: relative;
-  top: -15px;
+  top: -7px;
 }
 .colorName.icon {
   top: -2px;

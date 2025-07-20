@@ -3,7 +3,7 @@ import { CgLock } from "react-icons/cg";
 
 import styles from "./styles.module.css";
 
-const COLORS = ["gray", "black", "red", "golden", "primary", "secondary"];
+const COLORS = ["gray", "black", "primary", "secondary", "golden", "red"];
 
 export const Colors = () => {
   return (
@@ -15,6 +15,9 @@ export const Colors = () => {
       {COLORS.map((baseColor, index) => {
         const COLOR_VARIANTS = [
           `--${baseColor}-color`,
+          `--${baseColor}-color-10`,
+          `--${baseColor}-color-25`,
+          `--${baseColor}-color-50`,
           `--${baseColor}-color-100`,
           `--${baseColor}-color-200`,
           `--${baseColor}-color-300`,
@@ -23,6 +26,7 @@ export const Colors = () => {
           `--${baseColor}-color-600`,
           `--${baseColor}-color-700`,
           `--${baseColor}-color-800`,
+          `--${baseColor}-color-900`,
         ];
 
         return (
