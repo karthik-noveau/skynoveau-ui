@@ -59,4 +59,10 @@ for (const playground of PLAYGROUND_LIST) {
 
     console.log(`\n`);
   }
+
+  fs.writeFileSync(".pre-build-complete", new Date().toISOString());
+  console.log("\n.pre-build-complete written");
+  console.log(
+    "***************** Pre-build checks completed *****************\n"
+  );
 }
