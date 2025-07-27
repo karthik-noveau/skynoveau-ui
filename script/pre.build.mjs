@@ -1,88 +1,62 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import { LIBRARY_LIST, PLAYGROUND_LIST } from "./constant.js";
+import { PLAYGROUND_LIST } from "./constant.js";
 
-const repoRoot = execSync("git rev-parse --show-toplevel", {
-  encoding: "utf-8",
-}).trim();
-process.chdir(repoRoot);
+function updatePackageVersion(label, pkgName, pkgJsonPath) {
+  const latestVersion = execSync(`npm show ${pkgName} version`)
+    .toString()
+    .trim();
 
-let failed = false;
+  const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, "utf8"));
 
-for (const { name, rootPath, allowVersionChange } of LIBRARY_LIST) {
-  try {
-    console.log(`\n📦 Pre building... in [ ${name} ]`);
+  let updated = false;
+  if (pkgJson.dependencies?.[pkgName]) {
+    pkgJson.dependencies[pkgName] = latestVersion;
+    updated = true;
+  }
+  if (pkgJson.devDependencies?.[pkgName]) {
+    pkgJson.devDependencies[pkgName] = latestVersion;
+    updated = true;
+  }
 
-    const pkgPath = path.join(rootPath, "package.json");
-    const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
-
-    // ✅ 1. Update exports
-    const desiredExports = {
-      ".": {
-        import: "./dist/index.js",
-        types: "./dist/index.d.ts",
-      },
-    };
-
-    if (JSON.stringify(pkg.exports) !== JSON.stringify(desiredExports)) {
-      pkg.exports = desiredExports;
-      fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-      console.log(`✅ Updated exports in ${name} to 'dist/index.js'`);
-    } else {
-      console.log(`✅ Exports already set to 'dist/index.js'`);
-    }
-
-    // ✅ 2. Get latest published version from npm
-    let latestVersion = "";
-    try {
-      latestVersion = execSync(`npm view ${name} version`, {
-        encoding: "utf-8",
-        stdio: ["pipe", "pipe", "ignore"], // ⛔️ suppress stderr (where npm notices are printed)
-      }).trim();
-    } catch {
-      console.warn(`⚠️  Could not fetch latest version for ${name}`);
-      failed = true;
-      continue;
-    }
-
-    // ✅ 3. Update latest dependency version of library in playground
-    if (allowVersionChange) {
-      for (const { name: playground_name, rootPath } of PLAYGROUND_LIST) {
-        const pkgPath = path.join(rootPath, "package.json");
-        const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
-        const prevVersion = pkg.dependencies?.[name] || "(not found)";
-
-        pkg.dependencies = {
-          ...(pkg.dependencies || {}),
-          [name]: latestVersion,
-        };
-
-        fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-        console.log(
-          `✅ Latest dependency version updated in ${playground_name}`
-        );
-        console.log(`     ↪ Previous: ${prevVersion}`);
-        console.log(`     ↪ Updated : ${latestVersion}`);
-      }
-    } else {
-      console.log(`ℹ️  Latest dependency version update skipped`);
-    }
-  } catch (err) {
-    console.error(`\n⚠️  Error processing ${name}: ${err.message}`);
-    failed = true;
+  if (updated) {
+    fs.writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 2));
+    console.log(`${label} - ${pkgName}`);
+    console.log(`   - version: ${latestVersion}`);
   }
 }
 
-if (failed) {
-  console.error(
-    "\n***************** Pre-build checks failed *****************\n"
-  );
-  process.exit(1);
-} else {
-  fs.writeFileSync(".pre-build-complete", new Date().toISOString());
-  console.log("\n.pre-build-complete written");
-  console.log(
-    "\n***************** Pre-build checks completed *****************\n"
-  );
+function updateExportFields(label, pkgName, pkgJsonPath) {
+  const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, "utf8"));
+
+  pkgJson.exports = {
+    ".": {
+      import: "./index.js",
+      require: "./index.js",
+    },
+  };
+
+  fs.writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 2));
+
+  console.log(`${label} - ${pkgName}`);
+  console.log(`   - export: updated`);
+}
+
+for (const playground of PLAYGROUND_LIST) {
+  const playgroundPkgPath = path.join(playground.rootPath, "package.json");
+
+  for (const pkg of playground.localPkgList) {
+    // 1. Update in playground's package.json
+    updatePackageVersion("Playground", pkg.name, playgroundPkgPath);
+
+    // 2. Update in library's package.json
+    const pkgJsonPath = path.join(pkg.rootPath, "package.json");
+    updatePackageVersion("Package", pkg.name, pkgJsonPath);
+
+    // 3. Update export field in library's package.json
+    updateExportFields("Package", pkg.name, pkgJsonPath);
+
+    console.log(`\n`);
+  }
 }

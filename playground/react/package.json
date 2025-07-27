@@ -9,7 +9,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@skynoveau-ui/core": "1.0.23",
+    "@skynoveau-ui/core": "1.0.24",
     "antd": "^5.26.2",
     "copy-to-clipboard": "^3.3.3",
     "react": "^19.1.0",
@@ -37,11 +37,5 @@
     "typescript-eslint": "^8.35.0",
     "vite": "^6.3.5",
     "vite-plugin-style-import": "^2.0.0"
-  },
-  "exports": {
-    ".": {
-      "import": "./src/index.ts",
-      "types": "./dist/index.d.ts"
-    }
   }
 }

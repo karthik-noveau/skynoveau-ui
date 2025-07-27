@@ -1,15 +1,17 @@
-export const LIBRARY_LIST = [
-  {
-    name: "@skynoveau-ui/core",
-    rootPath: "./package/react/core",
-    allowVersionChange: true,
-  },
-];
+export const LIBRARY_LIST = {
+  react: [
+    {
+      name: "@skynoveau-ui/core",
+      rootPath: "./package/react/core",
+      pkgList: ["@skynoveau-ui/utils"],
+    },
+  ],
+};
 
 export const PLAYGROUND_LIST = [
   {
-    name: "playground/react",
+    name: "react",
     rootPath: "./playground/react",
-    localPkgList: ["@skynoveau-ui/core", "@skynoveau-ui/utils"],
+    localPkgList: LIBRARY_LIST["react"],
   },
 ];

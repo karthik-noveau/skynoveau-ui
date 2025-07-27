@@ -1,5 +1,4 @@
 import { execSync } from "child_process";
-import { LIBRARY_LIST } from "./constant.js";
 import { PLAYGROUND_LIST } from "./constant.js";
 
 const runInstall = (label, rootPath) => {
@@ -10,23 +9,29 @@ const runInstall = (label, rootPath) => {
       stdio: "inherit",
       shell: true,
     });
-    console.log(`✅ Installed: ${label}\n`);
+    console.log(`✅ Installed : ${label}\n`);
   } catch (err) {
-    console.error(`❌ Failed to install ${label} at ${rootPath}`);
+    console.error(`❌ Failed to install : ${label}\n`);
     console.error(err.message);
     process.exit(1);
   }
 };
 
+execSync(`npm run clean:all`, {
+  stdio: "inherit",
+  shell: true,
+});
+
 // Step 1: Install at root
 runInstall("root", ".");
 
-// Step 2: Install for playground(s)
-for (const { name, rootPath } of PLAYGROUND_LIST) {
-  runInstall(name, rootPath);
-}
+// Step 1: Install playground and its local packages
+for (const playground of PLAYGROUND_LIST) {
+  const { name, rootPath, localPkgList } = playground;
 
-// Step 3: Install for libraries
-for (const { name, rootPath } of LIBRARY_LIST) {
-  runInstall(name, rootPath);
+  runInstall(`playground/${name}`, rootPath);
+
+  for (const { name: pkgName, rootPath: pkgPath } of localPkgList) {
+    runInstall(pkgName, pkgPath);
+  }
 }

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { CgLock } from "react-icons/cg";
 
 import styles from "./styles.module.css";
 

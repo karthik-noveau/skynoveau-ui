@@ -4,15 +4,16 @@ import { execSync } from "child_process";
 import { LIBRARY_LIST } from "./constant.js";
 
 // Step 0: Parse target
-const target = process.argv[2]; // e.g., "core"
+const targetType = process.argv[2]; // e.g., "react"
+const targetPkg = process.argv[3]; // e.g., "@skynoveau-ui/core"
 
-if (!target) {
+if (!(targetType && targetPkg)) {
   console.error("❌ Invalid args");
-  console.error("Usage : npm run publish <library_name> \n");
+  console.error("Usage : npm run publish <library_type>  <library_name> \n");
   process.exit(1);
 }
 
-const lib = LIBRARY_LIST.find(({ name }) => name === target);
+const lib = LIBRARY_LIST[targetType].find(({ name }) => name === targetPkg);
 
 if (!lib) {
   console.error(`❌ Package not found in LIBRARY_LIST.`);
@@ -75,9 +76,9 @@ try {
   if (JSON.stringify(pkg.exports) !== JSON.stringify(expectedExports)) {
     pkg.exports = expectedExports;
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-    console.log("✅ Updated `exports` to point to ./dist/");
+    console.log("✅ Export updated");
   } else {
-    console.log("✅ `exports` field already correct");
+    console.log("✅ Exports already updated");
   }
 
   // ✅ 3. Validate version bump
@@ -99,12 +100,12 @@ try {
     console.log("ℹ️  Package not found on npm. Skipping version check.");
   }
 } catch (err) {
-  console.error(`❌ Failed reading/validating package.json: ${err.message}`);
+  console.error(`Failed reading/validating package.json: ${err.message}`);
   failed = true;
 }
 
 if (failed) {
-  console.error("\n❌ Pre-publish checks failed.\n");
+  console.error("\nPre-publish checks failed.\n");
   process.exit(1);
 }
 
@@ -118,13 +119,13 @@ try {
   });
 
   if (!fs.existsSync(distPath)) {
-    console.error("❌ Build failed. dist/ folder missing.");
+    console.error("Build failed. dist/ folder missing.");
     process.exit(1);
   } else {
     console.log("✅ Build completed, dist/ folder found.");
   }
 } catch (err) {
-  console.error(`❌ Build failed: ${err.message}`);
+  console.error(`Build failed: ${err.message}`);
   process.exit(1);
 }
 
@@ -139,6 +140,6 @@ try {
 
   console.log(`\n🎉 ${name} successfully published from ${rootPath} 🎉\n`);
 } catch (err) {
-  console.error(`\n❌ Failed to publish ${name}: ${err.message}\n`);
+  console.error(`\nFailed to publish ${name}: ${err.message}\n`);
   process.exit(1);
 }

@@ -1,9 +1,8 @@
 import { execSync } from "child_process";
-import { PLAYGROUND_LIST } from "./constant.js";
 import path from "path";
+import { PLAYGROUND_LIST } from "./constant.js";
 
 const args = process.argv.slice(2);
-
 let target = null;
 let isWatchMode = false;
 
@@ -15,12 +14,11 @@ if (args.length === 1) {
 } else {
   console.error("\n❌ Invalid arguments");
   console.error("Usage:");
-  console.error("  npm run dev playground/react");
-  console.error("  npm run dev playground/react watch\n");
+  console.error("  npm run playground react");
+  console.error("  npm run playground react watch\n");
   process.exit(1);
 }
 
-// Find matching playground
 const playground = PLAYGROUND_LIST.find(({ name }) => name === target);
 
 if (!playground) {
@@ -28,13 +26,25 @@ if (!playground) {
   process.exit(1);
 }
 
-const { name, rootPath } = playground;
+const { rootPath, localPkgList } = playground;
+
 console.log(
-  `\n🚀 Starting dev for ${target} ${isWatchMode ? "( watch mode )" : ""}`
+  `\n🚀 Starting playground for ${target} ${isWatchMode ? "(watch mode)" : ""}`
 );
 
-if (isWatchMode) {
-  // ✅ Step 0: Run dev.setup.mjs first
+if (!isWatchMode) {
+  try {
+    execSync("npm run dev", {
+      cwd: rootPath,
+      stdio: "inherit",
+      shell: true,
+    });
+  } catch (err) {
+    console.error(`❌ Failed to run dev in ${rootPath}`);
+    process.exit(1);
+  }
+} else {
+  // Run dev.setup.mjs
   try {
     execSync(`node script/dev.setup.mjs ${target}`, {
       stdio: "inherit",
@@ -46,27 +56,25 @@ if (isWatchMode) {
     process.exit(1);
   }
 
-  // ✅ Step 1: Run watchers + playground concurrently
+  // Create watcher and playground dev tasks
   const concurrently = await import("concurrently");
   const commands = [];
 
-  const pkg_name = name.split("/")[1]; // e.g., 'react'
-  const libRootPath = `./package/${pkg_name}/core`;
-  const libPath = path.resolve(libRootPath);
+  for (const { name: pkgName, rootPath } of localPkgList) {
+    const absolutePath = path.resolve(rootPath);
+    const buildCmd = `npm --prefix ${rootPath} run build && echo '✅ ${pkgName} build done'`;
+    const watchCmd = `echo '🔎 Watching ${pkgName}...' && chokidar "${absolutePath}/src/**/*" "${absolutePath}/package.json" --initial --verbose --debounce 500 -c "${buildCmd}"`;
 
-  const build_cmd = `npm --prefix ${libRootPath} run build && echo '✅ build completed'`;
-
-  const watch_cmd = `echo '🔎 Watching [package/${pkg_name}]...' && chokidar "${libPath}/src/**/*" "${libPath}/package.json" --initial --verbose --debounce 500 -c "${build_cmd}"`;
-
-  commands.push({
-    name: `package-${pkg_name}`,
-    command: watch_cmd,
-    cwd: ".",
-    prefixColor: "cyan",
-  });
+    commands.push({
+      name: `watch-${pkgName}`,
+      command: watchCmd,
+      cwd: ".",
+      prefixColor: "cyan",
+    });
+  }
 
   commands.push({
-    name: `playground-${pkg_name}`,
+    name: `dev-${target}`,
     command: "npm run dev",
     cwd: rootPath,
     prefixColor: "green",
@@ -77,18 +85,7 @@ if (isWatchMode) {
       prefix: "name",
     });
   } catch (err) {
-    console.error("❌ Failed while running watch mode:", err.message);
-    process.exit(1);
-  }
-} else {
-  try {
-    execSync("npm run dev", {
-      cwd: rootPath,
-      stdio: "inherit",
-      shell: true,
-    });
-  } catch (err) {
-    console.error(`❌ Failed to run dev in ${rootPath}`);
+    console.error("❌ Failed in watch mode:", err.message);
     process.exit(1);
   }
 }
