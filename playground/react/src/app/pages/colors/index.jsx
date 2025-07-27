@@ -121,16 +121,10 @@ const ColorBox = ({ cssVar, index }) => {
         style={{ cursor: "pointer", color: textColor }}
         title="Click to copy variable"
       >
-        <div
-          className={`text-18 ${styles.colorName} ${styles.icon}`}
-          style={{ cursor: "pointer", color: textColor }}
-        >
-          {index === 0 && <CgLock />}
-        </div>
         {copiedVar ? "Copied!" : `${index === 0 ? label[2] : label[4]}`}
       </p>
       <p
-        className={`text-13 ${styles.colorName}`}
+        className={`text-12 ${styles.colorName}`}
         onClick={() => copyToClipboard(colorCode)}
         style={{ cursor: "pointer", color: textColor }}
         title="Click to copy color code"

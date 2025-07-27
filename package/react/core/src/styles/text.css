@@ -5,6 +5,10 @@
 
   --text-font-weight: 300;
 
+  --text-2: 0.2rem;
+  --text-4: 0.4rem;
+  --text-6: 0.6rem;
+  --text-8: 0.8rem;
   --text-10: 1rem;
   --text-12: 1.2rem;
   --text-13: 1.3rem;
@@ -55,6 +59,26 @@ body {
   letter-spacing: var(--letter-spacing);
 }
 
+.text-2 {
+  --font-size: var(--text-2);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
+.text-4 {
+  --font-size: var(--text-4);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
+.text-6 {
+  --font-size: var(--text-6);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
+.text-8 {
+  --font-size: var(--text-8);
+  --line-height: var(--text-line-height);
+  --letter-spacing: var(--text-letter-spacing);
+}
 .text-10 {
   --font-size: var(--text-10);
   --line-height: var(--text-line-height);
