@@ -6,10 +6,10 @@
   "scripts": {
     "lint": "eslint . --ext .js,.jsx --fix",
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@skynoveau-ui/core": "1.0.24",
     "antd": "^5.26.2",
     "copy-to-clipboard": "^3.3.3",
     "react": "^19.1.0",
