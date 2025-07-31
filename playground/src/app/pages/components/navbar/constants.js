@@ -12,11 +12,11 @@ export const NAV_CONFIG = {
       label: "Products",
       dropdown: [
         {
-          label: "Theme generator",
+          label: "UI Paletton",
           url: "https://zrwy2w.csb.app",
         },
-        { label: "Pix Studio", url: "https://pix-studio.vercel.app" },
-        { label: "Mail Pilot", url: "https://editor.skynoveau.in" },
+        { label: "Pixup", url: "https://pix-studio.vercel.app" },
+        // { label: "Mail Pilot", url: "https://editor.skynoveau.in" },
         { label: "Blog Editor", url: "https://editor.skynoveau.in" },
         { label: "Web Spliter", url: "https://webspliter.skynoveau.in" },
       ],
