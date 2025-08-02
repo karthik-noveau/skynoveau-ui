@@ -23,7 +23,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
       type="button"
       className={`text-14 weight-300 
         ${disable ? styles.disabled : ""} 
-        button ${className} ${styles.buttonContainer}`}
+         ${className} ${styles.buttonContainer} button`}
       onClick={(e) => {
         if (disable || loading) return;
         onClick?.(e);
