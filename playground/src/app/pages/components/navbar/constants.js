@@ -13,10 +13,9 @@ export const NAV_CONFIG = {
       dropdown: [
         {
           label: "UI Paletton",
-          url: "https://zrwy2w.csb.app",
+          url: "https://ui-paletton.skynoveau.in",
         },
         { label: "Pixup", url: "https://pix-studio.vercel.app" },
-        // { label: "Mail Pilot", url: "https://editor.skynoveau.in" },
         { label: "Blog Editor", url: "https://editor.skynoveau.in" },
         { label: "Web Spliter", url: "https://webspliter.skynoveau.in" },
       ],
