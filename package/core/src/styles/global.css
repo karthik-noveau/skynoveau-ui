@@ -1,13 +1,3 @@
-:root {
-  /* ---------- screen width ---------- */
-  --root-mobile-width: calc(100% - 30px);
-  --root-web-width: 90%;
-  --root-web-maxwidth: 1600px;
-
-  --wrapper-space: 60px;
-  --container-space: 30px;
-}
-
 /* ---------- ellipsis ---------- */
 .ellipsis {
   display: -webkit-box;

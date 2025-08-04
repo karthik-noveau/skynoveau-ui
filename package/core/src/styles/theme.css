@@ -9,8 +9,13 @@ html {
   --text-font-family: "Poppins", sans-serif;
   --default-font-family: "Poppins", sans-serif;
 
-  --web-width: 90%;
-  --web-maxwidth: calc(100% - 40px);
+  /* ---------- screen width ---------- */
+  --root-mobile-width: calc(100% - 30px);
+  --root-web-width: 90%;
+  --root-web-maxwidth: 1600px;
+
+  --wrapper-space: 60px;
+  --container-space: 30px;
 }
 
 :root {
@@ -18,29 +23,31 @@ html {
   --primary-color: #256aff;
   --primary-color-10: #fbfcff;
   --primary-color-25: #f6f9ff;
-  --primary-color-50: #f4f8ff;
+  --primary-color-50: #f0f5ff;
   --primary-color-100: #dee9ff;
   --primary-color-200: #c9daff;
   --primary-color-300: #a8c3ff;
   --primary-color-400: #87adff;
-  --primary-color-500: #256aff;
-  --primary-color-600: #215fe6;
+  --primary-color-500: #6697ff;
+  --primary-color-600: #2263ed;
   --primary-color-700: #1e55cc;
   --primary-color-800: #1a4ab3;
-  --primary-color-900: #164099;
+  --primary-color-900: #133580;
+  --primary-color-950: #0b204d;
 
   /* ---------- secondary ---------- */
   --secondary-color: #671602;
   --secondary-color-10: #fcfafa;
   --secondary-color-25: #f9f6f5;
-  --secondary-color-50: #f7f3f2;
+  --secondary-color-50: #f4efed;
   --secondary-color-100: #e8dcd9;
   --secondary-color-200: #d9c5c0;
   --secondary-color-300: #c2a29a;
   --secondary-color-400: #ab7f74;
-  --secondary-color-500: #671602;
-  --secondary-color-600: #5d1402;
+  --secondary-color-500: #955c4e;
+  --secondary-color-600: #601402;
   --secondary-color-700: #521202;
   --secondary-color-800: #480f01;
-  --secondary-color-900: #3e0d01;
+  --secondary-color-900: #340b01;
+  --secondary-color-950: #1f0701;
 }
