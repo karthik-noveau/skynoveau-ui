@@ -32,12 +32,12 @@
 .infoContainer .title {
   text-align: center;
   font-family: var(--text-font-family);
-  color: var(--black-color-100);
+  color: var(--black-color-400);
 }
 .description {
   text-align: center;
   margin-top: 20px;
-  color: var(--black-color-100);
+  color: var(--black-color-300);
 }
 .infoContainer h1 span {
   background: rgb(217, 96, 219);
@@ -66,6 +66,7 @@
   margin-top: 50px;
   padding: 8px 35px;
   border-radius: 25px;
+  color: var(--white-color);
 }
 
 /* ---------- tech ---------- */
@@ -103,12 +104,13 @@
 .landingTitle {
   text-align: center;
   width: 90%;
-  color: var(--black-color-100);
+  color: var(--black-color-600);
 }
 .landingDescription {
   margin-top: 5px;
   text-align: center;
   width: 90%;
+  color: var(--black-color-300);
 }
 
 /* ---------- footer ---------- */

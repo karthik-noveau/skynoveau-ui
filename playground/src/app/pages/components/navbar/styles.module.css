@@ -6,14 +6,7 @@
 }
 
 .icon {
-  color: var(--black-tint-color);
-  border-radius: 6px;
   padding: 7px;
-  transition: all 0.2s;
-  cursor: pointer;
-}
-.icon:hover {
-  background-color: var(--white-thin-color);
 }
 
 .githubContainer {
@@ -24,4 +17,9 @@
   color: var(--white-color);
   padding: 0px 15px 0px 10px;
   margin-left: 10px;
+  transition: all 0.3s;
+}
+
+.githubContainer:hover {
+  color: var(--white-color-300);
 }

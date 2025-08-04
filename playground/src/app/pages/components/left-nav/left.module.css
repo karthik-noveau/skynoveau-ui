@@ -16,7 +16,7 @@
   margin-bottom: 25px;
 }
 .section .label {
-  color: var(--black-color-100);
+  color: var(--black-color-400);
   margin-bottom: 5px;
 }
 
@@ -37,7 +37,7 @@
 
 /* ---------- menu item---------- */
 .menuItem {
-  color: var(--black-color-100);
+  color: var(--black-color-200);
   transition: color 0.2s;
   padding: 4px 12px;
   margin-top: 4px;
