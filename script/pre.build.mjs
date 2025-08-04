@@ -24,6 +24,11 @@ function updatePackageVersion(label, pkgName, pkgJsonPath) {
     fs.writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 2));
     console.log(`${label} - ${pkgName}`);
     console.log(`   - version: ${latestVersion}`);
+
+    // Run npm install to update package-lock.json
+    const dir = path.dirname(pkgJsonPath);
+    execSync("npm install", { cwd: dir, stdio: "inherit" });
+    console.log(`   - package-lock.json updated`);
   }
 }
 
