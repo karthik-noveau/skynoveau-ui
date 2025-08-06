@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "playground": "node script/dev.mjs",
+    "dev": "node script/dev.mjs",
     "prebuild": "node script/pre.build.mjs",
     "publish": "node script/publish.mjs",
     "clean:all": "node script/clean.mjs",

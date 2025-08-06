@@ -10,7 +10,7 @@ export const LIBRARY_LIST = {
 
 export const PLAYGROUND_LIST = [
   {
-    name: "dev",
+    name: "playground",
     rootPath: "./playground",
     localPkgList: LIBRARY_LIST["react"],
   },
