@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Colors } from "@pages/colors";
+import { Shadows } from "@pages/Shadows";
 
 import { ComponentCollections } from "./all-components";
 import { ComponentRenderer } from "./component-renderer";
@@ -10,7 +11,6 @@ import { NavigationBar } from "./navbar";
 import { getLabel } from "./utils";
 
 import styles from "./components.module.css";
-import { Shadows } from "@pages/Shadows";
 
 export default function ComponentsSystem() {
   const location = useLocation();
