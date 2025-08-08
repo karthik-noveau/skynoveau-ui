@@ -2,7 +2,17 @@ import { useEffect, useRef, useState } from "react";
 
 import styles from "./styles.module.css";
 
-const COLORS = ["gray", "black", "primary", "secondary", "golden", "red"];
+const STATIC_COLORS = [
+  "white",
+  "gray",
+  "black",
+  "success",
+  "error",
+  "warning",
+  "info",
+];
+
+const DYNAMIC_COLORS = [];
 
 export const Colors = () => {
   return (
@@ -11,35 +21,62 @@ export const Colors = () => {
         System Colors
       </h3>
 
-      {COLORS.map((baseColor, index) => {
-        const COLOR_VARIANTS = [
-          `--${baseColor}-color`,
-          `--${baseColor}-color-10`,
-          `--${baseColor}-color-25`,
-          `--${baseColor}-color-50`,
-          `--${baseColor}-color-100`,
-          `--${baseColor}-color-200`,
-          `--${baseColor}-color-300`,
-          `--${baseColor}-color-400`,
-          `--${baseColor}-color-500`,
-          `--${baseColor}-color-600`,
-          `--${baseColor}-color-700`,
-          `--${baseColor}-color-800`,
-          `--${baseColor}-color-900`,
-        ];
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          {DYNAMIC_COLORS.map((baseColor, index) => {
+            const DYNAMIC_COLOR_VARIANTS = [
+              `--${baseColor}-color`,
+              `--${baseColor}-color-25`,
+              `--${baseColor}-color-50`,
+              `--${baseColor}-color-100`,
+              `--${baseColor}-color-200`,
+              `--${baseColor}-color-300`,
+              `--${baseColor}-color-400`,
+              `--${baseColor}-color-500`,
+              `--${baseColor}-color-600`,
+              `--${baseColor}-color-700`,
+              `--${baseColor}-color-800`,
+              `--${baseColor}-color-900`,
+            ];
 
-        return (
-          <div key={index} className={styles.wrapper}>
-            <div className={styles.container}>
-              <div className={styles.colorsContainer}>
-                {COLOR_VARIANTS.map((color, idx) => (
+            return (
+              <div
+                className={`${styles.colorsContainer} ${styles.dynamicVariants}`}
+                key={index}
+              >
+                {DYNAMIC_COLOR_VARIANTS.map((color, idx) => (
                   <ColorBox key={idx} cssVar={color} index={idx} />
                 ))}
               </div>
-            </div>
-          </div>
-        );
-      })}
+            );
+          })}
+
+          {STATIC_COLORS.map((baseColor, index) => {
+            const STATIC_COLOR_VARIANTS = [
+              `--${baseColor}-color`,
+              `--${baseColor}-color-25`,
+              `--${baseColor}-color-50`,
+              `--${baseColor}-color-100`,
+              `--${baseColor}-color-200`,
+              `--${baseColor}-color-300`,
+              `--${baseColor}-color-400`,
+              `--${baseColor}-color-500`,
+              `--${baseColor}-color-600`,
+            ];
+
+            return (
+              <div
+                className={`${styles.colorsContainer} ${styles.staticVariants}`}
+                key={index}
+              >
+                {STATIC_COLOR_VARIANTS.map((color, idx) => (
+                  <ColorBox key={idx} cssVar={color} index={idx} />
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };
@@ -47,7 +84,6 @@ export const Colors = () => {
 const ColorBox = ({ cssVar, index }) => {
   const ref = useRef(null);
   const [colorCode, setColorCode] = useState("");
-  const [copiedVar, setCopiedVar] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
   const [textColor, setTextColor] = useState("#000"); // default black
 
@@ -64,15 +100,11 @@ const ColorBox = ({ cssVar, index }) => {
 
   const label = cssVar.split("-");
 
-  const copyToClipboard = (text, isVar = false) => {
+  const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
-    if (isVar) {
-      setCopiedVar(true);
-      setTimeout(() => setCopiedVar(false), 1000);
-    } else {
-      setCopiedCode(true);
-      setTimeout(() => setCopiedCode(false), 1000);
-    }
+
+    setCopiedCode(true);
+    setTimeout(() => setCopiedCode(false), 1000);
   };
 
   // Utility: Calculate contrast text color based on background
@@ -110,26 +142,39 @@ const ColorBox = ({ cssVar, index }) => {
 
   return (
     <div
-      className={`${styles.box} ${index === 0 && styles.rootBox}`}
+      className={`${styles.box} ${index === 0 && styles.rootBox} ${
+        copiedCode && styles.copiedCode
+      }`}
       ref={ref}
       style={{ backgroundColor: `var(${cssVar})` }}
+      onClick={() => copyToClipboard(colorCode)}
     >
-      <p
-        className={`text-14 ${styles.colorName}`}
-        onClick={() => copyToClipboard(cssVar, true)}
-        style={{ cursor: "pointer", color: textColor }}
-        title="Click to copy variable"
-      >
-        {copiedVar ? "Copied!" : `${index === 0 ? label[2] : label[4]}`}
-      </p>
-      <p
-        className={`text-12 ${styles.colorName}`}
-        onClick={() => copyToClipboard(colorCode)}
-        style={{ cursor: "pointer", color: textColor }}
-        title="Click to copy color code"
-      >
-        {copiedCode ? "Copied!" : colorCode}
-      </p>
+      {copiedCode ? (
+        <p
+          className={`text-12 ${styles.copyText}`}
+          style={{ cursor: "pointer", color: textColor }}
+          title="Click to copy color code"
+        >
+          Copied!
+        </p>
+      ) : (
+        <>
+          <p
+            className={`ellipsis text-13 ${styles.colorName}`}
+            style={{ cursor: "pointer", color: textColor }}
+            title="Click to copy variable"
+          >
+            {`${index === 0 ? label[2] : label[4]}`}
+          </p>
+          <p
+            className={`text-12 ${styles.colorName}`}
+            style={{ cursor: "pointer", color: textColor }}
+            title="Click to copy color code"
+          >
+            {colorCode}
+          </p>
+        </>
+      )}
     </div>
   );
 };

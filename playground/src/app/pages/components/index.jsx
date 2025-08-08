@@ -10,6 +10,7 @@ import { NavigationBar } from "./navbar";
 import { getLabel } from "./utils";
 
 import styles from "./components.module.css";
+import { Shadows } from "@pages/Shadows";
 
 export default function ComponentsSystem() {
   const location = useLocation();
@@ -33,6 +34,12 @@ export default function ComponentsSystem() {
         { label: "Components", path: path, active: true },
       ];
       component = <Colors />;
+    } else if (path === "/components/shadows") {
+      items = [
+        { label: "Home", path: "/" },
+        { label: "Components", path: path, active: true },
+      ];
+      component = <Shadows />;
     } else if (path === "/components") {
       items = [
         { label: "Home", path: "/" },

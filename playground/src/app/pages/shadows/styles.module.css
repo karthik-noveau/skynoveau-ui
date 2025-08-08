@@ -11,9 +11,9 @@
 }
 
 .colorsContainer {
-  row-gap: 15px;
-  column-gap: 8px;
-  margin-bottom: 50px;
+  row-gap: 25px;
+  column-gap: 20px;
+  margin-bottom: 40px;
 }
 .staticVariants {
   display: flex;
@@ -26,33 +26,24 @@
 
 .box {
   border-radius: 12px;
-  min-width: 70px;
-  width: 100%;
-  max-width: 120px;
-  height: 75px;
+  width: 150px;
+  height: 90px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   gap: 1px;
   padding: 0px 5px;
   transition: all 0.3s;
 }
 
-.copiedCode {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 .rootBox {
   /* margin-right: 25px; */
 }
 
 .colorName {
   text-align: center;
-  position: relative;
-  top: -7px;
 }
 .colorName.icon {
   top: -2px;

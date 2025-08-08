@@ -24,6 +24,7 @@ export default function App() {
         <Route path="/components" element={<ComponentsSystem />} />
         <Route path="/components/installation" element={<ComponentsSystem />} />
         <Route path="/components/colors" element={<ComponentsSystem />} />
+        <Route path="/components/shadows" element={<ComponentsSystem />} />
 
         <Route path="/components/:componentId" element={<ComponentsSystem />} />
         <Route
