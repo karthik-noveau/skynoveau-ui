@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Colors } from "@pages/colors";
-import { Shadows } from "@pages/Shadows";
+import { Shadows } from "@pages/shadows";
 
 import { ComponentCollections } from "./all-components";
 import { ComponentRenderer } from "./component-renderer";

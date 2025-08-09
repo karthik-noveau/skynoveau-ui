@@ -12,7 +12,7 @@ const STATIC_COLORS = [
   "info",
 ];
 
-const DYNAMIC_COLORS = [];
+const DYNAMIC_COLORS = ["primary"];
 
 export const Colors = () => {
   return (
